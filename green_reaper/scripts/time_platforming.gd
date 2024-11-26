@@ -1,6 +1,18 @@
 class_name TimePlatforming
 extends Node2D
 
+enum Difficulty {
+	EASY,
+	MEDIUM,
+	HARD,
+}
+
+const _payout_multiplier: Dictionary = {
+	Difficulty.EASY: 1.25,
+	Difficulty.MEDIUM: 1.5,
+	Difficulty.HARD: 2.0
+}
+
 var time_to_beat: float = 10.0
 
 @onready var player: PlatformingPlayer = $Player
@@ -24,14 +36,20 @@ func _process(delta: float) -> void:
 	pass
 
 
+func _calculate_payout(base_bet: int, difficulty: Difficulty) -> int:
+	return int(base_bet * _payout_multiplier[difficulty])
+
+
 func _handle_reached_goal() -> void:
 	var is_timer_stopped: bool = game_timer.is_stopped()
 	game_timer.stop()
-		
-	if is_timer_stopped:
+	
+	if not is_timer_stopped:
 		_win()
 	else:
 		_lose()
+	
+	signal_bus.reached_platforming_goal.disconnect(_handle_reached_goal)
 
 
 func _handle_countdown_ended() -> void:

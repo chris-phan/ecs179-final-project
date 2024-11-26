@@ -12,5 +12,5 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _handle_body_entered(body: Node2D) -> void:
+func _handle_body_entered(_body: Node2D) -> void:
 	signal_bus.reached_platforming_goal.emit()
