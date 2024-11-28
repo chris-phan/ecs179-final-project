@@ -16,13 +16,10 @@ func _ready() -> void:
 	bind_commands()
 
 
-func _process(delta: float) -> void:
-	update_animation_params()
-
-
 func _physics_process(delta: float) -> void: 
 	_apply_gravity(delta)
 	_apply_movement(delta)
+	update_animation_params()
 	
 	var move_input: float = (Input.get_action_strength("move_right") -
 			Input.get_action_strength("move_left"))
@@ -61,10 +58,12 @@ func unbind_commands() -> void:
 
 func win() -> void:
 	_animation_tree["parameters/conditions/win"] = true
+	velocity.x = 0
 
 
 func lose() -> void:
 	_animation_tree["parameters/conditions/lose"] = true
+	velocity.x = 0
 
 
 func _apply_movement(_delta: float) -> void:

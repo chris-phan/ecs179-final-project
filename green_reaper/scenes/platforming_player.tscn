@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://c2iafl58bub3k"]
+[gd_scene load_steps=43 format=3 uid="uid://c2iafl58bub3k"]
 
 [ext_resource type="Texture2D" uid="uid://bxwcq87sl0vkb" path="res://assets/AnimationSheet.png" id="1_ac1dg"]
 [ext_resource type="Script" path="res://scripts/platforming_player.gd" id="1_aq4oh"]
@@ -53,7 +53,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("HurtBox:disabled")
+tracks/3/path = NodePath("HurtBox/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -106,7 +106,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("HurtBox:disabled")
+tracks/3/path = NodePath("HurtBox/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -158,7 +158,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("HurtBox:disabled")
+tracks/3/path = NodePath("HurtBox/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -211,7 +211,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("HurtBox:disabled")
+tracks/3/path = NodePath("HurtBox/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -264,7 +264,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("HurtBox:disabled")
+tracks/3/path = NodePath("HurtBox/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -332,7 +332,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("HurtBox:disabled")
+tracks/3/path = NodePath("HurtBox/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -361,7 +361,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("HurtBox:disabled")
+tracks/1/path = NodePath("HurtBox/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -415,7 +415,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("HurtBox:disabled")
+tracks/3/path = NodePath("HurtBox/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -469,7 +469,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("HurtBox:disabled")
+tracks/3/path = NodePath("HurtBox/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -563,10 +563,6 @@ switch_mode = 2
 advance_mode = 2
 advance_condition = &"is_moving"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0hedf"]
-advance_mode = 2
-advance_condition = &"is_kicking"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kgu70"]
 switch_mode = 2
 advance_mode = 2
@@ -613,8 +609,8 @@ states/walk/node = SubResource("AnimationNodeAnimation_g4kgt")
 states/walk/position = Vector2(528.5, 99.875)
 states/win/node = SubResource("AnimationNodeAnimation_wrnkf")
 states/win/position = Vector2(131.5, 268.5)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ysgjj"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_4t2ha"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_g7gr1"), "idle", "kick", SubResource("AnimationNodeStateMachineTransition_juyen"), "kick", "idle", SubResource("AnimationNodeStateMachineTransition_1f75i"), "kick", "walk", SubResource("AnimationNodeStateMachineTransition_u4nbb"), "walk", "kick", SubResource("AnimationNodeStateMachineTransition_vkdpb"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_q3faf"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_y81b5"), "walk", "jump", SubResource("AnimationNodeStateMachineTransition_c1whe"), "jump", "walk", SubResource("AnimationNodeStateMachineTransition_x20r2"), "land", "kick", SubResource("AnimationNodeStateMachineTransition_0hedf"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_kgu70"), "land", "walk", SubResource("AnimationNodeStateMachineTransition_ydeqr"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_33fhd"), "walk", "fall", SubResource("AnimationNodeStateMachineTransition_opk82"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_dj4f3"), "idle", "win", SubResource("AnimationNodeStateMachineTransition_bf2vt"), "idle", "lose", SubResource("AnimationNodeStateMachineTransition_jfrt0")]
-graph_offset = Vector2(-184, 126)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ysgjj"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_4t2ha"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_g7gr1"), "idle", "kick", SubResource("AnimationNodeStateMachineTransition_juyen"), "kick", "idle", SubResource("AnimationNodeStateMachineTransition_1f75i"), "kick", "walk", SubResource("AnimationNodeStateMachineTransition_u4nbb"), "walk", "kick", SubResource("AnimationNodeStateMachineTransition_vkdpb"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_q3faf"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_y81b5"), "walk", "jump", SubResource("AnimationNodeStateMachineTransition_c1whe"), "jump", "walk", SubResource("AnimationNodeStateMachineTransition_x20r2"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_kgu70"), "land", "walk", SubResource("AnimationNodeStateMachineTransition_ydeqr"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_33fhd"), "walk", "fall", SubResource("AnimationNodeStateMachineTransition_opk82"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_dj4f3"), "idle", "win", SubResource("AnimationNodeStateMachineTransition_bf2vt"), "idle", "lose", SubResource("AnimationNodeStateMachineTransition_jfrt0")]
+graph_offset = Vector2(-138, 46)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_aq4oh")
@@ -631,9 +627,13 @@ region_rect = Rect2(7, 32, 10, 16)
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_fdltu")
 
-[node name="HurtBox" type="CollisionShape2D" parent="."]
+[node name="HurtBox" type="Area2D" parent="."]
 position = Vector2(3, 5)
 rotation = 1.5708
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CapsuleShape2D_wl465")
 disabled = true
 
