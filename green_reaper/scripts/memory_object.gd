@@ -30,13 +30,14 @@ func _ready() -> void:
 	area_entered.connect(_handle)
 
 
-func set_color(color: Colors) -> void:
+func set_color(new_color: Colors) -> void:
+	color = new_color
 	sprite.texture = load(path % [_color_name[color]])
 
 
-static func get_color_name(color: Colors) -> String:
-	return _color_name[color]
+static func get_color_name(c: Colors) -> String:
+	return _color_name[c]
 
 
-func _handle(a: Area2D) -> void:
+func _handle(_area: Area2D) -> void:
 	signal_bus.hit_memory_object.emit(color)

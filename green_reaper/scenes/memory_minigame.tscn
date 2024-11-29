@@ -147,6 +147,7 @@ script = ExtResource("10_bg1cy")
 
 [node name="Timer" type="Timer" parent="MemoryQuestionLabel"]
 wait_time = 0.4
+one_shot = true
 
 [node name="Player" parent="." instance=ExtResource("1_p60kw")]
 position = Vector2(-36, 46)

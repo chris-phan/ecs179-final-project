@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://d28l37b3mq3il"]
+
+[ext_resource type="Script" path="res://scripts/stop_timer_object.gd" id="1_ay287"]
+[ext_resource type="Texture2D" uid="uid://cmmpl1crg3psc" path="res://assets/1bitplatformerpack/Tiles/Default/tile_0389.png" id="1_ucfxl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sfixm"]
+
+[node name="StopTimerObject" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_ay287")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_sfixm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ucfxl")

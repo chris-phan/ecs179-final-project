@@ -1,11 +1,5 @@
 class_name TimePlatforming
-extends Node2D
-
-enum Difficulty {
-	EASY,
-	MEDIUM,
-	HARD,
-}
+extends Minigame
 
 const _payout_multiplier: Dictionary = {
 	Difficulty.EASY: 1.25,
@@ -18,22 +12,17 @@ var time_to_beat: float = 10.0
 @onready var player: PlatformingPlayer = $Player
 @onready var goal: PlatformingGoal = $PlatformingGoal
 @onready var game_timer: Timer = $GameTimer
-@onready var countdown_label: CountdownLabel = $CountdownLabel
 
 
 func _ready() -> void:
+	super.init()
 	signal_bus.reached_platforming_goal.connect(_handle_reached_goal)
-	signal_bus.countdown_ended.connect(_handle_countdown_ended)
 	
 	game_timer.timeout.connect(_handle_game_timeout)
 	game_timer.wait_time = time_to_beat
 	
 	countdown_label.start()
 	player.unbind_commands()
-
-
-func _process(delta: float) -> void:
-	pass
 
 
 func _calculate_payout(base_bet: int, difficulty: Difficulty) -> int:
