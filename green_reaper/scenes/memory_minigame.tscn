@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://cj8drj4taml47"]
+[gd_scene load_steps=16 format=4 uid="uid://cj8drj4taml47"]
 
 [ext_resource type="Script" path="res://scripts/memory_minigame.gd" id="1_07s3b"]
 [ext_resource type="PackedScene" uid="uid://c2iafl58bub3k" path="res://scenes/platforming_player.tscn" id="1_p60kw"]
@@ -14,6 +14,7 @@
 [ext_resource type="FontFile" uid="uid://cm8dnumwsttrn" path="res://assets/fonts/Silkscreen/slkscr.ttf" id="10_mslxx"]
 [ext_resource type="Script" path="res://scripts/memory_history.gd" id="10_ptysf"]
 [ext_resource type="PackedScene" uid="uid://bgwqpaqgk52bi" path="res://scenes/countdown_label.tscn" id="10_uxlvj"]
+[ext_resource type="PackedScene" uid="uid://8ngjos0dy136" path="res://scenes/minigame_ui.tscn" id="15_c35t7"]
 
 [node name="MemoryMinigame" type="Node2D"]
 script = ExtResource("1_07s3b")
@@ -151,6 +152,9 @@ one_shot = true
 
 [node name="Player" parent="." instance=ExtResource("1_p60kw")]
 position = Vector2(-36, 46)
+
+[node name="MinigameUI" parent="." instance=ExtResource("15_c35t7")]
+visible = false
 
 [editable path="MemoryChoices/MemoryObjectRed"]
 [editable path="MemoryChoices/MemoryObjectOrange"]

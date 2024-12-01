@@ -1,6 +1,7 @@
 class_name PlatformingPlayer
 extends Character
 
+var _disabled: bool = false
 var _right_cmd: Command
 var _left_cmd: Command
 var _jump_cmd: Command
@@ -16,9 +17,10 @@ func _ready() -> void:
 	bind_commands()
 
 
-func _physics_process(delta: float) -> void: 
-	_apply_gravity(delta)
-	_apply_movement(delta)
+func _physics_process(delta: float) -> void:
+	if _disabled:
+		return
+	
 	update_animation_params()
 	
 	var move_input: float = (Input.get_action_strength("move_right") -
@@ -38,6 +40,9 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("kick"):
 		_animation_tree["parameters/conditions/is_kicking"] = true
 		#_kick_cmd.execute(self)
+	
+	_apply_gravity(delta)
+	_apply_movement(delta)
 
 
 func bind_commands() -> void:
@@ -64,6 +69,10 @@ func win() -> void:
 func lose() -> void:
 	_animation_tree["parameters/conditions/lose"] = true
 	velocity.x = 0
+
+
+func disable() -> void:
+	_disabled = true
 
 
 func _apply_movement(_delta: float) -> void:

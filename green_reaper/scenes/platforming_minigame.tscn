@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://ctujwdogp5im5"]
+[gd_scene load_steps=7 format=4 uid="uid://ctujwdogp5im5"]
 
 [ext_resource type="Script" path="res://scripts/time_platforming.gd" id="1_apl0s"]
 [ext_resource type="TileSet" uid="uid://bhw4bxuqfh87o" path="res://assets/1bitplatformerpack/platforming_tileset.tres" id="2_d5akb"]
 [ext_resource type="PackedScene" uid="uid://cmuyixh24ptkc" path="res://scenes/platforming_goal.tscn" id="3_fdobw"]
 [ext_resource type="PackedScene" uid="uid://c2iafl58bub3k" path="res://scenes/platforming_player.tscn" id="4_nc524"]
+[ext_resource type="FontFile" uid="uid://cm8dnumwsttrn" path="res://assets/fonts/Silkscreen/slkscr.ttf" id="5_bskjm"]
 [ext_resource type="PackedScene" uid="uid://bgwqpaqgk52bi" path="res://scenes/countdown_label.tscn" id="5_vtlxs"]
 
 [node name="PlatformingMinigame" type="Node2D"]
@@ -28,4 +29,23 @@ zoom = Vector2(4, 4)
 [node name="GameTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="TimerLabel" type="Label" parent="GameTimer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1054.0
+offset_top = -75.0
+offset_right = -1014.0
+offset_bottom = -52.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_bskjm")
+theme_override_font_sizes/font_size = 8
+text = "10.0"
+horizontal_alignment = 2
+
 [node name="CountdownLabel" parent="." instance=ExtResource("5_vtlxs")]
+
+[node name="TransitionTimer" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true

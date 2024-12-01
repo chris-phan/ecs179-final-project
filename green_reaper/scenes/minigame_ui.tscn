@@ -1,0 +1,525 @@
+[gd_scene load_steps=19 format=3 uid="uid://8ngjos0dy136"]
+
+[ext_resource type="FontFile" uid="uid://cm8dnumwsttrn" path="res://assets/fonts/Silkscreen/slkscr.ttf" id="1_0hdic"]
+[ext_resource type="Script" path="res://scripts/minigame_ui.gd" id="1_3ad8j"]
+[ext_resource type="Texture2D" uid="uid://bi1pjr5rk1spa" path="res://assets/minigame_images/time_platforming_game_img.png" id="2_ielp7"]
+[ext_resource type="FontFile" uid="uid://whx2uoxvf88o" path="res://assets/fonts/Silkscreen/slkscrb.ttf" id="3_rkvag"]
+[ext_resource type="Texture2D" uid="uid://bm43xjfq81soy" path="res://assets/kenney_input-prompts/Keyboard & Mouse/Vector/keyboard_a_outline.svg" id="4_11614"]
+[ext_resource type="Texture2D" uid="uid://53trmy7e4dpy" path="res://assets/kenney_input-prompts/Keyboard & Mouse/Vector/keyboard_d_outline.svg" id="5_hiay2"]
+[ext_resource type="Texture2D" uid="uid://b7uacgsafyagf" path="res://assets/kenney_input-prompts/Keyboard & Mouse/Vector/keyboard_space_outline.svg" id="6_fr03j"]
+[ext_resource type="Texture2D" uid="uid://ervgxglj0skd" path="res://assets/kenney_input-prompts/Keyboard & Mouse/Vector/keyboard_k_outline.svg" id="7_onwmx"]
+[ext_resource type="Texture2D" uid="uid://1pw0xj4rus06" path="res://assets/kenney_ui-pack/Vector/Extra/icon_arrow_up_outline.svg" id="9_3cuxf"]
+[ext_resource type="Texture2D" uid="uid://ceuc6kj4fgk04" path="res://assets/kenney_ui-pack/Vector/Extra/icon_arrow_down_outline.svg" id="10_hx3gq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1pl0r"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mnn3q"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fbcp7"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sft1i"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3pksu"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fi5d3"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6v3uh"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hj0qw"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="ColorRect" type="ColorRect"]
+custom_minimum_size = Vector2(1152, 648)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3ad8j")
+
+[node name="GameName" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 30.0
+offset_top = 22.0
+offset_right = 1122.0
+offset_bottom = 71.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_0hdic")
+theme_override_font_sizes/font_size = 48
+text = "Game Name"
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_0hdic")
+theme_override_font_sizes/font_size = 24
+tab_alignment = 2
+current_tab = 0
+
+[node name="Instructions" type="ColorRect" parent="MarginContainer/TabContainer"]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Instructions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/TabContainer/Instructions/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 50
+theme_override_constants/v_separation = 50
+columns = 2
+
+[node name="MinigamePicturePanel" type="Panel" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(475, 225)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1pl0r")
+
+[node name="Control" type="Control" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/MinigamePicturePanel"]
+clip_contents = true
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/MinigamePicturePanel/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -117.0
+offset_right = 118.602
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_ielp7")
+expand_mode = 3
+stretch_mode = 6
+
+[node name="ControlsPanel" type="Panel" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(475, 225)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mnn3q")
+
+[node name="BackgroundPanel" type="Panel" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/ControlsPanel"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fbcp7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/ControlsPanel/BackgroundPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -89.0
+offset_right = -20.0
+offset_bottom = 89.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/ControlsPanel/BackgroundPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_rkvag")
+theme_override_font_sizes/font_size = 32
+text = "Controls"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/ControlsPanel/BackgroundPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/ControlsPanel/BackgroundPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_11614")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/ControlsPanel/BackgroundPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_0hdic")
+theme_override_font_sizes/font_size = 24
+text = "Move left"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/ControlsPanel/BackgroundPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/ControlsPanel/BackgroundPanel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("5_hiay2")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/ControlsPanel/BackgroundPanel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_0hdic")
+theme_override_font_sizes/font_size = 24
+text = "Move right"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/ControlsPanel/BackgroundPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/ControlsPanel/BackgroundPanel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("6_fr03j")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/ControlsPanel/BackgroundPanel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_0hdic")
+theme_override_font_sizes/font_size = 24
+text = "Jump"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/ControlsPanel/BackgroundPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/ControlsPanel/BackgroundPanel/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+texture = ExtResource("7_onwmx")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/ControlsPanel/BackgroundPanel/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_0hdic")
+theme_override_font_sizes/font_size = 24
+text = "Kick"
+
+[node name="InstructionsPanel" type="Panel" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(424.476, 225)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sft1i")
+
+[node name="BackgroundPanel" type="Panel" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/InstructionsPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3pksu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/InstructionsPanel/BackgroundPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+
+[node name="Title" type="Label" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/InstructionsPanel/BackgroundPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_rkvag")
+theme_override_font_sizes/font_size = 32
+text = "Instructions"
+
+[node name="InstructionsBody" type="Label" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/InstructionsPanel/BackgroundPanel/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_0hdic")
+theme_override_font_sizes/font_size = 24
+text = "Get to the heart before time runs out."
+autowrap_mode = 3
+
+[node name="Panel" type="Panel" parent="MarginContainer/TabContainer/Instructions"]
+custom_minimum_size = Vector2(161, 45)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+offset_right = -46.0
+offset_bottom = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_fi5d3")
+
+[node name="NextButton" type="Button" parent="MarginContainer/TabContainer/Instructions/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.5
+offset_top = -20.5
+offset_right = 78.5
+offset_bottom = 20.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_rkvag")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_6v3uh")
+text = "Got it!"
+
+[node name="Wager" type="ColorRect" parent="MarginContainer/TabContainer"]
+visible = false
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Wager"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/TabContainer/Wager/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 50
+columns = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Wager/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Wager/MarginContainer/GridContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_rkvag")
+theme_override_font_sizes/font_size = 32
+text = "Difficulty"
+
+[node name="EasyButton" type="Button" parent="MarginContainer/TabContainer/Wager/MarginContainer/GridContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "You have 20 seconds to reach the goal"
+theme_override_fonts/font = ExtResource("3_rkvag")
+theme_override_font_sizes/font_size = 32
+text = "Easy"
+
+[node name="MediumButton" type="Button" parent="MarginContainer/TabContainer/Wager/MarginContainer/GridContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_rkvag")
+theme_override_font_sizes/font_size = 32
+text = "Medium"
+
+[node name="HardButton" type="Button" parent="MarginContainer/TabContainer/Wager/MarginContainer/GridContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_rkvag")
+theme_override_font_sizes/font_size = 32
+text = "Hard"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/TabContainer/Wager/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Difficulty" type="HBoxContainer" parent="MarginContainer/TabContainer/Wager/MarginContainer/GridContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="SelectedDifficulty" type="Label" parent="MarginContainer/TabContainer/Wager/MarginContainer/GridContainer/VBoxContainer2/Difficulty"]
+custom_minimum_size = Vector2(244, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_rkvag")
+theme_override_font_sizes/font_size = 32
+text = "Difficulty:"
+
+[node name="Panel" type="Panel" parent="MarginContainer/TabContainer/Wager/MarginContainer/GridContainer/VBoxContainer2/Difficulty"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hj0qw")
+
+[node name="SelectedDifficultyValue" type="Label" parent="MarginContainer/TabContainer/Wager/MarginContainer/GridContainer/VBoxContainer2/Difficulty/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_right = 46.0
+offset_bottom = 11.5
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_rkvag")
+theme_override_font_sizes/font_size = 32
+text = "Easy"
+
+[node name="Wager" type="HBoxContainer" parent="MarginContainer/TabContainer/Wager/MarginContainer/GridContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Wager" type="Label" parent="MarginContainer/TabContainer/Wager/MarginContainer/GridContainer/VBoxContainer2/Wager"]
+custom_minimum_size = Vector2(244, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_rkvag")
+theme_override_font_sizes/font_size = 32
+text = "Wager:"
+horizontal_alignment = 2
+
+[node name="Panel" type="Panel" parent="MarginContainer/TabContainer/Wager/MarginContainer/GridContainer/VBoxContainer2/Wager"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hj0qw")
+
+[node name="WagerAmount" type="Label" parent="MarginContainer/TabContainer/Wager/MarginContainer/GridContainer/VBoxContainer2/Wager/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_right = 46.0
+offset_bottom = 11.5
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_rkvag")
+theme_override_font_sizes/font_size = 32
+text = "$1000000"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TabContainer/Wager/MarginContainer/GridContainer/VBoxContainer2/Wager"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="WagerIncButton" type="Button" parent="MarginContainer/TabContainer/Wager/MarginContainer/GridContainer/VBoxContainer2/Wager/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+icon = ExtResource("9_3cuxf")
+
+[node name="WagerDecButton" type="Button" parent="MarginContainer/TabContainer/Wager/MarginContainer/GridContainer/VBoxContainer2/Wager/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+icon = ExtResource("10_hx3gq")
+
+[node name="Payout" type="HBoxContainer" parent="MarginContainer/TabContainer/Wager/MarginContainer/GridContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Payout" type="Label" parent="MarginContainer/TabContainer/Wager/MarginContainer/GridContainer/VBoxContainer2/Payout"]
+custom_minimum_size = Vector2(244, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_rkvag")
+theme_override_font_sizes/font_size = 32
+text = "Payout:"
+horizontal_alignment = 2
+
+[node name="Panel" type="Panel" parent="MarginContainer/TabContainer/Wager/MarginContainer/GridContainer/VBoxContainer2/Payout"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hj0qw")
+
+[node name="PayoutAmount" type="Label" parent="MarginContainer/TabContainer/Wager/MarginContainer/GridContainer/VBoxContainer2/Payout/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_right = 46.0
+offset_bottom = 11.5
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_rkvag")
+theme_override_font_sizes/font_size = 32
+text = "$2000000"
+
+[node name="Panel" type="Panel" parent="MarginContainer/TabContainer/Wager"]
+custom_minimum_size = Vector2(161, 45)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+offset_right = -46.0
+offset_bottom = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_fi5d3")
+
+[node name="StartButton" type="Button" parent="MarginContainer/TabContainer/Wager/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.5
+offset_top = -20.5
+offset_right = 78.5
+offset_bottom = 20.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_rkvag")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_6v3uh")
+text = "Start!"
+
+[node name="HoldTimer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[node name="IncTimer" type="Timer" parent="."]
+wait_time = 0.025
