@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://hxib6uwdyxq7"]
+[gd_scene load_steps=11 format=3 uid="uid://hxib6uwdyxq7"]
 
 [ext_resource type="Texture2D" uid="uid://b6w7k544m2ep4" path="res://assets/BoardPack/Tilemap/tilemap.png" id="1_bnpei"]
 [ext_resource type="Script" path="res://scripts/board_movement.gd" id="1_ovokj"]
@@ -20,6 +20,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_eib4x"]
 resource_name = "down"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -35,6 +36,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_crvqc"]
 resource_name = "idle"
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -50,6 +52,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_2mqkc"]
 resource_name = "left"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -65,6 +68,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_sk5qp"]
 resource_name = "right"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -80,6 +84,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_iu4ev"]
 resource_name = "up"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -103,7 +108,10 @@ _data = {
 "up": SubResource("Animation_iu4ev")
 }
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_x83gt"]
+radius = 5.0
+
+[node name="BoardPlayer" type="CharacterBody2D"]
 light_mask = 0
 script = ExtResource("1_ovokj")
 
@@ -120,3 +128,7 @@ frame = 24
 libraries = {
 "": SubResource("AnimationLibrary_olu1e")
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_x83gt")
