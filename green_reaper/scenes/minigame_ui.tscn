@@ -1,8 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://8ngjos0dy136"]
+[gd_scene load_steps=20 format=3 uid="uid://8ngjos0dy136"]
 
 [ext_resource type="FontFile" uid="uid://cm8dnumwsttrn" path="res://assets/fonts/Silkscreen/slkscr.ttf" id="1_0hdic"]
 [ext_resource type="Script" path="res://scripts/minigame_ui.gd" id="1_3ad8j"]
-[ext_resource type="Texture2D" uid="uid://bi1pjr5rk1spa" path="res://assets/minigame_images/time_platforming_game_img.png" id="2_ielp7"]
+[ext_resource type="Texture2D" uid="uid://bq41krpo32lvb" path="res://assets/minigame_images/internal_timer_minigame_img.png" id="3_64mwv"]
 [ext_resource type="FontFile" uid="uid://whx2uoxvf88o" path="res://assets/fonts/Silkscreen/slkscrb.ttf" id="3_rkvag"]
 [ext_resource type="Texture2D" uid="uid://bm43xjfq81soy" path="res://assets/kenney_input-prompts/Keyboard & Mouse/Vector/keyboard_a_outline.svg" id="4_11614"]
 [ext_resource type="Texture2D" uid="uid://53trmy7e4dpy" path="res://assets/kenney_input-prompts/Keyboard & Mouse/Vector/keyboard_d_outline.svg" id="5_hiay2"]
@@ -18,6 +18,9 @@ border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
 border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wqudh"]
+bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mnn3q"]
 bg_color = Color(1, 1, 1, 1)
@@ -114,9 +117,10 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_1pl0r")
 
-[node name="Control" type="Control" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/MinigamePicturePanel"]
+[node name="Panel" type="Panel" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/MinigamePicturePanel"]
 clip_contents = true
 layout_mode = 1
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 2.0
@@ -125,8 +129,10 @@ offset_right = -2.0
 offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wqudh")
 
-[node name="TextureRect2" type="TextureRect" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/MinigamePicturePanel/Control"]
+[node name="MinigameImg" type="TextureRect" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/MinigamePicturePanel/Panel"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -137,9 +143,9 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("2_ielp7")
+texture = ExtResource("3_64mwv")
 expand_mode = 3
-stretch_mode = 6
+stretch_mode = 5
 
 [node name="ControlsPanel" type="Panel" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(475, 225)

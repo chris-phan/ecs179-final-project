@@ -1,7 +1,12 @@
 class_name MemoryMinigame
 extends Minigame
 
-var num_questions: int = 5
+const _difficulty_rounds: Dictionary = {
+	Difficulty.EASY: 7,
+	Difficulty.MEDIUM: 10,
+	Difficulty.HARD: 15,
+}
+var num_questions: int
 
 var _player_choices: Array[MemoryObject.Colors]
 var _sequence: Array[MemoryObject.Colors]
@@ -9,16 +14,45 @@ var _cur_round = 0
 
 @onready var player: PlatformingPlayer = $Player
 @onready var question_label: MemoryQuestionLabel = $MemoryQuestionLabel
+@onready var memory_choices: MemoryChoices = $MemoryChoices
 @onready var memory_history: MemoryHistory = $MemoryHistory
+
+
+func _init() -> void:
+	minigame_img_path = "res://assets/minigame_images/memory_minigame_img.png"
+	minigame_scene_path = "res://scenes/memory_minigame.tscn"
+	minigame_name = "Memory"
+	instructions = "You're given a new color each round. Remember the previous colors and repeat the sequence."
+	
+	_payout_multiplier = {
+		Difficulty.EASY: 1.25,
+		Difficulty.MEDIUM: 1.5,
+		Difficulty.HARD: 2.0
+	}
 
 
 func _ready() -> void:
 	super.init()
 	signal_bus.hit_memory_object.connect(_handle_hit_memory_object)
 	countdown_label.start()
+	memory_choices.disable()
+
+
+func set_difficulty(diff: Difficulty) -> void:
+	super.set_difficulty(diff)
+	num_questions = _difficulty_rounds[diff]
+
+
+func get_payout(wager: int, difficulty: Difficulty) -> int:
+	return wager * _payout_multiplier[difficulty]
 
 
 func _handle_countdown_ended() -> void:
+	_start()
+
+
+func _start() -> void:
+	memory_choices.enable()
 	_next_round()
 
 
@@ -31,11 +65,14 @@ func _next_round() -> void:
 
 
 func _win() -> void:
+	super._win()
 	player.win()
 	player.unbind_commands()
+	print(_did_player_win)
 
 
 func _lose() -> void:
+	super._lose()
 	player.lose()
 	player.unbind_commands()
 
@@ -59,3 +96,7 @@ func _is_selection_correct() -> bool:
 		if _player_choices[i] != _sequence[i]:
 			return false
 	return true
+
+
+func _handle_transition_timer_timeout() -> void:
+	signal_bus.end_minigame.emit(_did_player_win)

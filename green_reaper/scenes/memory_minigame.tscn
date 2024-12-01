@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c2iafl58bub3k" path="res://scenes/platforming_player.tscn" id="1_p60kw"]
 [ext_resource type="TileSet" uid="uid://bhw4bxuqfh87o" path="res://assets/1bitplatformerpack/platforming_tileset.tres" id="2_5ouc1"]
 [ext_resource type="PackedScene" uid="uid://b3wrna5ys5pat" path="res://scenes/memory_object.tscn" id="3_dy1cj"]
+[ext_resource type="Script" path="res://scripts/memory_choices.gd" id="3_rjq3s"]
 [ext_resource type="Texture2D" uid="uid://dulny5a4bu68" path="res://assets/1bitplatformerpack/Tiles/Default/tile_0042_orange.png" id="4_hsgpn"]
 [ext_resource type="Texture2D" uid="uid://bjjxrdcv0x4sd" path="res://assets/1bitplatformerpack/Tiles/Default/tile_0042_yellow.png" id="5_0530w"]
 [ext_resource type="Texture2D" uid="uid://b3jbr4c3xacfm" path="res://assets/1bitplatformerpack/Tiles/Default/tile_0042_green.png" id="6_exu8n"]
@@ -14,7 +15,6 @@
 [ext_resource type="FontFile" uid="uid://cm8dnumwsttrn" path="res://assets/fonts/Silkscreen/slkscr.ttf" id="10_mslxx"]
 [ext_resource type="Script" path="res://scripts/memory_history.gd" id="10_ptysf"]
 [ext_resource type="PackedScene" uid="uid://bgwqpaqgk52bi" path="res://scenes/countdown_label.tscn" id="10_uxlvj"]
-[ext_resource type="PackedScene" uid="uid://8ngjos0dy136" path="res://scenes/minigame_ui.tscn" id="15_c35t7"]
 
 [node name="MemoryMinigame" type="Node2D"]
 script = ExtResource("1_07s3b")
@@ -26,6 +26,7 @@ tile_map_data = PackedByteArray("AADu/wkAAQAKABAAAADv/wkAAQALABAAAADw/wkAAQALABA
 tile_set = ExtResource("2_5ouc1")
 
 [node name="MemoryChoices" type="Node2D" parent="."]
+script = ExtResource("3_rjq3s")
 
 [node name="MemoryObjectRed" parent="MemoryChoices" instance=ExtResource("3_dy1cj")]
 position = Vector2(-124, 69)
@@ -80,6 +81,7 @@ color = 6
 texture = ExtResource("9_foywg")
 
 [node name="MemoryHistory" type="Node2D" parent="."]
+position = Vector2(-20, 0)
 script = ExtResource("10_ptysf")
 
 [node name="MemoryObject" parent="MemoryHistory" instance=ExtResource("3_dy1cj")]
@@ -122,6 +124,26 @@ scale = Vector2(0.5, 0.5)
 position = Vector2(36, -11)
 scale = Vector2(0.5, 0.5)
 
+[node name="MemoryObject11" parent="MemoryHistory" instance=ExtResource("3_dy1cj")]
+position = Vector2(44, -11)
+scale = Vector2(0.5, 0.5)
+
+[node name="MemoryObject12" parent="MemoryHistory" instance=ExtResource("3_dy1cj")]
+position = Vector2(52, -11)
+scale = Vector2(0.5, 0.5)
+
+[node name="MemoryObject13" parent="MemoryHistory" instance=ExtResource("3_dy1cj")]
+position = Vector2(60, -11)
+scale = Vector2(0.5, 0.5)
+
+[node name="MemoryObject14" parent="MemoryHistory" instance=ExtResource("3_dy1cj")]
+position = Vector2(68, -11)
+scale = Vector2(0.5, 0.5)
+
+[node name="MemoryObject15" parent="MemoryHistory" instance=ExtResource("3_dy1cj")]
+position = Vector2(76, -11)
+scale = Vector2(0.5, 0.5)
+
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
 
@@ -153,8 +175,9 @@ one_shot = true
 [node name="Player" parent="." instance=ExtResource("1_p60kw")]
 position = Vector2(-36, 46)
 
-[node name="MinigameUI" parent="." instance=ExtResource("15_c35t7")]
-visible = false
+[node name="TransitionTimer" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
 
 [editable path="MemoryChoices/MemoryObjectRed"]
 [editable path="MemoryChoices/MemoryObjectOrange"]

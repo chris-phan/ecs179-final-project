@@ -1,4 +1,4 @@
-class_name TimePlatforming
+class_name TimePlatformingMinigame
 extends Minigame
 
 const _difficulty_times: Dictionary = {
@@ -6,24 +6,25 @@ const _difficulty_times: Dictionary = {
 	Difficulty.MEDIUM: 12.0,
 	Difficulty.HARD: 8.0,
 }
-const _payout_multiplier: Dictionary = {
-	Difficulty.EASY: 1.25,
-	Difficulty.MEDIUM: 1.5,
-	Difficulty.HARD: 2.0
-}
 
-var _did_player_win: bool = false
 var time_to_beat: float
 @onready var player: PlatformingPlayer = $Player
 @onready var goal: PlatformingGoal = $PlatformingGoal
 @onready var game_timer: Timer = $GameTimer
 @onready var timer_label: Label = $GameTimer/TimerLabel
-@onready var transition_timer: Timer = $TransitionTimer
 
 
 func _init() -> void:
+	minigame_img_path = "res://assets/minigame_images/time_platforming_game_img.png"
+	minigame_scene_path = "res://scenes/time_platforming_minigame.tscn"
 	minigame_name = "Time Platforming"
 	instructions = "Get to the heart before time runs out."
+	
+	_payout_multiplier = {
+		Difficulty.EASY: 1.25,
+		Difficulty.MEDIUM: 1.5,
+		Difficulty.HARD: 2.0
+	}
 
 
 func _ready() -> void:
@@ -54,23 +55,15 @@ func set_difficulty(diff: Difficulty) -> void:
 
 
 func _win() -> void:
-	_did_player_win = true
+	super._win()
 	player.unbind_commands()
 	player.win()
-	transition_timer.start()
-	
-	# do some stuff here to help UI, i.e. some book keeping
-	# e.g. calculate payout
 
 
 func _lose() -> void:
-	_did_player_win = false
+	super._lose()
 	player.unbind_commands()
 	player.lose()
-	transition_timer.start()
-	
-	# do some stuff here to help UI, i.e. some book keeping
-	# e.g. calculate payout
 
 
 func _handle_reached_goal() -> void:

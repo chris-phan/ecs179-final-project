@@ -4,6 +4,7 @@ extends Node2D
 var _children: Array[MemoryObject]
 var _idx: int = 0
 
+
 func _ready() -> void:
 	var temp_children: Array[Node] = get_children()
 	for n in temp_children:

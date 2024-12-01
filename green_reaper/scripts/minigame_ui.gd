@@ -6,6 +6,7 @@ var wager_dec_button_down: bool = false
 var minigame_manager: MinigameManager
 
 @onready var game_name_label: Label = %GameName
+@onready var minigame_image: TextureRect = %MinigameImg
 @onready var next_button: Button = %NextButton
 @onready var start_button: Button = %StartButton
 @onready var tabs: TabContainer = $MarginContainer/TabContainer
@@ -51,6 +52,10 @@ func set_game_name() -> void:
 	game_name_label.text = minigame_manager.minigame_name
 
 
+func set_minigame_img() -> void:
+	minigame_image.texture = load(minigame_manager.minigame_img_path)
+
+
 func set_instructions() -> void:
 	instructions_label.text = minigame_manager.instructions
 
@@ -65,6 +70,7 @@ func set_initial_payout() -> void:
 
 func set_labels() -> void:
 	set_game_name()
+	set_minigame_img()
 	set_instructions()
 	set_initial_wager()
 	set_initial_payout()

@@ -48,3 +48,7 @@ one_shot = true
 
 [node name="Player" parent="." instance=ExtResource("3_8vrq1")]
 position = Vector2(-79, 48)
+
+[node name="TransitionTimer" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
