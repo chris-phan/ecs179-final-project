@@ -1,8 +1,8 @@
 class_name CameraBase
 extends Camera2D
 
-@export var zoom_out: float = 2.5
-@export var zoom_in: float = 5.0
+@export var zoom_out: float = 0.8
+@export var zoom_in: float = 3.0
 
 var _board_player: CharacterBody2D
 var _camera_on_player: bool = false

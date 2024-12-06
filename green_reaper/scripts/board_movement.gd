@@ -2,8 +2,9 @@ extends CharacterBody2D
 
 @onready var _spaces: Node = $"../Spaces"
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var dice: Node2D = %Dice
+@onready var dice: Node2D = $"../Dice"
 @onready var test_board: Node2D = $".."
+@onready var board: Node2D = $".."
 
 @export var _player_speed: int = 80
 
@@ -15,23 +16,30 @@ var _current_animation: String = "idle"
 var space_indicators: Array[String] = []
 
 signal space_landed(space_type)
-#signal board_setup_done
+
 
 func _ready() -> void:
 	# go to idle animation
 	animation_player.play("idle")
+	board.connect("board_setup_done", _on_board_setup_done)
+	z_index = 100
 	
+
+func _on_board_setup_done() -> void:
 	# initialize board
 	for child in _spaces.get_children():
-		board_vectors.append(child.global_position)
-		#print(child.name)
+		board_vectors.append(Vector2(child.global_position.x, child.global_position.y - 5))
 		
 		if "event" in child.name:
 			space_indicators.append("event")
-		elif "good" in child.name:
-			space_indicators.append("good")
-		elif "bad" in child.name:
-			space_indicators.append("bad")
+		elif "gain_money" in child.name:
+			space_indicators.append("gain_money")
+		elif "gain_luck" in child.name:
+			space_indicators.append("gain_luck")
+		elif "lose_money" in child.name:
+			space_indicators.append("lose_money")
+		elif "lose_luck" in child.name:
+			space_indicators.append("lose_luck")
 		else:
 			space_indicators.append("unknown space")
 		
@@ -39,7 +47,6 @@ func _ready() -> void:
 	
 	# move player to first space
 	position = board_vectors[0]
-	#emit_signal("board_setup_done")
 	
 
 func _process(_delta: float) -> void:
@@ -49,7 +56,6 @@ func _process(_delta: float) -> void:
 		#print("d pressed")
 		_moves = dice.roll_dice()
 		print("dice: " + str(_moves))
-		print("turn: " + str(test_board.get_turns_passed()))
 
 	# after dice roll
 	

@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=4 uid="uid://db5d1xch13bpw"]
 
 [ext_resource type="Texture2D" uid="uid://dluc0vq2clg1q" path="res://assets/BoardPack/Tilemap/tilemap_packed.png" id="1_62ikr"]
-[ext_resource type="Script" path="res://scripts/board_interface.gd" id="1_lovja"]
+[ext_resource type="Script" path="res://scripts/test_board_interface.gd" id="1_lovja"]
 [ext_resource type="PackedScene" uid="uid://hxib6uwdyxq7" path="res://scenes/board_player.tscn" id="2_be5mv"]
 [ext_resource type="Script" path="res://scripts/dice.gd" id="2_xqgp2"]
 [ext_resource type="Script" path="res://scripts/camera_base.gd" id="5_yqef3"]
@@ -498,11 +498,11 @@ texture = ExtResource("1_62ikr")
 [sub_resource type="TileSet" id="TileSet_j7xvy"]
 sources/0 = SubResource("TileSetAtlasSource_j76e0")
 
-[sub_resource type="Gradient" id="Gradient_1j33y"]
+[sub_resource type="Gradient" id="Gradient_26wlw"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_r22jd"]
-gradient = SubResource("Gradient_1j33y")
+gradient = SubResource("Gradient_26wlw")
 width = 40
 height = 40
 fill = 1
@@ -528,7 +528,7 @@ script = ExtResource("2_xqgp2")
 [node name="BoardPlayer" parent="." instance=ExtResource("2_be5mv")]
 unique_name_in_owner = true
 physics_interpolation_mode = 2
-position = Vector2(-43, 0)
+position = Vector2(-40, -40)
 
 [node name="Spaces" type="Node" parent="."]
 
