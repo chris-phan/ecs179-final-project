@@ -12,6 +12,9 @@ var minigame_scene_path: String
 var minigame_name: String
 var instructions: String
 var difficulty: Minigame.Difficulty
+var easy_tooltip: String
+var medium_tooltip: String
+var hard_tooltip: String
 var old_balance: int
 var new_balance: int
 var wager: int
@@ -31,12 +34,17 @@ func _ready() -> void:
 	add_child(cur_scene)
 	
 	#cur_minigame = TimePlatformingMinigame.new()
-	cur_minigame = ObservationMinigame.new()
+	#cur_minigame = MemoryMinigame.new()
+	cur_minigame = InternalTimerMinigame.new()
+	#cur_minigame = ObservationMinigame.new()
 	
 	minigame_img_path = cur_minigame.minigame_img_path
 	minigame_scene_path = cur_minigame.minigame_scene_path
 	minigame_name = cur_minigame.minigame_name
 	instructions = cur_minigame.instructions
+	easy_tooltip = cur_minigame.easy_tooltip
+	medium_tooltip = cur_minigame.medium_tooltip
+	hard_tooltip = cur_minigame.hard_tooltip
 	cur_scene.set_labels()
 	
 	old_balance = 50000

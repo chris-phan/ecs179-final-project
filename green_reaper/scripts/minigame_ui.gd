@@ -68,12 +68,19 @@ func set_initial_payout() -> void:
 	payout_amount_label.text = str(minigame_manager.get_payout())
 
 
+func set_tooltips() -> void:
+	easy_button.tooltip_text = minigame_manager.easy_tooltip
+	medium_button.tooltip_text = minigame_manager.medium_tooltip
+	hard_button.tooltip_text = minigame_manager.hard_tooltip
+
+
 func set_labels() -> void:
 	set_game_name()
 	set_minigame_img()
 	set_instructions()
 	set_initial_wager()
 	set_initial_payout()
+	set_tooltips()
 
 
 func _inc_wager() -> void:

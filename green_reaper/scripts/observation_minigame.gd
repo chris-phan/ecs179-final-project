@@ -4,7 +4,7 @@ extends Minigame
 const _border_top_left: Vector2 = Vector2(-120, -63)
 const _border_bot_right: Vector2 = Vector2(120, 25)
 const _margin: float = 1.0
-const _num_rounds_by_difficulty: Dictionary = {
+const _difficulty_rounds: Dictionary = {
 	Difficulty.EASY: 1,
 	Difficulty.MEDIUM: 2,
 	Difficulty.HARD: 3,
@@ -35,6 +35,10 @@ func _init() -> void:
 	minigame_scene_path = "res://scenes/observation_minigame.tscn"
 	minigame_name = "Observation"
 	instructions = "Count the objects that appear and answer the question."
+	tooltip_format = "There are %d rounds."
+	easy_tooltip = "There is 1 round."
+	medium_tooltip = tooltip_format % [_difficulty_rounds[Difficulty.MEDIUM]]
+	hard_tooltip = tooltip_format % [_difficulty_rounds[Difficulty.HARD]]
 	
 	_payout_multiplier = {
 		Difficulty.EASY: 1.25,
@@ -67,7 +71,7 @@ static func pick_rand_position(width: int) -> Vector2:
 
 func set_difficulty(diff: Difficulty) -> void:
 	super.set_difficulty(diff)
-	_max_rounds = _num_rounds_by_difficulty[diff]
+	_max_rounds = _difficulty_rounds[diff]
 
 
 func get_payout(wager: int, difficulty: Difficulty) -> int:

@@ -11,7 +11,6 @@ var num_questions: int
 var _player_choices: Array[MemoryObject.Colors]
 var _sequence: Array[MemoryObject.Colors]
 var _cur_round = 0
-
 @onready var player: PlatformingPlayer = $Player
 @onready var question_label: MemoryQuestionLabel = $MemoryQuestionLabel
 @onready var memory_choices: MemoryChoices = $MemoryChoices
@@ -22,7 +21,11 @@ func _init() -> void:
 	minigame_img_path = "res://assets/minigame_images/memory_minigame_img.png"
 	minigame_scene_path = "res://scenes/memory_minigame.tscn"
 	minigame_name = "Memory"
-	instructions = "You're given a new color each round. Remember the previous colors and repeat the sequence."
+	instructions = "You're given a new color each round. Remember the previous colors and repeat the sequence by kicking the correct hearts."
+	tooltip_format = "There are %d rounds."
+	easy_tooltip = tooltip_format % [_difficulty_rounds[Difficulty.EASY]]
+	medium_tooltip = tooltip_format % [_difficulty_rounds[Difficulty.MEDIUM]]
+	hard_tooltip = tooltip_format % [_difficulty_rounds[Difficulty.HARD]]
 	
 	_payout_multiplier = {
 		Difficulty.EASY: 1.25,

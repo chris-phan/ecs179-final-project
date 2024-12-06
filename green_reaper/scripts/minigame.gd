@@ -17,6 +17,10 @@ var minigame_img_path: String
 var minigame_scene_path: String
 var minigame_name: String
 var instructions: String
+var tooltip_format: String
+var easy_tooltip: String
+var medium_tooltip: String
+var hard_tooltip: String
 
 var _difficulty: Difficulty = Difficulty.HARD
 @onready var countdown_label: CountdownLabel = $CountdownLabel

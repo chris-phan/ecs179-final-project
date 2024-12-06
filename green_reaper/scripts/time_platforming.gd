@@ -6,6 +6,7 @@ const _difficulty_times: Dictionary = {
 	Difficulty.MEDIUM: 12.0,
 	Difficulty.HARD: 8.0,
 }
+var tooltip: String = "You have %d seconds to reach the goal"
 
 var time_to_beat: float
 @onready var player: PlatformingPlayer = $Player
@@ -19,6 +20,10 @@ func _init() -> void:
 	minigame_scene_path = "res://scenes/time_platforming_minigame.tscn"
 	minigame_name = "Time Platforming"
 	instructions = "Get to the heart before time runs out."
+	tooltip_format = "You have %d seconds to reach the goal"
+	easy_tooltip = tooltip_format % [_difficulty_times[Difficulty.EASY]]
+	medium_tooltip = tooltip_format % [_difficulty_times[Difficulty.MEDIUM]]
+	hard_tooltip = tooltip_format % [_difficulty_times[Difficulty.HARD]]
 	
 	_payout_multiplier = {
 		Difficulty.EASY: 1.25,
@@ -31,9 +36,7 @@ func _ready() -> void:
 	super.init()
 	signal_bus.reached_platforming_goal.connect(_handle_reached_goal)
 	
-	game_timer.timeout.connect(_handle_game_timer_timeout)	
-	transition_timer.timeout.connect(_handle_transition_timer_timeout)
-	
+	game_timer.timeout.connect(_handle_game_timer_timeout)
 	countdown_label.start()
 	player.unbind_commands()
 

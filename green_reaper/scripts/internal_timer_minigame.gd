@@ -11,6 +11,7 @@ const _difficulty_tolerance: Dictionary = {
 var _elapsed_overtime: float = 0.0
 var _count_time: bool = false
 var _tolerance: float
+var _timed_out: bool = false
 
 @onready var stop_timer_object: StopTimerObject = $StopTimerObject
 @onready var timer_label: Label = $TimerLabel
@@ -23,6 +24,10 @@ func _init() -> void:
 	minigame_scene_path = "res://scenes/internal_timer_minigame.tscn"
 	minigame_name = "Internal Timer"
 	instructions = "Kick the chest to stop the timer as close to 0 as possible."
+	tooltip_format = "You have %.2f seconds of leeway."
+	easy_tooltip = tooltip_format % [_difficulty_tolerance[Difficulty.EASY]]
+	medium_tooltip = tooltip_format % [_difficulty_tolerance[Difficulty.MEDIUM]]
+	hard_tooltip = tooltip_format % [_difficulty_tolerance[Difficulty.HARD]]
 	
 	_payout_multiplier = {
 		Difficulty.EASY: 1.25,
@@ -34,6 +39,7 @@ func _init() -> void:
 func _ready() -> void:
 	super.init()
 	signal_bus.hit_stop_timer_button.connect(_handle_stop_timer_button_hit)
+	timer.timeout.connect(_handle_timer_timeout)
 	timer.wait_time = _timer_duration
 	timer.one_shot = true
 	timer_label.text = "%.2f" % [_timer_duration]
@@ -47,7 +53,8 @@ func _process(delta: float) -> void:
 			timer_label.hide()
 		else:
 			timer_label.text = "%.2f" % [timer.time_left]
-	if timer.is_stopped():
+	if _timed_out:
+		print(delta, " ", _elapsed_overtime)
 		_elapsed_overtime += delta
 
 
@@ -65,7 +72,7 @@ func _handle_countdown_ended() -> void:
 
 
 func _start() -> void:
-	#_count_time = true
+	_count_time = true
 	timer.start()
 	stop_timer_object.show()
 
@@ -82,8 +89,13 @@ func _lose() -> void:
 	player.lose()
 
 
+func _handle_timer_timeout() -> void:
+	_timed_out = true
+
+
 func _handle_stop_timer_button_hit() -> void:
 	_count_time = false
+	_timed_out = false
 	if timer.is_stopped():
 		timer_label.text = "-%.2f" % [_elapsed_overtime]
 	else:
