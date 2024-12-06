@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://8ngjos0dy136"]
+[gd_scene load_steps=26 format=3 uid="uid://8ngjos0dy136"]
 
 [ext_resource type="FontFile" uid="uid://cm8dnumwsttrn" path="res://assets/fonts/Silkscreen/slkscr.ttf" id="1_0hdic"]
 [ext_resource type="Script" path="res://scripts/minigame_ui.gd" id="1_3ad8j"]
@@ -35,6 +35,54 @@ bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6v3uh"]
 bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_62ohb"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dt60y"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ilk5f"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0p3gu"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y6bb2"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_olacw"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hj0qw"]
 bg_color = Color(1, 1, 1, 1)
@@ -78,9 +126,10 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("1_0hdic")
 theme_override_font_sizes/font_size = 24
 tab_alignment = 2
-current_tab = 0
+current_tab = 1
 
 [node name="Instructions" type="ColorRect" parent="MarginContainer/TabContainer"]
+visible = false
 layout_mode = 2
 color = Color(0, 0, 0, 1)
 metadata/_tab_index = 0
@@ -97,17 +146,17 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="GridContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Instructions/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Instructions/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 50
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TabContainer/Instructions/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="MinigamePicturePanel" type="Panel" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/HBoxContainer"]
+[node name="MinigamePicturePanel" type="Panel" parent="MarginContainer/TabContainer/Instructions/MarginContainer/VBoxContainer/HBoxContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(475, 225)
 layout_mode = 2
@@ -115,7 +164,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_1pl0r")
 
-[node name="Panel" type="Panel" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/HBoxContainer/MinigamePicturePanel"]
+[node name="Panel" type="Panel" parent="MarginContainer/TabContainer/Instructions/MarginContainer/VBoxContainer/HBoxContainer/MinigamePicturePanel"]
 clip_contents = true
 layout_mode = 1
 anchors_preset = -1
@@ -129,7 +178,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_wqudh")
 
-[node name="MinigameImg" type="TextureRect" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/HBoxContainer/MinigamePicturePanel/Panel"]
+[node name="MinigameImg" type="TextureRect" parent="MarginContainer/TabContainer/Instructions/MarginContainer/VBoxContainer/HBoxContainer/MinigamePicturePanel/Panel"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -145,12 +194,12 @@ texture = ExtResource("3_64mwv")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="ControlsPanel" type="Panel" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/HBoxContainer"]
+[node name="ControlsPanel" type="Panel" parent="MarginContainer/TabContainer/Instructions/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(475, 225)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_mnn3q")
 
-[node name="BackgroundPanel" type="Panel" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/HBoxContainer/ControlsPanel"]
+[node name="BackgroundPanel" type="Panel" parent="MarginContainer/TabContainer/Instructions/MarginContainer/VBoxContainer/HBoxContainer/ControlsPanel"]
 clip_contents = true
 layout_mode = 1
 anchors_preset = -1
@@ -164,7 +213,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_fbcp7")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/HBoxContainer/ControlsPanel/BackgroundPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Instructions/MarginContainer/VBoxContainer/HBoxContainer/ControlsPanel/BackgroundPanel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
@@ -177,74 +226,74 @@ offset_bottom = 89.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="Label" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/HBoxContainer/ControlsPanel/BackgroundPanel/VBoxContainer"]
+[node name="Title" type="Label" parent="MarginContainer/TabContainer/Instructions/MarginContainer/VBoxContainer/HBoxContainer/ControlsPanel/BackgroundPanel/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_rkvag")
 theme_override_font_sizes/font_size = 32
 text = "Controls"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/HBoxContainer/ControlsPanel/BackgroundPanel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TabContainer/Instructions/MarginContainer/VBoxContainer/HBoxContainer/ControlsPanel/BackgroundPanel/VBoxContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/HBoxContainer/ControlsPanel/BackgroundPanel/VBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Instructions/MarginContainer/VBoxContainer/HBoxContainer/ControlsPanel/BackgroundPanel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("4_11614")
 expand_mode = 3
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/HBoxContainer/ControlsPanel/BackgroundPanel/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Instructions/MarginContainer/VBoxContainer/HBoxContainer/ControlsPanel/BackgroundPanel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_0hdic")
 theme_override_font_sizes/font_size = 24
 text = "Move left"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/HBoxContainer/ControlsPanel/BackgroundPanel/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/TabContainer/Instructions/MarginContainer/VBoxContainer/HBoxContainer/ControlsPanel/BackgroundPanel/VBoxContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/HBoxContainer/ControlsPanel/BackgroundPanel/VBoxContainer/HBoxContainer2"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Instructions/MarginContainer/VBoxContainer/HBoxContainer/ControlsPanel/BackgroundPanel/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 texture = ExtResource("5_hiay2")
 expand_mode = 3
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/HBoxContainer/ControlsPanel/BackgroundPanel/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Instructions/MarginContainer/VBoxContainer/HBoxContainer/ControlsPanel/BackgroundPanel/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_0hdic")
 theme_override_font_sizes/font_size = 24
 text = "Move right"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/HBoxContainer/ControlsPanel/BackgroundPanel/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/TabContainer/Instructions/MarginContainer/VBoxContainer/HBoxContainer/ControlsPanel/BackgroundPanel/VBoxContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/HBoxContainer/ControlsPanel/BackgroundPanel/VBoxContainer/HBoxContainer3"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Instructions/MarginContainer/VBoxContainer/HBoxContainer/ControlsPanel/BackgroundPanel/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 texture = ExtResource("6_fr03j")
 expand_mode = 3
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/HBoxContainer/ControlsPanel/BackgroundPanel/VBoxContainer/HBoxContainer3"]
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Instructions/MarginContainer/VBoxContainer/HBoxContainer/ControlsPanel/BackgroundPanel/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_0hdic")
 theme_override_font_sizes/font_size = 24
 text = "Jump"
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/HBoxContainer/ControlsPanel/BackgroundPanel/VBoxContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/TabContainer/Instructions/MarginContainer/VBoxContainer/HBoxContainer/ControlsPanel/BackgroundPanel/VBoxContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/HBoxContainer/ControlsPanel/BackgroundPanel/VBoxContainer/HBoxContainer4"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Instructions/MarginContainer/VBoxContainer/HBoxContainer/ControlsPanel/BackgroundPanel/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 texture = ExtResource("7_onwmx")
 expand_mode = 3
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/HBoxContainer/ControlsPanel/BackgroundPanel/VBoxContainer/HBoxContainer4"]
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Instructions/MarginContainer/VBoxContainer/HBoxContainer/ControlsPanel/BackgroundPanel/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_0hdic")
 theme_override_font_sizes/font_size = 24
 text = "Kick"
 
-[node name="InstructionsPanel" type="Panel" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer"]
+[node name="InstructionsPanel" type="Panel" parent="MarginContainer/TabContainer/Instructions/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(424.476, 225)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_sft1i")
 
-[node name="BackgroundPanel" type="Panel" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/InstructionsPanel"]
+[node name="BackgroundPanel" type="Panel" parent="MarginContainer/TabContainer/Instructions/MarginContainer/VBoxContainer/InstructionsPanel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -257,7 +306,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_3pksu")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/InstructionsPanel/BackgroundPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Instructions/MarginContainer/VBoxContainer/InstructionsPanel/BackgroundPanel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -267,13 +316,13 @@ offset_right = -20.0
 offset_bottom = -20.0
 grow_horizontal = 2
 
-[node name="Title" type="Label" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/InstructionsPanel/BackgroundPanel/VBoxContainer"]
+[node name="Title" type="Label" parent="MarginContainer/TabContainer/Instructions/MarginContainer/VBoxContainer/InstructionsPanel/BackgroundPanel/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_rkvag")
 theme_override_font_sizes/font_size = 32
 text = "Instructions"
 
-[node name="InstructionsBody" type="Label" parent="MarginContainer/TabContainer/Instructions/MarginContainer/GridContainer/InstructionsPanel/BackgroundPanel/VBoxContainer"]
+[node name="InstructionsBody" type="Label" parent="MarginContainer/TabContainer/Instructions/MarginContainer/VBoxContainer/InstructionsPanel/BackgroundPanel/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
@@ -318,7 +367,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_6v3uh")
 text = "Got it!"
 
 [node name="Wager" type="ColorRect" parent="MarginContainer/TabContainer"]
-visible = false
 layout_mode = 2
 color = Color(0, 0, 0, 1)
 metadata/_tab_index = 1
@@ -351,25 +399,47 @@ theme_override_fonts/font = ExtResource("3_rkvag")
 theme_override_font_sizes/font_size = 32
 text = "Difficulty"
 
-[node name="EasyButton" type="Button" parent="MarginContainer/TabContainer/Wager/MarginContainer/GridContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Wager/MarginContainer/GridContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="EasyButton" type="Button" parent="MarginContainer/TabContainer/Wager/MarginContainer/GridContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 1, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("3_rkvag")
 theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxFlat_62ohb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dt60y")
+theme_override_styles/normal = SubResource("StyleBoxFlat_dt60y")
 text = "Easy"
 
-[node name="MediumButton" type="Button" parent="MarginContainer/TabContainer/Wager/MarginContainer/GridContainer/VBoxContainer"]
+[node name="MediumButton" type="Button" parent="MarginContainer/TabContainer/Wager/MarginContainer/GridContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(1, 0.647059, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0.647059, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.647059, 0, 1)
 theme_override_fonts/font = ExtResource("3_rkvag")
 theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxFlat_ilk5f")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0p3gu")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0p3gu")
 text = "Medium"
 
-[node name="HardButton" type="Button" parent="MarginContainer/TabContainer/Wager/MarginContainer/GridContainer/VBoxContainer"]
+[node name="HardButton" type="Button" parent="MarginContainer/TabContainer/Wager/MarginContainer/GridContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_rkvag")
 theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxFlat_y6bb2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_olacw")
+theme_override_styles/normal = SubResource("StyleBoxFlat_olacw")
 text = "Hard"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/TabContainer/Wager/MarginContainer/GridContainer"]
