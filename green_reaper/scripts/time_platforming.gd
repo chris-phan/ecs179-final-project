@@ -3,8 +3,8 @@ extends Minigame
 
 const _difficulty_times: Dictionary = {
 	Difficulty.EASY: 15.0,
-	Difficulty.MEDIUM: 12.0,
-	Difficulty.HARD: 8.0,
+	Difficulty.MEDIUM: 9.0,
+	Difficulty.HARD: 7.0,
 }
 var tooltip: String = "You have %d seconds to reach the goal"
 
@@ -27,8 +27,8 @@ func _init() -> void:
 	
 	_payout_multiplier = {
 		Difficulty.EASY: 1.25,
-		Difficulty.MEDIUM: 1.5,
-		Difficulty.HARD: 2.0
+		Difficulty.MEDIUM: 2.0,
+		Difficulty.HARD: 3.0
 	}
 
 
@@ -44,6 +44,9 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if not game_timer.is_stopped():
 		timer_label.text = "%.2f" % [game_timer.time_left]
+		if game_timer.time_left < 3.0:
+			sfx_player.stop_sunday_drive()
+			sfx_player.play_heartbeat()
 
 
 func get_payout(wager: int, difficulty: Difficulty) -> int:

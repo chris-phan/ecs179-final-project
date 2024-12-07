@@ -28,6 +28,7 @@ var minigame_manager: MinigameManager
 
 
 func _ready() -> void:
+	tabs.tab_changed.connect(_handle_tab_changed)
 	next_button.button_up.connect(_handle_next_button_up)
 	start_button.button_up.connect(_handle_start_button_up)
 	easy_button.button_up.connect(_handle_easy_button_up)
@@ -98,27 +99,36 @@ func _dec_wager() -> void:
 	payout_amount_label.text = str(minigame_manager.get_payout())
 
 
+func _handle_tab_changed(_tab: int) -> void:
+	sfx_player.play_button_press()
+
+
 func _handle_next_button_up() -> void:
+	sfx_player.play_button_press()
 	tabs.current_tab = 1
 
 
 func _handle_start_button_up() -> void:
+	sfx_player.play_button_press()
 	signal_bus.start_minigame.emit()
 
 
 func _handle_easy_button_up() -> void:
+	sfx_player.play_button_press()
 	minigame_manager.difficulty = Minigame.Difficulty.EASY
 	difficulty_value.text = "EASY"
 	payout_amount_label.text = str(minigame_manager.get_payout())
 
 
 func _handle_medium_button_up() -> void:
+	sfx_player.play_button_press()
 	minigame_manager.difficulty = Minigame.Difficulty.MEDIUM
 	difficulty_value.text = "MEDIUM"
 	payout_amount_label.text = str(minigame_manager.get_payout())
 
 
 func _handle_hard_button_up() -> void:
+	sfx_player.play_button_press()
 	minigame_manager.difficulty = Minigame.Difficulty.HARD
 	difficulty_value.text = "HARD"
 	payout_amount_label.text = str(minigame_manager.get_payout())
@@ -127,25 +137,27 @@ func _handle_hard_button_up() -> void:
 func _handle_wager_inc_button_down() -> void:
 	wager_inc_button_down = true
 	hold_timer.start()
-	_inc_wager()
 
 
 func _handle_wager_inc_button_up() -> void:
+	sfx_player.play_button_press()
 	wager_inc_button_down = false
 	hold_timer.stop()
 	inc_timer.stop()
+	_inc_wager()
 
 
 func _handle_wager_dec_button_down() -> void:
 	wager_dec_button_down = true
 	hold_timer.start()
-	_dec_wager()
 
 
 func _handle_wager_dec_button_up() -> void:
+	sfx_player.play_button_press()
 	wager_dec_button_down = false
 	hold_timer.stop()
 	inc_timer.stop()
+	_dec_wager()
 
 
 func _handle_hold_timer_timeout() -> void:
@@ -153,6 +165,9 @@ func _handle_hold_timer_timeout() -> void:
 
 
 func _handle_inc_timer_timeout() -> void:
+	var cur_amount: int = int(wager_amount_label.text)
+	if cur_amount != minigame_manager.old_balance and cur_amount != 0:
+		sfx_player.play_money_counter()
 	if wager_inc_button_down:
 		_inc_wager()
 	elif wager_dec_button_down:

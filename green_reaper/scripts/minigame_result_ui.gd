@@ -19,17 +19,19 @@ var _tween: Tween
 @onready var increment_amount_label: Label = %IncrementAmount
 @onready var new_balance_label: Label = %BalanceAmount
 
+
 func _ready() -> void:
 	done_button_panel.hide()
 	_hide_stagger_list()
 	timer.timeout.connect(_handle_timeout)
 	done_button.button_up.connect(_handle_done_button_up)
 	player.disable()
-	
 	timer.start()
 
 
 func _process(_delta: float) -> void:
+	if _new_balance != int(new_balance_label.text):
+		sfx_player.play_money_counter()
 	new_balance_label.text = str(_new_balance)
 
 
@@ -81,6 +83,7 @@ func set_labels() -> void:
 	set_old_balance()
 	set_increment()
 	set_done_button()
+	set_new_balance()
 
 
 func _hide_stagger_list() -> void:
@@ -91,6 +94,8 @@ func _hide_stagger_list() -> void:
 func _handle_timeout() -> void:
 	if _idx < len(stagger_list):
 		stagger_list[_idx].show()
+		if not stagger_list[_idx] is PlatformingPlayer:
+			sfx_player.play_show_result()
 		
 		# Play corresponding animation for player
 		if stagger_list[_idx] is PlatformingPlayer:
@@ -115,5 +120,5 @@ func _handle_done_button_up() -> void:
 
 
 func _handle_tween_finished() -> void:
-		done_button_panel.show()
+	done_button_panel.show()
 	

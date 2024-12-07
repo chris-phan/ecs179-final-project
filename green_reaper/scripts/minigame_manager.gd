@@ -33,9 +33,9 @@ func _ready() -> void:
 	cur_scene.global_position = Vector2(0.0, 0.0)
 	add_child(cur_scene)
 	
-	#cur_minigame = TimePlatformingMinigame.new()
+	cur_minigame = TimePlatformingMinigame.new()
 	#cur_minigame = MemoryMinigame.new()
-	cur_minigame = InternalTimerMinigame.new()
+	#cur_minigame = InternalTimerMinigame.new()
 	#cur_minigame = ObservationMinigame.new()
 	
 	minigame_img_path = cur_minigame.minigame_img_path
@@ -50,6 +50,8 @@ func _ready() -> void:
 	old_balance = 50000
 	#minigame_rotation = all_minigames.duplicate()
 	#minigame_rotation.shuffle()
+	
+	sfx_player.play_sunday_drive()
 
 
 func play() -> void:

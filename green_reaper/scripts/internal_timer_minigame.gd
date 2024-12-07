@@ -30,9 +30,9 @@ func _init() -> void:
 	hard_tooltip = tooltip_format % [_difficulty_tolerance[Difficulty.HARD]]
 	
 	_payout_multiplier = {
-		Difficulty.EASY: 1.25,
-		Difficulty.MEDIUM: 1.5,
-		Difficulty.HARD: 2.0
+		Difficulty.EASY: 1.5,
+		Difficulty.MEDIUM: 2.5,
+		Difficulty.HARD: 4.0
 	}
 
 
@@ -50,11 +50,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if _count_time:
 		if timer.time_left < 7.50:
+			sfx_player.stop_sunday_drive()
+			sfx_player.play_heartbeat()
 			timer_label.hide()
 		else:
 			timer_label.text = "%.2f" % [timer.time_left]
 	if _timed_out:
-		print(delta, " ", _elapsed_overtime)
 		_elapsed_overtime += delta
 
 
@@ -94,6 +95,7 @@ func _handle_timer_timeout() -> void:
 
 
 func _handle_stop_timer_button_hit() -> void:
+	sfx_player.stop_heartbeat()
 	_count_time = false
 	_timed_out = false
 	if timer.is_stopped():

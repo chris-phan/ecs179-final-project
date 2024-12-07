@@ -28,9 +28,9 @@ func _init() -> void:
 	hard_tooltip = tooltip_format % [_difficulty_rounds[Difficulty.HARD]]
 	
 	_payout_multiplier = {
-		Difficulty.EASY: 1.25,
-		Difficulty.MEDIUM: 1.5,
-		Difficulty.HARD: 2.0
+		Difficulty.EASY: 1.5,
+		Difficulty.MEDIUM: 2.0,
+		Difficulty.HARD: 5.0
 	}
 
 
@@ -87,11 +87,15 @@ func _handle_hit_memory_object(color: MemoryObject.Colors) -> void:
 	var is_correct: bool = _is_selection_correct()
 	if not is_correct:
 		_lose()
-	elif is_correct and len(_player_choices) == len(_sequence):
-		if _cur_round == num_questions:
-			_win()
+	else:
+		if len(_player_choices) == len(_sequence):
+			if _cur_round == num_questions:
+				_win()
+			else:
+				sfx_player.play_countdown()
+				_next_round()
 		else:
-			_next_round()
+			sfx_player.play_correct_memory()
 
 
 func _is_selection_correct() -> bool:

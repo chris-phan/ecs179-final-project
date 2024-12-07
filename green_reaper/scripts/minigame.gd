@@ -58,11 +58,15 @@ func _start() -> void:
 
 
 func _win() -> void:
+	sfx_player.stop()
+	sfx_player.play_shadowing()
 	_did_player_win = true
 	transition_timer.start()
 
 
 func _lose() -> void:
+	sfx_player.stop()
+	sfx_player.play_every_step()
 	_did_player_win = false
 	transition_timer.start()
 

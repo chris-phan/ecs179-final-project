@@ -34,16 +34,16 @@ func _init() -> void:
 	minigame_img_path = "res://assets/minigame_images/observation_minigame_img.png"
 	minigame_scene_path = "res://scenes/observation_minigame.tscn"
 	minigame_name = "Observation"
-	instructions = "Count the objects that appear and answer the question."
+	instructions = "Observe and count the objects for 10 seconds. Then answer a question about how many you saw by kicking a chest."
 	tooltip_format = "There are %d rounds."
 	easy_tooltip = "There is 1 round."
 	medium_tooltip = tooltip_format % [_difficulty_rounds[Difficulty.MEDIUM]]
 	hard_tooltip = tooltip_format % [_difficulty_rounds[Difficulty.HARD]]
 	
 	_payout_multiplier = {
-		Difficulty.EASY: 1.25,
-		Difficulty.MEDIUM: 1.5,
-		Difficulty.HARD: 2.0
+		Difficulty.EASY: 1.5,
+		Difficulty.MEDIUM: 2.5,
+		Difficulty.HARD: 4.0
 	}
 
 
@@ -190,6 +190,7 @@ func _handle_hit_observation_button(val: int) -> void:
 	if val == _answer:
 		_hide_buttons()
 		if _cur_round < _max_rounds:
+			sfx_player.play_correct_observation()
 			_next_round()
 		else:
 			_win()
