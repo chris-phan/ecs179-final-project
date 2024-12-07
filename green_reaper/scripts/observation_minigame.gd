@@ -4,7 +4,7 @@ extends Minigame
 const _border_top_left: Vector2 = Vector2(-120, -63)
 const _border_bot_right: Vector2 = Vector2(120, 25)
 const _margin: float = 1.0
-const _num_rounds_by_difficulty: Dictionary = {
+const _difficulty_rounds: Dictionary = {
 	Difficulty.EASY: 1,
 	Difficulty.MEDIUM: 2,
 	Difficulty.HARD: 3,
@@ -13,6 +13,7 @@ const _NUM_TARGETS_INCREMENT: int = 2
 
 @export var observation_buttons: Array[ObservationButton]
 
+var _max_rounds: int
 var _answer: int = 0
 var _obs_target_scene: PackedScene = preload("res://scenes/observation_target.tscn")
 var _targets: Dictionary = {
@@ -27,6 +28,23 @@ var _cur_round: int = 0
 @onready var timer: Timer = $Timer
 @onready var player: PlatformingPlayer = $Player
 @onready var question_label: Label = $QuestionLabel
+
+
+func _init() -> void:
+	minigame_img_path = "res://assets/minigame_images/observation_minigame_img.png"
+	minigame_scene_path = "res://scenes/observation_minigame.tscn"
+	minigame_name = "Observation"
+	instructions = "Observe and count the objects for 10 seconds. Then answer a question about how many you saw by kicking a chest."
+	tooltip_format = "There are %d rounds."
+	easy_tooltip = "There is 1 round."
+	medium_tooltip = tooltip_format % [_difficulty_rounds[Difficulty.MEDIUM]]
+	hard_tooltip = tooltip_format % [_difficulty_rounds[Difficulty.HARD]]
+	
+	_payout_multiplier = {
+		Difficulty.EASY: 1.5,
+		Difficulty.MEDIUM: 2.5,
+		Difficulty.HARD: 4.0
+	}
 
 
 func _ready() -> void:
@@ -51,6 +69,15 @@ static func pick_rand_position(width: int) -> Vector2:
 	return Vector2(pos_x, pos_y)
 
 
+func set_difficulty(diff: Difficulty) -> void:
+	super.set_difficulty(diff)
+	_max_rounds = _difficulty_rounds[diff]
+
+
+func get_payout(wager: int, difficulty: Difficulty) -> int:
+	return wager * _payout_multiplier[difficulty]
+
+
 func _next_round() -> void:
 	question_label.hide()
 	timer.start()
@@ -65,17 +92,19 @@ func _start() -> void:
 
 
 func _win() -> void:
+	super._win()
 	player.unbind_commands()
 	player.win()
 
 
 func _lose() -> void:
+	super._lose()
 	player.unbind_commands()
 	player.lose()
 
 
 func _generate_rand_num_targets() -> int:
-	return randi_range(_min_targets, _min_targets)
+	return randi_range(_min_targets, _max_targets)
 
 
 # Round 0:  1 possible target
@@ -160,7 +189,8 @@ func _handle_countdown_ended() -> void:
 func _handle_hit_observation_button(val: int) -> void:
 	if val == _answer:
 		_hide_buttons()
-		if _cur_round < _num_rounds_by_difficulty[_difficulty]:
+		if _cur_round < _max_rounds:
+			sfx_player.play_correct_observation()
 			_next_round()
 		else:
 			_win()
@@ -177,3 +207,7 @@ func _handle_timeout() -> void:
 	_show_buttons()
 	_delete_targets()
 	question_label.display(selected_type)
+
+
+func _handle_transition_timer_timeout() -> void:
+	signal_bus.end_minigame.emit(_did_player_win)

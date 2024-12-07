@@ -39,6 +39,7 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("kick"):
 		_animation_tree["parameters/conditions/is_kicking"] = true
+		sfx_player.stop_character_move()
 		#_kick_cmd.execute(self)
 	
 	_apply_gravity(delta)

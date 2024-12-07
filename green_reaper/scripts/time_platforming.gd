@@ -1,38 +1,42 @@
-class_name TimePlatforming
+class_name TimePlatformingMinigame
 extends Minigame
 
 const _difficulty_times: Dictionary = {
 	Difficulty.EASY: 15.0,
-	Difficulty.MEDIUM: 12.0,
-	Difficulty.HARD: 8.0,
+	Difficulty.MEDIUM: 9.0,
+	Difficulty.HARD: 7.0,
 }
-const _payout_multiplier: Dictionary = {
-	Difficulty.EASY: 1.25,
-	Difficulty.MEDIUM: 1.5,
-	Difficulty.HARD: 2.0
-}
+var tooltip: String = "You have %d seconds to reach the goal"
 
-var _did_player_win: bool = false
 var time_to_beat: float
 @onready var player: PlatformingPlayer = $Player
 @onready var goal: PlatformingGoal = $PlatformingGoal
 @onready var game_timer: Timer = $GameTimer
 @onready var timer_label: Label = $GameTimer/TimerLabel
-@onready var transition_timer: Timer = $TransitionTimer
 
 
 func _init() -> void:
+	minigame_img_path = "res://assets/minigame_images/time_platforming_game_img.png"
+	minigame_scene_path = "res://scenes/time_platforming_minigame.tscn"
 	minigame_name = "Time Platforming"
 	instructions = "Get to the heart before time runs out."
+	tooltip_format = "You have %d seconds to reach the goal"
+	easy_tooltip = tooltip_format % [_difficulty_times[Difficulty.EASY]]
+	medium_tooltip = tooltip_format % [_difficulty_times[Difficulty.MEDIUM]]
+	hard_tooltip = tooltip_format % [_difficulty_times[Difficulty.HARD]]
+	
+	_payout_multiplier = {
+		Difficulty.EASY: 1.25,
+		Difficulty.MEDIUM: 2.0,
+		Difficulty.HARD: 3.0
+	}
 
 
 func _ready() -> void:
 	super.init()
 	signal_bus.reached_platforming_goal.connect(_handle_reached_goal)
 	
-	game_timer.timeout.connect(_handle_game_timer_timeout)	
-	transition_timer.timeout.connect(_handle_transition_timer_timeout)
-	
+	game_timer.timeout.connect(_handle_game_timer_timeout)
 	countdown_label.start()
 	player.unbind_commands()
 
@@ -40,6 +44,9 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if not game_timer.is_stopped():
 		timer_label.text = "%.2f" % [game_timer.time_left]
+		if game_timer.time_left < 3.0:
+			sfx_player.stop_sunday_drive()
+			sfx_player.play_heartbeat()
 
 
 func get_payout(wager: int, difficulty: Difficulty) -> int:
@@ -54,23 +61,15 @@ func set_difficulty(diff: Difficulty) -> void:
 
 
 func _win() -> void:
-	_did_player_win = true
+	super._win()
 	player.unbind_commands()
 	player.win()
-	transition_timer.start()
-	
-	# do some stuff here to help UI, i.e. some book keeping
-	# e.g. calculate payout
 
 
 func _lose() -> void:
-	_did_player_win = false
+	super._lose()
 	player.unbind_commands()
 	player.lose()
-	transition_timer.start()
-	
-	# do some stuff here to help UI, i.e. some book keeping
-	# e.g. calculate payout
 
 
 func _handle_reached_goal() -> void:

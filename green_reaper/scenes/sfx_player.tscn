@@ -1,0 +1,69 @@
+[gd_scene load_steps=14 format=3 uid="uid://bho6ewcjsvxhh"]
+
+[ext_resource type="Script" path="res://scripts/sfx_player.gd" id="1_d1ef4"]
+[ext_resource type="AudioStream" uid="uid://nr2yj4spnasc" path="res://assets/sounds/ui/button_press.mp3" id="2_2ay3r"]
+[ext_resource type="AudioStream" uid="uid://b4es2ctjhy1yx" path="res://assets/sounds/ui/money_counter.mp3" id="3_22ea8"]
+[ext_resource type="AudioStream" uid="uid://djq00e0o0r0lc" path="res://assets/sounds/ui/show_result.mp3" id="4_k2skw"]
+[ext_resource type="AudioStream" uid="uid://byffqm2ltie3v" path="res://assets/sounds/ui/countdown.mp3" id="5_2p06t"]
+[ext_resource type="AudioStream" uid="uid://bv5ijiqm1m2bf" path="res://assets/sounds/ui/countdown_go.mp3" id="6_eek0h"]
+[ext_resource type="AudioStream" uid="uid://bjed3a8q85jf6" path="res://assets/sounds/ui/heartbeat.mp3" id="7_fhes2"]
+[ext_resource type="AudioStream" uid="uid://bsfulxad8nch6" path="res://assets/sounds/bgm/every_step_silent_partner.mp3" id="8_fdlaw"]
+[ext_resource type="AudioStream" uid="uid://cdu1r0gkw2p07" path="res://assets/sounds/bgm/sunday_drive_silent_partner.mp3" id="9_7mf8s"]
+[ext_resource type="AudioStream" uid="uid://b05w4xyrllvte" path="res://assets/sounds/bgm/shadowing_corbyn_kites.mp3" id="10_s6bhn"]
+[ext_resource type="AudioStream" uid="uid://bmagokkpewset" path="res://assets/sounds/platforming_player/character_move.mp3" id="11_jpcg1"]
+[ext_resource type="AudioStream" uid="uid://clrhacvht4cbl" path="res://assets/sounds/ui/correct_observation.mp3" id="12_phbsu"]
+[ext_resource type="AudioStream" uid="uid://cdgp6xro60wj" path="res://assets/sounds/ui/correct_memory.mp3" id="13_dqp75"]
+
+[node name="SFXPlayer" type="Node2D"]
+script = ExtResource("1_d1ef4")
+
+[node name="ButtonPress" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_2ay3r")
+bus = &"SFX"
+
+[node name="MoneyCounter" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_22ea8")
+volume_db = 24.0
+bus = &"New Bus"
+
+[node name="ShowResult" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_k2skw")
+bus = &"SFX"
+
+[node name="Countdown" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_2p06t")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="CountdownGo" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_eek0h")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="Heartbeat" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_fhes2")
+bus = &"SFX"
+
+[node name="EveryStep" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_fdlaw")
+bus = &"BGM"
+
+[node name="SundayDrive" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_7mf8s")
+volume_db = -5.0
+bus = &"BGM"
+
+[node name="Shadowing" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_s6bhn")
+bus = &"BGM"
+
+[node name="CharacterMove" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_jpcg1")
+volume_db = 2.0
+bus = &"SFX"
+
+[node name="CorrectObservation" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_phbsu")
+
+[node name="CorrectMemory" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_dqp75")

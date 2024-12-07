@@ -7,9 +7,14 @@ var minigame_rotation: Array[Minigame]
 var cur_minigame: Minigame
 var cur_scene: Node
 
+var minigame_img_path: String
+var minigame_scene_path: String
 var minigame_name: String
 var instructions: String
 var difficulty: Minigame.Difficulty
+var easy_tooltip: String
+var medium_tooltip: String
+var hard_tooltip: String
 var old_balance: int
 var new_balance: int
 var wager: int
@@ -27,15 +32,26 @@ func _ready() -> void:
 	cur_scene.set_minigame_manager(self)
 	cur_scene.global_position = Vector2(0.0, 0.0)
 	add_child(cur_scene)
-	cur_minigame = TimePlatforming.new()
 	
+	cur_minigame = TimePlatformingMinigame.new()
+	#cur_minigame = MemoryMinigame.new()
+	#cur_minigame = InternalTimerMinigame.new()
+	#cur_minigame = ObservationMinigame.new()
+	
+	minigame_img_path = cur_minigame.minigame_img_path
+	minigame_scene_path = cur_minigame.minigame_scene_path
 	minigame_name = cur_minigame.minigame_name
 	instructions = cur_minigame.instructions
+	easy_tooltip = cur_minigame.easy_tooltip
+	medium_tooltip = cur_minigame.medium_tooltip
+	hard_tooltip = cur_minigame.hard_tooltip
 	cur_scene.set_labels()
 	
 	old_balance = 50000
 	#minigame_rotation = all_minigames.duplicate()
 	#minigame_rotation.shuffle()
+	
+	sfx_player.play_sunday_drive()
 
 
 func play() -> void:
@@ -63,7 +79,7 @@ func get_payout() -> int:
 
 func _handle_start_minigame() -> void:
 	remove_child(cur_scene)
-	cur_scene = load("res://scenes/platforming_minigame.tscn").instantiate() as Minigame
+	cur_scene = load(minigame_scene_path).instantiate() as Minigame
 	add_child(cur_scene)
 	cur_scene.set_difficulty(difficulty)
 
@@ -82,6 +98,7 @@ func _handle_end_minigame(did_player_win: bool) -> void:
 	
 	cur_scene.set_minigame_manager(self)
 	cur_scene.set_labels()
+
 
 func _handle_exit_minigame() -> void:
 	pass

@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 signal_bus="*res://scripts/signal_bus.gd"
+sfx_player="*res://scenes/sfx_player.tscn"
 
 [display]
 
