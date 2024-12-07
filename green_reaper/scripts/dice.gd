@@ -3,7 +3,7 @@ extends Node2D
 @export var _show_dice_duration: float
 @export var _dice_roll_speed: int
 
-@onready var _animated_dice: AnimatedSprite2D = $AnimatedSprite2D
+@onready var _animated_dice: AnimatedSprite2D = $AnimatedDice
 @onready var board_player: CharacterBody2D = %BoardPlayer
 @onready var camera_base: CameraBase = $"../CameraBase"
 
@@ -69,6 +69,7 @@ func roll_dice() -> int:
 	
 	return num_rolled
 
+
 func dice_roll_finished() -> void:
 	var animation_name: String = "roll" + str(num_rolled)
 	_animated_dice.play(animation_name)
@@ -81,8 +82,3 @@ func dice_roll_finished() -> void:
 	await timer.timeout
 	emit_signal("dice_done_waiting")
 	visible = false
-	
-	
-	
-	
-	

@@ -127,7 +127,7 @@ animations = [{
 
 [node name="Dice" type="Node2D"]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedDice" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_24f0j")
 animation = &"rolling"
 frame_progress = 0.383544

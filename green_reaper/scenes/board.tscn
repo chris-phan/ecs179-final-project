@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scripts/camera_base.gd" id="3_8vtlt"]
 [ext_resource type="PackedScene" uid="uid://bqfmg1tnfrpdc" path="res://scenes/dice.tscn" id="4_ghqob"]
 [ext_resource type="Script" path="res://scripts/dice.gd" id="5_i6nux"]
-[ext_resource type="PackedScene" uid="uid://dv2q1835ss5c4" path="res://scenes/event_space.tscn" id="7_t401u"]
+[ext_resource type="PackedScene" uid="uid://ba3uvni3ct8tp" path="res://scenes/space_handler.tscn" id="6_ddjni"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5mw4e"]
 texture = ExtResource("1_52orr")
@@ -1507,16 +1507,56 @@ tile_set = SubResource("TileSet_qqt36")
 unique_name_in_owner = true
 _player_speed = 200
 
-[node name="Spaces" type="Node" parent="."]
-
 [node name="Dice" parent="." instance=ExtResource("4_ghqob")]
 position = Vector2(-543, -400)
 script = ExtResource("5_i6nux")
 _show_dice_duration = 2.5
 _dice_roll_speed = 20
 
+[node name="SpaceHandler" parent="." instance=ExtResource("6_ddjni")]
+
+[node name="Spaces" type="Node" parent="."]
+
 [node name="CameraBase" type="Camera2D" parent="."]
 script = ExtResource("3_8vtlt")
 
-[node name="eventSpace" parent="." instance=ExtResource("7_t401u")]
-position = Vector2(512, -234)
+[node name="PointsLabel" type="Label" parent="CameraBase"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+z_index = 10
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -61.0
+offset_bottom = 23.0
+grow_horizontal = 0
+scale = Vector2(2, 2)
+text = "Points: "
+metadata/_edit_use_anchors_ = true
+
+[node name="LuckLabel" type="Label" parent="CameraBase"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+z_index = 10
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 68.0
+offset_top = -80.0
+offset_right = 125.0
+offset_bottom = -31.0
+grow_horizontal = 0
+scale = Vector2(2, 2)
+text = "Luck: "
+metadata/_edit_use_anchors_ = true
+
+[node name="TurnLabel" type="Label" parent="CameraBase"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+z_index = 10
+offset_left = -506.0
+offset_top = -303.0
+offset_right = -395.0
+offset_bottom = -280.0
+text = "Turns Passed: 0"
+metadata/_edit_use_anchors_ = true
