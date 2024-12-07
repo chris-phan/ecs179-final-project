@@ -22,7 +22,7 @@ func _ready() -> void:
 	# go to idle animation
 	animation_player.play("idle")
 	board.connect("board_setup_done", _on_board_setup_done)
-	z_index = 100
+	z_index = 5
 	
 
 func _on_board_setup_done() -> void:
