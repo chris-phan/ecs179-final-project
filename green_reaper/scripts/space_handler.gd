@@ -50,9 +50,6 @@ func handle_space(space_name: String) -> void:
 			_animation_timer.one_shot = true
 			_animation_timer.start()
 			
-			await _animation_timer.timeout
-			visible = false
-			
 			if (space_name == "gain_money"):
 				handle_gain_money()
 			elif (space_name == "gain_luck"):
@@ -64,21 +61,25 @@ func handle_space(space_name: String) -> void:
 			else:
 				print("error in space handler")
 			
+			await _animation_timer.timeout
+			visible = false
+			
+			
 			signal_bus.enter_minigame.emit()
 
 
 func handle_gain_money() -> void:
+	state_manager.cash += 1000
 	# increment money in player manager
-	pass
 
 func handle_gain_luck() -> void:
 	# increment luck in player manager
-	pass
+	state_manager.luck *= 1.1
 
 func handle_lose_money() -> void:
 	# decrement money in player manager
-	pass
+	state_manager.cash -= 1000
 
 func handle_lose_luck() -> void:
 	# decrement luck in player manager
-	pass
+	state_manager.luck *= 0.9

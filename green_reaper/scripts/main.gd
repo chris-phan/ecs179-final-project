@@ -1,7 +1,9 @@
+class_name GameManager
 extends Node2D
 
 @onready var board: Board = $Board
 @onready var minigame_manager: MinigameManager = $MinigameManager
+
 
 func _ready() -> void:
 	signal_bus.enter_minigame.connect(_handle_enter_minigame)

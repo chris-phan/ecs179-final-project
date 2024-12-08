@@ -73,8 +73,8 @@ func _process(delta: float) -> void:
 				turn_label.position = TURN_VECTOR * (zoom_in/zoom_out)
 	
 	turn_label.text = "Turns Passsed: " + str(dice.times_rolled)
-	points_label.text = "Points: " + str(dice.times_rolled) # add player manager obj and reference points
-	luck_label.text = "Luck: " + str(dice.times_rolled) # add player manager obj and reference luck
+	points_label.text = "Cash: " + str(state_manager.cash) # add player manager obj and reference points
+	luck_label.text = "Luck: %.2f" % [state_manager.luck] # add player manager obj and reference luck
 
 
 func zoom_in_camera() -> void:
