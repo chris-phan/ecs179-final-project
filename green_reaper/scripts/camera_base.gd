@@ -9,15 +9,17 @@ extends Camera2D
 @onready var luck_label: Label = $LuckLabel
 @onready var turn_label: Label = $TurnLabel
 @onready var dice: Node2D = $"../Dice"
+@onready var arrow_keys: Sprite2D = $ArrowKeys
 
 const MAP_X_MAX = 512
 const MAP_X_MIN = -512
 const MAP_Y_MAX = -234
 const MAP_Y_MIN = 345
 
-const POINTS_VECTOR: Vector2 = Vector2(125, -105)
-const LUCK_VECTOR: Vector2 = Vector2(125, -95)
+const POINTS_VECTOR: Vector2 = Vector2(100, -105)
+const LUCK_VECTOR: Vector2 = Vector2(100, -95)
 const TURN_VECTOR: Vector2 = Vector2(-180, -105)
+const ARROW_KEYS_VECTOR: Vector2 = Vector2(150, 80)
 
 var _board_player: CharacterBody2D
 var _camera_on_player: bool = false
@@ -30,6 +32,7 @@ func _ready() -> void:
 	_board_player = %BoardPlayer
 	_zoom_out_x = _board_player.position.x
 	_zoom_out_y = _board_player.position.y
+	arrow_keys.visible = false
 	zoom_in_camera()
 
 
@@ -38,7 +41,7 @@ func _process(delta: float) -> void:
 		return
 	
 	# press 'z' key
-	if Input.is_action_just_pressed("zoom_toggle"):
+	if _board_player.move_done and Input.is_action_just_pressed("zoom_toggle"):
 		if (not _camera_on_player):
 			zoom_in_camera()
 		else:
@@ -71,19 +74,22 @@ func _process(delta: float) -> void:
 				points_label.position = POINTS_VECTOR * (zoom_in/zoom_out)
 				luck_label.position = LUCK_VECTOR * (zoom_in/zoom_out)
 				turn_label.position = TURN_VECTOR * (zoom_in/zoom_out)
+				arrow_keys.position = ARROW_KEYS_VECTOR * (zoom_in/zoom_out)
 	
-	turn_label.text = "Turns Passsed: " + str(dice.times_rolled)
-	points_label.text = "Cash: " + str(state_manager.cash) # add player manager obj and reference points
-	luck_label.text = "Luck: %.2f" % [state_manager.luck] # add player manager obj and reference luck
+	turn_label.text = "Turns Passsed: " + str(state_manager.turns_passed)
+	points_label.text = "Cash: $" + str(state_manager.cash) # add player manager obj and reference points
+	luck_label.text = "Luck: %.2f%%" % [state_manager.luck] # add player manager obj and reference luck
 
 
 func zoom_in_camera() -> void:
+	arrow_keys.visible = false
 	position = _board_player.position
 	zoom = Vector2(zoom_in, zoom_in)
 	_camera_on_player = true
 
 
 func zoom_out_camera() -> void:
+	arrow_keys.visible = true
 	_zoom_out_x = _board_player.position.x
 	_zoom_out_y = _board_player.position.y
 	zoom = Vector2(zoom_out, zoom_out)

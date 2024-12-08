@@ -1,12 +1,14 @@
-[gd_scene load_steps=14 format=4 uid="uid://q1uf70x01gar"]
+[gd_scene load_steps=16 format=4 uid="uid://q1uf70x01gar"]
 
 [ext_resource type="Texture2D" uid="uid://dluc0vq2clg1q" path="res://assets/BoardPack/Tilemap/tilemap_packed.png" id="1_52orr"]
 [ext_resource type="Script" path="res://scripts/board.gd" id="1_qny2m"]
-[ext_resource type="PackedScene" path="res://scenes/board_player.tscn" id="2_ip012"]
+[ext_resource type="PackedScene" uid="uid://hxib6uwdyxq7" path="res://scenes/board_player.tscn" id="2_ip012"]
 [ext_resource type="Script" path="res://scripts/camera_base.gd" id="3_8vtlt"]
-[ext_resource type="PackedScene" path="res://scenes/dice.tscn" id="4_ghqob"]
+[ext_resource type="PackedScene" uid="uid://bqfmg1tnfrpdc" path="res://scenes/dice.tscn" id="4_ghqob"]
 [ext_resource type="Script" path="res://scripts/dice.gd" id="5_i6nux"]
 [ext_resource type="PackedScene" uid="uid://bv8w2gfd25y72" path="res://scenes/space_handler.tscn" id="6_ddjni"]
+[ext_resource type="FontFile" uid="uid://cm8dnumwsttrn" path="res://assets/fonts/Silkscreen/slkscr.ttf" id="8_jnfi1"]
+[ext_resource type="Texture2D" uid="uid://m334itkek8pn" path="res://assets/BoardPack/ArrowKeys.png" id="8_qocl2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5mw4e"]
 texture = ExtResource("1_52orr")
@@ -1498,7 +1500,7 @@ tile_map_data = PackedByteArray("AADb/9T/AQARAAgAAADb/9X/AQARAAkAAADb/+T/AQAQAAg
 tile_set = SubResource("TileSet_p8q8x")
 
 [node name="TileMapLayer3" type="TileMapLayer" parent="."]
-z_index = 10
+z_index = 6
 position = Vector2(0, 553)
 tile_map_data = PackedByteArray("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")
 tile_set = SubResource("TileSet_qqt36")
@@ -1508,12 +1510,34 @@ unique_name_in_owner = true
 _player_speed = 200
 
 [node name="Dice" parent="." instance=ExtResource("4_ghqob")]
+z_index = 7
 position = Vector2(-543, -400)
 script = ExtResource("5_i6nux")
-_show_dice_duration = 2.5
-_dice_roll_speed = 20
+_show_dice_duration = 2.0
+_dice_roll_speed = 25
 
 [node name="SpaceHandler" parent="." instance=ExtResource("6_ddjni")]
+z_index = 7
+
+[node name="RandomPositiveValueLabel" type="Label" parent="."]
+self_modulate = Color(0, 1, 0, 1)
+z_index = 10
+offset_left = 79.0
+offset_top = -28.0
+offset_right = 140.0
+offset_bottom = -5.0
+scale = Vector2(2, 2)
+text = "positive"
+
+[node name="RandomNegativeValueLabel" type="Label" parent="."]
+self_modulate = Color(1, 0, 0, 1)
+z_index = 10
+offset_left = -254.0
+offset_top = -38.0
+offset_right = -187.0
+offset_bottom = -15.0
+scale = Vector2(2, 2)
+text = "negative"
 
 [node name="Spaces" type="Node2D" parent="."]
 
@@ -1531,6 +1555,7 @@ offset_left = -61.0
 offset_bottom = 23.0
 grow_horizontal = 0
 scale = Vector2(2, 2)
+theme_override_fonts/font = ExtResource("8_jnfi1")
 text = "Points: "
 metadata/_edit_use_anchors_ = true
 
@@ -1547,6 +1572,7 @@ offset_right = 125.0
 offset_bottom = -31.0
 grow_horizontal = 0
 scale = Vector2(2, 2)
+theme_override_fonts/font = ExtResource("8_jnfi1")
 text = "Luck: "
 metadata/_edit_use_anchors_ = true
 
@@ -1558,5 +1584,15 @@ offset_left = -506.0
 offset_top = -303.0
 offset_right = -395.0
 offset_bottom = -280.0
+theme_override_fonts/font = ExtResource("8_jnfi1")
 text = "Turns Passed: 0"
 metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="CameraBase"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="ArrowKeys" type="Sprite2D" parent="CameraBase"]
+z_index = 9
+position = Vector2(393, 94)
+texture = ExtResource("8_qocl2")
