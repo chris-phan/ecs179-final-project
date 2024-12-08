@@ -13,21 +13,23 @@ var _moves: int = 0
 var _current_space: int = 0 # index of space
 var _next_space: int = 1 # index of next space
 var _current_animation: String = "idle"
+var _disabled: bool
 var space_indicators: Array[String] = []
 var dice_rolling_done: bool
-var moving_done: bool
+var move_done: bool
 
 signal space_landed(space_type)
 
 
 func _ready() -> void:
 	dice_rolling_done = false
-	moving_done = true
+	move_done = true
 	z_index = 5
 	# go to idle animation
 	animation_player.play("idle")
 	board.connect("board_setup_done", _on_board_setup_done)
 	dice.connect("dice_done_waiting", set_dice_rolling_done)
+	signal_bus.exit_minigame.connect(_enable_dice)
 	
 
 func _on_board_setup_done() -> void:
@@ -52,10 +54,14 @@ func _on_board_setup_done() -> void:
 	
 
 func _process(_delta: float) -> void:
+	
+	if _disabled:
+		return
+	
 	# something trigger dice roll (for now it's 'space')
-	if moving_done and Input.is_action_just_pressed("roll_dice"):
+	if move_done and Input.is_action_just_pressed("roll_dice"):
 		# print("d pressed")
-		moving_done = false
+		move_done = false
 		_moves = dice.roll_dice()
 		print("dice: " + str(_moves))
 
@@ -104,7 +110,10 @@ func _process(_delta: float) -> void:
 					emit_signal("space_landed", space_indicators[_current_space])
 					print("landed on " + space_indicators[_current_space] + " space")
 					dice_rolling_done = false
-					moving_done = true
+
+
+func _enable_dice() -> void:
+	move_done = true
 
 
 func set_dice_rolling_done() -> void:

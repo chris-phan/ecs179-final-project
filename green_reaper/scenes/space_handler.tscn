@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://bv8w2gfd25y72"]
+[gd_scene load_steps=22 format=3 uid="uid://bv8w2gfd25y72"]
 
 [ext_resource type="Texture2D" uid="uid://gfvqtn4yr4gy" path="res://assets/BoardPack/gain_money_sprite.png" id="1_1s6j8"]
 [ext_resource type="Script" path="res://scripts/space_handler.gd" id="1_4oucv"]
 [ext_resource type="Texture2D" uid="uid://mxfh85q0fv5y" path="res://assets/BoardPack/lose_money_sprite.png" id="2_falxq"]
 [ext_resource type="Texture2D" uid="uid://cd6sfmxaj8qlk" path="res://assets/BoardPack/luck_sprite_sheet.png" id="2_v3yog"]
+[ext_resource type="Texture2D" uid="uid://cgk1y08sgy4jf" path="res://assets/BoardPack/transition_circle.png" id="5_ynyjx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ff3gp"]
 atlas = ExtResource("2_v3yog")
@@ -60,6 +61,10 @@ region = Rect2(0, 252, 84, 84)
 [sub_resource type="AtlasTexture" id="AtlasTexture_qe6gw"]
 atlas = ExtResource("2_falxq")
 region = Rect2(0, 336, 84, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_146js"]
+atlas = ExtResource("5_ynyjx")
+region = Rect2(0, 0, 100, 100)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_i35mt"]
 animations = [{
@@ -124,6 +129,14 @@ animations = [{
 "loop": true,
 "name": &"lose_money",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_146js")
+}],
+"loop": true,
+"name": &"transition",
+"speed": 5.0
 }]
 
 [node name="SpaceHandler" type="Node2D"]
@@ -131,5 +144,4 @@ script = ExtResource("1_4oucv")
 
 [node name="AnimatedSpace" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_i35mt")
-animation = &"lose_money"
-frame_progress = 0.27712
+animation = &"transition"
