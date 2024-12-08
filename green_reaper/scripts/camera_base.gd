@@ -74,7 +74,7 @@ func _process(delta: float) -> void:
 	
 	turn_label.text = "Turns Passsed: " + str(state_manager.turns_passed)
 	points_label.text = "Cash: $" + str(state_manager.cash) # add player manager obj and reference points
-	luck_label.text = "Luck: %.2f%%" % [state_manager.luck] # add player manager obj and reference luck
+	luck_label.text = "Luck: %.2f%%" % [state_manager.luck * 100] # add player manager obj and reference luck
 
 
 func zoom_in_camera() -> void:
