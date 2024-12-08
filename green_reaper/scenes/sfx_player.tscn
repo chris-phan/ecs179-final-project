@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bho6ewcjsvxhh"]
+[gd_scene load_steps=21 format=3 uid="uid://bho6ewcjsvxhh"]
 
 [ext_resource type="Script" path="res://scripts/sfx_player.gd" id="1_d1ef4"]
 [ext_resource type="AudioStream" uid="uid://nr2yj4spnasc" path="res://assets/sounds/ui/button_press.mp3" id="2_2ay3r"]
@@ -14,6 +14,12 @@
 [ext_resource type="AudioStream" uid="uid://clrhacvht4cbl" path="res://assets/sounds/ui/correct_observation.mp3" id="12_phbsu"]
 [ext_resource type="AudioStream" uid="uid://cdgp6xro60wj" path="res://assets/sounds/ui/correct_memory.mp3" id="13_dqp75"]
 [ext_resource type="AudioStream" uid="uid://bjs8upcv8l8l3" path="res://assets/sounds/ui/lucky.mp3" id="14_ecgh1"]
+[ext_resource type="AudioStream" uid="uid://dpe2jnsapgo0l" path="res://assets/sounds/board/board_positive.mp3" id="15_t6xi3"]
+[ext_resource type="AudioStream" uid="uid://b7u0rt1q1qhla" path="res://assets/sounds/board/board_negative.mp3" id="16_30d0g"]
+[ext_resource type="AudioStream" uid="uid://cpxc0x4iu6knd" path="res://assets/sounds/bgm/called_upon_silent_partner.mp3" id="17_tlpi5"]
+[ext_resource type="AudioStream" uid="uid://ny8bdsqblxve" path="res://assets/sounds/bgm/orbit_corbyn_kites.mp3" id="18_p5v5h"]
+[ext_resource type="AudioStream" uid="uid://b8n4o460xavvt" path="res://assets/sounds/bgm/clean_living_everet_almond.mp3" id="19_pkj54"]
+[ext_resource type="AudioStream" uid="uid://vn4cn08vi86x" path="res://assets/sounds/bgm/icelandic_arpeggios_DivKid.mp3" id="20_nw4yo"]
 
 [node name="SFXPlayer" type="Node2D"]
 script = ExtResource("1_d1ef4")
@@ -75,3 +81,33 @@ bus = &"SFX"
 stream = ExtResource("14_ecgh1")
 volume_db = -6.0
 bus = &"SFX"
+
+[node name="BoardPositive" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_t6xi3")
+bus = &"SFX"
+
+[node name="BoardNegative" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_30d0g")
+bus = &"SFX"
+
+[node name="BoardMove" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
+
+[node name="DiceRoll" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
+
+[node name="CalledUpon" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_tlpi5")
+bus = &"BGM"
+
+[node name="Orbit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_p5v5h")
+bus = &"BGM"
+
+[node name="CleanLiving" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_pkj54")
+bus = &"BGM"
+
+[node name="IcelandicArpeggios" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("20_nw4yo")
+bus = &"BGM"

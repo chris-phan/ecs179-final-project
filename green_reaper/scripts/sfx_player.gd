@@ -1,6 +1,11 @@
 class_name SFXPlayer
 extends Node2D
 
+var called_upon_playback_pos: float
+var orbit_playback_pos: float
+var clean_living_playback_pos: float
+var icelandic_arpeggios_playback_pos: float
+
 @onready var button_press: AudioStreamPlayer2D = $ButtonPress
 @onready var money_counter: AudioStreamPlayer2D = $MoneyCounter
 @onready var show_result: AudioStreamPlayer2D = $ShowResult
@@ -14,12 +19,25 @@ extends Node2D
 @onready var correct_observation: AudioStreamPlayer2D = $CorrectObservation
 @onready var correct_memory: AudioStreamPlayer2D = $CorrectMemory
 @onready var lucky: AudioStreamPlayer2D = $Lucky
+@onready var board_positive: AudioStreamPlayer2D = $BoardPositive
+@onready var board_negative: AudioStreamPlayer2D = $BoardNegative
+@onready var board_move: AudioStreamPlayer2D = $BoardMove
+@onready var dice_roll: AudioStreamPlayer2D = $DiceRoll
+@onready var called_upon: AudioStreamPlayer2D = $CalledUpon
+@onready var orbit: AudioStreamPlayer2D = $Orbit
+@onready var clean_living: AudioStreamPlayer2D = $CleanLiving
+@onready var icelandic_arpeggios: AudioStreamPlayer2D = $IcelandicArpeggios
 
 
 func stop() -> void:
 	every_step.stop()
 	sunday_drive.stop()
 	shadowing.stop()
+	
+	stop_called_upon()
+	stop_orbit()
+	stop_clean_living()
+	stop_icelandic_arpeggios()
 
 
 func play_button_press() -> void:
@@ -103,3 +121,65 @@ func play_correct_memory() -> void:
 
 func play_lucky() -> void:
 	lucky.play()
+
+
+func play_board_positive() -> void:
+	board_positive.play()
+
+
+func play_board_negative() -> void:
+	board_negative.play()
+
+
+func play_board_move() -> void:
+	board_move.play()
+
+
+func play_dice_roll() -> void:
+	var new_dice_roll = AudioStreamPlayer2D.new()
+	new_dice_roll.stream = load("res://assets/sounds/board/dice_roll.mp3")
+	new_dice_roll.finished.connect(func() -> void:
+		new_dice_roll.queue_free()
+	)
+	add_child(new_dice_roll)
+	new_dice_roll.play()
+
+
+func play_called_upon() -> void:
+	if not called_upon.playing:
+		called_upon.play(called_upon_playback_pos)
+
+
+func stop_called_upon() -> void:
+	called_upon_playback_pos = called_upon.get_playback_position()
+	called_upon.stop()
+
+
+func play_orbit() -> void:
+	if not orbit.playing:
+		orbit.play(orbit_playback_pos)
+
+
+func stop_orbit() -> void:
+	orbit_playback_pos = orbit.get_playback_position()
+	orbit.stop()
+
+
+func play_clean_living() -> void:
+	if not clean_living.playing:
+		clean_living.play(clean_living_playback_pos)
+
+
+func stop_clean_living() -> void:
+	clean_living_playback_pos = clean_living.get_playback_position()
+	clean_living.stop()
+
+
+func play_icelandic_arpeggios() -> void:
+	if not icelandic_arpeggios.playing:
+		icelandic_arpeggios.play(icelandic_arpeggios_playback_pos)
+
+
+func stop_icelandic_arpeggios() -> void:
+	icelandic_arpeggios_playback_pos = icelandic_arpeggios.get_playback_position()
+	icelandic_arpeggios.stop()
