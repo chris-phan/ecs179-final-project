@@ -10,7 +10,6 @@ const _difficulty_spawn_rate: Dictionary = {
 	Difficulty.HARD: 0.25,
 	Difficulty.FINAL: 0.0,
 }
-const _timer_duration: float = 20.0
 
 var _chkpt_enemy_scene: PackedScene = preload("res://scenes/checkpoint_enemy.tscn")
 var _targets: Dictionary = {
@@ -21,6 +20,8 @@ var _targets: Dictionary = {
 var _elapsed_time: float = 0.0
 var _spawn_rate: float
 var _spawn_enemies = false
+var _timer_duration: float = 20.0
+var _state_manager: StateManager
 
 @onready var player: PlatformingPlayer = $Player
 @onready var game_timer: Timer = $GameTimer
@@ -32,12 +33,14 @@ func _init() -> void:
 	minigame_scene_path = "res://scenes/boss_minigame.tscn"
 	minigame_name = "Boss"
 	instructions = "Avoid colliding with the enemies. They are out to steal your money!"
+
+	_state_manager = get_node("root/state_manager")
 	
 	_payout_multiplier = {
-		Difficulty.EASY: 25000,
-		Difficulty.MEDIUM: 50000,
-		Difficulty.HARD: 75000,
-		Difficulty.FINAL: 100000,
+		Difficulty.EASY: 75000,
+		Difficulty.MEDIUM: 100000,
+		Difficulty.HARD: 125000,
+		Difficulty.FINAL: 150000,
 	}
 
 
@@ -65,6 +68,14 @@ func set_difficulty(diff: Difficulty) -> void:
 	super.set_difficulty(diff)
 	_spawn_rate = _difficulty_spawn_rate[diff]
 	_elapsed_time = _spawn_rate
+
+	if diff == Difficulty.EASY:
+		_timer_duration = 20.0
+	elif diff == Difficulty.MEDIUM:
+		_timer_duration = 30.0
+	else:
+		_timer_duration = 45.0
+
 	game_timer.wait_time = _timer_duration
 	timer_label.text = "%.2f" % [_timer_duration]
 
@@ -95,7 +106,7 @@ static func pick_rand_position() -> Vector2:
 
 
 func get_payout(wager: int, difficulty: Difficulty) -> int:
-	return _payout_multiplier[difficulty]
+	return _payout_multiplier[difficulty] - state_manager.cash
 
 
 func _handle_no_money() -> void:
