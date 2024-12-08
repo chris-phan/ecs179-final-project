@@ -1,7 +1,6 @@
 class_name Board
 extends Node2D
 
-
 @onready var spaces: Node = $Spaces
 
 const TOP_LEFT_X: int = -512

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 signal_bus="*res://scripts/signal_bus.gd"
 sfx_player="*res://scenes/sfx_player.tscn"
+state_manager="*res://scripts/state_manager.gd"
 
 [display]
 

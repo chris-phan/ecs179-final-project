@@ -34,10 +34,7 @@ func _ready() -> void:
 	minigame_rotation.append(ObservationMinigame.new())
 	
 	old_balance = 50000
-	#minigame_rotation = all_minigames.duplicate()
 	minigame_rotation.shuffle()
-	
-	#_handle_enter_minigame()
 
 
 func increase_wager() -> int:
@@ -57,7 +54,6 @@ func get_payout() -> int:
 
 func _handle_enter_minigame() -> void:
 	show()
-	print("entered minigame")
 	difficulty = Minigame.Difficulty.EASY
 	wager = 0
 	won = false
