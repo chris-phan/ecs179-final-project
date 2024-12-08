@@ -19,9 +19,6 @@ signal board_setup_done
 
 
 func _ready() -> void:
-	signal_bus.enter_minigame.connect(_handle_enter_minigame)
-	signal_bus.exit_minigame.connect(_handle_exit_minigame)
-	
 	# fill space_list
 	# 4 gain money
 	# 4 lose money
@@ -110,19 +107,3 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	pass
-
-
-func _handle_enter_minigame() -> void:
-	pass
-	#hide()
-	#camera_base.disable()
-	#camera_base.zoom_out_camera()
-	#print(camera_base.global_position)
-	#
-	#camera_base.global_position = Vector2(0, 0)
-	#print(camera_base.global_position)
-
-
-func _handle_exit_minigame() -> void:
-	show()
-	camera_base.enable()

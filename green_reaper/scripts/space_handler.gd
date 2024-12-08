@@ -109,6 +109,7 @@ func handle_space(space_name: String) -> void:
 
 
 func handle_gain_money() -> void:
+	sfx_player.play_board_positive()
 	# increment money in player manager
 	var value: int = state_manager.cash * MULTIPLIER_VALUES[randf_range(0, len(MULTIPLIER_VALUES) - 1)]
 	print("adding " + str(value))
@@ -117,14 +118,17 @@ func handle_gain_money() -> void:
 
 
 func handle_gain_luck() -> void:
+	sfx_player.play_board_positive()
 	# increment luck in player manager
-	var value: float = state_manager.luck * MULTIPLIER_VALUES[randf_range(0, len(MULTIPLIER_VALUES) - 1)]
+	var value: float = MULTIPLIER_VALUES[randf_range(0, len(MULTIPLIER_VALUES) - 1)]
 	print("adding " + str(value))
-	state_manager.luck = min(0.99, state_manager.luck + value)
+	state_manager.inc_luck(value)
+	#state_manager.luck = min(0.99, state_manager.luck + value)
 	show_positive_value(str("%.2f" % [value]) + "%")
 
 
 func handle_lose_money() -> void:
+	sfx_player.play_board_negative()
 	# decrement money in player manager
 	var value: int = state_manager.cash * MULTIPLIER_VALUES[randf_range(0, len(MULTIPLIER_VALUES) - 1)]
 	print("subtracting " + str(value))
@@ -133,10 +137,11 @@ func handle_lose_money() -> void:
 
 
 func handle_lose_luck() -> void:
+	sfx_player.play_board_negative()
 	# decrement luck in player manager
-	var value: float = state_manager.luck * MULTIPLIER_VALUES[randf_range(0, len(MULTIPLIER_VALUES) - 1)]
+	var value: float = MULTIPLIER_VALUES[randf_range(0, len(MULTIPLIER_VALUES) - 1)]
 	print("subtracting " + str(value))
-	state_manager.luck = max(0.01, state_manager.luck - value)
+	state_manager.luck = max(0.0, state_manager.luck - value)
 	show_negative_value(str("%.2f" % [value]) + "%")
 
 

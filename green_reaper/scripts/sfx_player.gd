@@ -37,6 +37,7 @@ func stop() -> void:
 	stop_orbit()
 	stop_clean_living()
 	stop_icelandic_arpeggios()
+	heartbeat.stop()
 
 
 func play_button_press() -> void:
@@ -137,6 +138,8 @@ func play_board_move() -> void:
 func play_dice_roll() -> void:
 	var new_dice_roll = AudioStreamPlayer2D.new()
 	new_dice_roll.stream = load("res://assets/sounds/board/dice_roll.mp3")
+	new_dice_roll.volume_db = -9.0
+	new_dice_roll.pitch_scale = 0.75
 	new_dice_roll.finished.connect(func() -> void:
 		new_dice_roll.queue_free()
 	)
@@ -146,13 +149,13 @@ func play_dice_roll() -> void:
 
 func play_board_bgm() -> void:
 	if state_manager.cash < 250000:
-		play_called_upon()
-	elif state_manager.cash < 500000:
 		play_orbit()
+	elif state_manager.cash < 500000:
+		play_called_upon()
 	elif state_manager.cash < 750000:
-		play_clean_living()
-	else:
 		play_icelandic_arpeggios()
+	else:
+		play_clean_living()
 
 
 func play_called_upon() -> void:

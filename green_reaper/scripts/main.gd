@@ -14,12 +14,14 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	
 	if state_manager.cash <= 0:
-		print("Lost game")
+		pass
+		#print("Lost game")
 		
 		# emit lose signal
 		## show lose scene
 	elif state_manager.cash >= 1000000:
-		print("won game")
+		pass
+		#print("won game")
 		
 		# emit win signal
 		## show win scene

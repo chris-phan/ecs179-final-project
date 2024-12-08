@@ -128,11 +128,11 @@ func _set_target_type(target: ObservationTarget) -> ObservationTarget:
 
 func _pick_valid_nonzero_target_type() -> ObservationTarget.Type:
 	var possibilities: Array[ObservationTarget.Type] = []
-	if _cur_round >= 0 and len(_targets[ObservationTarget.Type.NORMAL]) > 0:
+	if len(_targets[ObservationTarget.Type.NORMAL]) > 0:
 		possibilities.append(ObservationTarget.Type.NORMAL)
-	if _cur_round == 1 and len(_targets[ObservationTarget.Type.HAT]) > 0:
+	if len(_targets[ObservationTarget.Type.HAT]) > 0:
 		possibilities.append(ObservationTarget.Type.HAT)
-	if _cur_round >= 2 and len(_targets[ObservationTarget.Type.HORNED]) > 0:
+	if len(_targets[ObservationTarget.Type.HORNED]) > 0:
 		possibilities.append(ObservationTarget.Type.HORNED)
 	
 	return possibilities.pick_random()

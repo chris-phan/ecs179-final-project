@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bho6ewcjsvxhh"]
+[gd_scene load_steps=22 format=3 uid="uid://bho6ewcjsvxhh"]
 
 [ext_resource type="Script" path="res://scripts/sfx_player.gd" id="1_d1ef4"]
 [ext_resource type="AudioStream" uid="uid://nr2yj4spnasc" path="res://assets/sounds/ui/button_press.mp3" id="2_2ay3r"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://bjs8upcv8l8l3" path="res://assets/sounds/ui/lucky.mp3" id="14_ecgh1"]
 [ext_resource type="AudioStream" uid="uid://dpe2jnsapgo0l" path="res://assets/sounds/board/board_positive.mp3" id="15_t6xi3"]
 [ext_resource type="AudioStream" uid="uid://b7u0rt1q1qhla" path="res://assets/sounds/board/board_negative.mp3" id="16_30d0g"]
+[ext_resource type="AudioStream" uid="uid://nu8fytajvjgb" path="res://assets/sounds/board/board_move.mp3" id="17_7mfiu"]
 [ext_resource type="AudioStream" uid="uid://cbjba34sr5ti1" path="res://assets/sounds/bgm/called_upon_silent_partner.mp3" id="17_tlpi5"]
 [ext_resource type="AudioStream" uid="uid://cm4sjvamte0un" path="res://assets/sounds/bgm/orbit_corbyn_kites.mp3" id="18_p5v5h"]
 [ext_resource type="AudioStream" uid="uid://nkjrdp7xcgbo" path="res://assets/sounds/bgm/clean_living_everet_almond.mp3" id="19_pkj54"]
@@ -84,13 +85,17 @@ bus = &"SFX"
 
 [node name="BoardPositive" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("15_t6xi3")
+volume_db = -7.0
 bus = &"SFX"
 
 [node name="BoardNegative" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("16_30d0g")
+volume_db = -7.0
 bus = &"SFX"
 
 [node name="BoardMove" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_7mfiu")
+volume_db = -6.0
 bus = &"SFX"
 
 [node name="DiceRoll" type="AudioStreamPlayer2D" parent="."]
@@ -110,4 +115,5 @@ bus = &"BGM"
 
 [node name="IcelandicArpeggios" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("20_nw4yo")
+volume_db = 4.0
 bus = &"BGM"

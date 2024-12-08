@@ -97,6 +97,7 @@ func _process(_delta: float) -> void:
 				animation_player.play("down")
 			else:
 				# destination reached
+				sfx_player.play_board_move()
 				_moves -= 1
 				_current_space = _next_space
 				position = board_vectors[_current_space];

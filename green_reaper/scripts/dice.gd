@@ -33,6 +33,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if rolling_active:
+		sfx_player.play_dice_roll()
 		if top_reached and (position.y >= player_y):
 			rolling_active = false
 			top_reached = false
