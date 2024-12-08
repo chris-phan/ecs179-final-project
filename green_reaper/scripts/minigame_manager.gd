@@ -28,9 +28,9 @@ func _ready() -> void:
 	signal_bus.end_minigame.connect(_handle_end_minigame)
 	signal_bus.exit_minigame.connect(_handle_exit_minigame)
 	
-	minigame_rotation.append(TimePlatformingMinigame.new())
-	minigame_rotation.append(MemoryMinigame.new())
-	minigame_rotation.append(InternalTimerMinigame.new())
+	#minigame_rotation.append(TimePlatformingMinigame.new())
+	#minigame_rotation.append(MemoryMinigame.new())
+	#minigame_rotation.append(InternalTimerMinigame.new())
 	minigame_rotation.append(ObservationMinigame.new())
 	
 	old_balance = 50000

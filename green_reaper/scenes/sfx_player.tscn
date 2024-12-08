@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bho6ewcjsvxhh"]
+[gd_scene load_steps=15 format=3 uid="uid://bho6ewcjsvxhh"]
 
 [ext_resource type="Script" path="res://scripts/sfx_player.gd" id="1_d1ef4"]
 [ext_resource type="AudioStream" uid="uid://nr2yj4spnasc" path="res://assets/sounds/ui/button_press.mp3" id="2_2ay3r"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://bmagokkpewset" path="res://assets/sounds/platforming_player/character_move.mp3" id="11_jpcg1"]
 [ext_resource type="AudioStream" uid="uid://clrhacvht4cbl" path="res://assets/sounds/ui/correct_observation.mp3" id="12_phbsu"]
 [ext_resource type="AudioStream" uid="uid://cdgp6xro60wj" path="res://assets/sounds/ui/correct_memory.mp3" id="13_dqp75"]
+[ext_resource type="AudioStream" uid="uid://bjs8upcv8l8l3" path="res://assets/sounds/ui/lucky.mp3" id="14_ecgh1"]
 
 [node name="SFXPlayer" type="Node2D"]
 script = ExtResource("1_d1ef4")
@@ -64,6 +65,13 @@ bus = &"SFX"
 
 [node name="CorrectObservation" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_phbsu")
+bus = &"SFX"
 
 [node name="CorrectMemory" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_dqp75")
+bus = &"SFX"
+
+[node name="Lucky" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_ecgh1")
+volume_db = -6.0
+bus = &"SFX"

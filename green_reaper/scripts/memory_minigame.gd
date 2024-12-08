@@ -81,13 +81,16 @@ func _lose() -> void:
 
 
 func _handle_hit_memory_object(color: MemoryObject.Colors) -> void:
-	memory_history.show_next(color)
 	_player_choices.append(color)
 	
-	var is_correct: bool = _is_selection_correct()
-	if not is_correct:
-		_lose()
+	if not _is_selection_correct():
+		if is_player_lucky():
+			_player_choices.pop_back()
+			luck_label.display()
+		else:
+			_lose()
 	else:
+		memory_history.show_next(color)
 		if len(_player_choices) == len(_sequence):
 			if _cur_round == num_questions:
 				_win()

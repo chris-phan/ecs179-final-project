@@ -1,7 +1,6 @@
 class_name SFXPlayer
 extends Node2D
 
-#@onready var a: AudioStreamPlayer2D = $
 @onready var button_press: AudioStreamPlayer2D = $ButtonPress
 @onready var money_counter: AudioStreamPlayer2D = $MoneyCounter
 @onready var show_result: AudioStreamPlayer2D = $ShowResult
@@ -14,13 +13,10 @@ extends Node2D
 @onready var character_move: AudioStreamPlayer2D = $CharacterMove
 @onready var correct_observation: AudioStreamPlayer2D = $CorrectObservation
 @onready var correct_memory: AudioStreamPlayer2D = $CorrectMemory
+@onready var lucky: AudioStreamPlayer2D = $Lucky
 
 
 func stop() -> void:
-	show_result.stop()
-	countdown.stop()
-	countdown_go.stop()
-	heartbeat.stop()
 	every_step.stop()
 	sunday_drive.stop()
 	shadowing.stop()
@@ -103,3 +99,7 @@ func play_correct_observation() -> void:
 
 func play_correct_memory() -> void:
 	correct_memory.play()
+
+
+func play_lucky() -> void:
+	lucky.play()

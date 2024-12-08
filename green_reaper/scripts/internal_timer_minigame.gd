@@ -12,6 +12,7 @@ var _elapsed_overtime: float = 0.0
 var _count_time: bool = false
 var _tolerance: float
 var _timed_out: bool = false
+var _is_lucky: bool = false
 
 @onready var stop_timer_object: StopTimerObject = $StopTimerObject
 @onready var timer_label: Label = $TimerLabel
@@ -30,9 +31,9 @@ func _init() -> void:
 	hard_tooltip = tooltip_format % [_difficulty_tolerance[Difficulty.HARD]]
 	
 	_payout_multiplier = {
-		Difficulty.EASY: 1.5,
-		Difficulty.MEDIUM: 2.5,
-		Difficulty.HARD: 4.0
+		Difficulty.EASY: 1.25,
+		Difficulty.MEDIUM: 1.5,
+		Difficulty.HARD: 2.5
 	}
 
 
@@ -45,14 +46,19 @@ func _ready() -> void:
 	timer_label.text = "%.2f" % [_timer_duration]
 	countdown_label.start()
 	stop_timer_object.hide()
+	
+	_is_lucky = is_player_lucky()
 
 
 func _process(delta: float) -> void:
 	if _count_time:
 		if timer.time_left < 7.50:
+			if _is_lucky:
+				timer_label.text = "%.2f" % [timer.time_left]
+			else:
+				timer_label.hide()
 			sfx_player.stop_sunday_drive()
 			sfx_player.play_heartbeat()
-			timer_label.hide()
 		else:
 			timer_label.text = "%.2f" % [timer.time_left]
 	if _timed_out:
@@ -70,6 +76,8 @@ func get_payout(wager: int, difficulty: Difficulty) -> int:
 
 func _handle_countdown_ended() -> void:
 	_start()
+	if _is_lucky:
+		luck_label.display()
 
 
 func _start() -> void:

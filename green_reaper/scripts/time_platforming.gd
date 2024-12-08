@@ -39,12 +39,9 @@ func _ready() -> void:
 	game_timer.timeout.connect(_handle_game_timer_timeout)
 	countdown_label.start()
 	player.unbind_commands()
-	
-	
 
 
 func _process(_delta: float) -> void:
-	print("time platforming:", game_timer)
 	if not game_timer.is_stopped():
 		timer_label.text = "%.2f" % [game_timer.time_left]
 		if game_timer.time_left < 3.0:
@@ -93,8 +90,12 @@ func _handle_countdown_ended() -> void:
 
 
 func _handle_game_timer_timeout() -> void:
-	_lose()
-	timer_label.text = "%.2f" % [0]
+	if is_player_lucky():
+		luck_label.display()
+		game_timer.start(3.0)
+	else:
+		_lose()
+		timer_label.text = "%.2f" % [0]
 
 
 func _handle_transition_timer_timeout() -> void:

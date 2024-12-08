@@ -117,6 +117,7 @@ func _handle_timeout() -> void:
 
 func _handle_done_button_up() -> void:
 	sfx_player.stop()
+	sfx_player.play_button_press()
 	signal_bus.exit_minigame.emit()
 
 
