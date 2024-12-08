@@ -33,7 +33,6 @@ func stop() -> void:
 	every_step.stop()
 	sunday_drive.stop()
 	shadowing.stop()
-	
 	stop_called_upon()
 	stop_orbit()
 	stop_clean_living()
@@ -145,13 +144,24 @@ func play_dice_roll() -> void:
 	new_dice_roll.play()
 
 
+func play_board_bgm() -> void:
+	if state_manager.cash < 250000:
+		play_called_upon()
+	elif state_manager.cash < 500000:
+		play_orbit()
+	elif state_manager.cash < 750000:
+		play_clean_living()
+	else:
+		play_icelandic_arpeggios()
+
+
 func play_called_upon() -> void:
 	if not called_upon.playing:
 		called_upon.play(called_upon_playback_pos)
 
 
 func stop_called_upon() -> void:
-	called_upon_playback_pos = called_upon.get_playback_position()
+	called_upon_playback_pos = called_upon.get_playback_position() + AudioServer.get_time_since_last_mix()
 	called_upon.stop()
 
 
@@ -161,7 +171,7 @@ func play_orbit() -> void:
 
 
 func stop_orbit() -> void:
-	orbit_playback_pos = orbit.get_playback_position()
+	orbit_playback_pos = orbit.get_playback_position() + AudioServer.get_time_since_last_mix()
 	orbit.stop()
 
 
@@ -171,7 +181,7 @@ func play_clean_living() -> void:
 
 
 func stop_clean_living() -> void:
-	clean_living_playback_pos = clean_living.get_playback_position()
+	clean_living_playback_pos = clean_living.get_playback_position() + AudioServer.get_time_since_last_mix()
 	clean_living.stop()
 
 
@@ -181,5 +191,5 @@ func play_icelandic_arpeggios() -> void:
 
 
 func stop_icelandic_arpeggios() -> void:
-	icelandic_arpeggios_playback_pos = icelandic_arpeggios.get_playback_position()
+	icelandic_arpeggios_playback_pos = icelandic_arpeggios.get_playback_position() + AudioServer.get_time_since_last_mix()
 	icelandic_arpeggios.stop()

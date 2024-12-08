@@ -16,10 +16,10 @@
 [ext_resource type="AudioStream" uid="uid://bjs8upcv8l8l3" path="res://assets/sounds/ui/lucky.mp3" id="14_ecgh1"]
 [ext_resource type="AudioStream" uid="uid://dpe2jnsapgo0l" path="res://assets/sounds/board/board_positive.mp3" id="15_t6xi3"]
 [ext_resource type="AudioStream" uid="uid://b7u0rt1q1qhla" path="res://assets/sounds/board/board_negative.mp3" id="16_30d0g"]
-[ext_resource type="AudioStream" uid="uid://cpxc0x4iu6knd" path="res://assets/sounds/bgm/called_upon_silent_partner.mp3" id="17_tlpi5"]
-[ext_resource type="AudioStream" uid="uid://ny8bdsqblxve" path="res://assets/sounds/bgm/orbit_corbyn_kites.mp3" id="18_p5v5h"]
-[ext_resource type="AudioStream" uid="uid://b8n4o460xavvt" path="res://assets/sounds/bgm/clean_living_everet_almond.mp3" id="19_pkj54"]
-[ext_resource type="AudioStream" uid="uid://vn4cn08vi86x" path="res://assets/sounds/bgm/icelandic_arpeggios_DivKid.mp3" id="20_nw4yo"]
+[ext_resource type="AudioStream" uid="uid://cbjba34sr5ti1" path="res://assets/sounds/bgm/called_upon_silent_partner.mp3" id="17_tlpi5"]
+[ext_resource type="AudioStream" uid="uid://cm4sjvamte0un" path="res://assets/sounds/bgm/orbit_corbyn_kites.mp3" id="18_p5v5h"]
+[ext_resource type="AudioStream" uid="uid://nkjrdp7xcgbo" path="res://assets/sounds/bgm/clean_living_everet_almond.mp3" id="19_pkj54"]
+[ext_resource type="AudioStream" uid="uid://dera4wsjl35ux" path="res://assets/sounds/bgm/icelandic_arpeggios_DivKid.mp3" id="20_nw4yo"]
 
 [node name="SFXPlayer" type="Node2D"]
 script = ExtResource("1_d1ef4")
