@@ -5,6 +5,8 @@ enum Difficulty {
 	EASY,
 	MEDIUM,
 	HARD,
+	# for boss/checkpoint minigame
+	FINAL,
 }
 var _payout_multiplier: Dictionary = {
 	Difficulty.EASY: 1.25,
@@ -43,6 +45,8 @@ static func difficulty_name(diff: Difficulty) -> String:
 		return "MEDIUM"
 	elif diff == Difficulty.HARD:
 		return "HARD"
+	elif diff == Difficulty.FINAL:
+		return "FINAL"
 	
 	return "UNKNOWN"
 
