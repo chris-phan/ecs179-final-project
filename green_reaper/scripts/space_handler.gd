@@ -20,7 +20,6 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	
 	if (_animation_timer != null) and (_animation_timer.time_left > 0):
 		if position.y < board_player.position.y - 20:
 			position.y = board_player.position.y
@@ -64,6 +63,8 @@ func handle_space(space_name: String) -> void:
 				handle_lose_luck()
 			else:
 				print("error in space handler")
+			
+			signal_bus.enter_minigame.emit()
 
 
 func handle_gain_money() -> void:

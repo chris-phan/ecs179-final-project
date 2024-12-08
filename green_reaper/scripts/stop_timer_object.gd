@@ -7,4 +7,5 @@ func _ready() -> void:
 
 
 func _handle_area_entered(_area: Area2D) -> void:
-	signal_bus.hit_stop_timer_button.emit()
+	if visible:
+		signal_bus.hit_stop_timer_button.emit()

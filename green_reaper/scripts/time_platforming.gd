@@ -39,9 +39,12 @@ func _ready() -> void:
 	game_timer.timeout.connect(_handle_game_timer_timeout)
 	countdown_label.start()
 	player.unbind_commands()
+	
+	
 
 
 func _process(_delta: float) -> void:
+	print("time platforming:", game_timer)
 	if not game_timer.is_stopped():
 		timer_label.text = "%.2f" % [game_timer.time_left]
 		if game_timer.time_left < 3.0:

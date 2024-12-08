@@ -52,7 +52,6 @@ func _on_board_setup_done() -> void:
 	
 
 func _process(_delta: float) -> void:
-	
 	# something trigger dice roll (for now it's 'space')
 	if moving_done and Input.is_action_just_pressed("roll_dice"):
 		# print("d pressed")
