@@ -12,6 +12,7 @@ var _payout_multiplier: Dictionary = {
 	Difficulty.HARD: 2.0
 }
 var _did_player_win: bool = false
+var _num_time_lucky: int = 0
 
 var minigame_img_path: String
 var minigame_scene_path: String
@@ -24,6 +25,7 @@ var hard_tooltip: String
 
 var _difficulty: Difficulty = Difficulty.HARD
 @onready var countdown_label: CountdownLabel = $CountdownLabel
+@onready var luck_label: LuckLabel = $LuckLabel
 @onready var transition_timer: Timer = $TransitionTimer
 
 
@@ -52,6 +54,16 @@ func set_difficulty(diff: Difficulty) -> void:
 func get_payout(wager: int, difficulty: Difficulty) -> int:
 	return wager * _payout_multiplier[difficulty]
 
+
+func is_player_lucky() -> bool:
+	if _num_time_lucky == 1:
+		return false
+	
+	var is_lucky: bool = randf_range(0.0, 1.0) < state_manager.luck
+	if is_lucky:
+		_num_time_lucky += 1
+	
+	return is_lucky
 
 func _start() -> void:
 	pass

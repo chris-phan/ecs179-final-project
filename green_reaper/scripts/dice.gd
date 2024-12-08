@@ -32,8 +32,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	
 	if rolling_active:
+		sfx_player.play_dice_roll()
 		if top_reached and (position.y >= player_y):
 			rolling_active = false
 			top_reached = false
@@ -47,7 +47,6 @@ func _process(delta: float) -> void:
 
 
 func roll_dice() -> int:
-	
 	position = board_player.position
 	player_x = board_player.position.x
 	player_y = board_player.position.y
@@ -70,7 +69,7 @@ func roll_dice() -> int:
 func dice_roll_finished() -> void:
 	var animation_name: String = "roll" + str(num_rolled)
 	_animated_dice.play(animation_name)
-	
+
 	var timer = Timer.new()
 	add_child(timer)
 	timer.wait_time = _show_dice_duration

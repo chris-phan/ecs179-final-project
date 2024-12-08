@@ -57,6 +57,7 @@ func _handle_enter_minigame() -> void:
 	difficulty = Minigame.Difficulty.EASY
 	wager = 0
 	won = false
+	old_balance = state_manager.cash
 	sfx_player.play_sunday_drive()
 	
 	var packed_scene = load("res://scenes/minigame_ui.tscn")
@@ -102,6 +103,7 @@ func _handle_end_minigame(did_player_win: bool) -> void:
 	else:
 		new_balance = old_balance - wager
 	
+	state_manager.cash = new_balance
 	cur_scene.set_minigame_manager(self)
 	cur_scene.set_labels()
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://ctujwdogp5im5"]
+[gd_scene load_steps=8 format=4 uid="uid://ctujwdogp5im5"]
 
 [ext_resource type="Script" path="res://scripts/time_platforming.gd" id="1_50355"]
 [ext_resource type="TileSet" uid="uid://bhw4bxuqfh87o" path="res://assets/1bitplatformerpack/platforming_tileset.tres" id="2_roi00"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c2iafl58bub3k" path="res://scenes/platforming_player.tscn" id="4_3j4rc"]
 [ext_resource type="FontFile" uid="uid://cm8dnumwsttrn" path="res://assets/fonts/Silkscreen/slkscr.ttf" id="5_x267a"]
 [ext_resource type="PackedScene" uid="uid://bgwqpaqgk52bi" path="res://scenes/countdown_label.tscn" id="6_gtilg"]
+[ext_resource type="PackedScene" uid="uid://daybuxnjj7tm5" path="res://scenes/luck_label.tscn" id="7_l54rh"]
 
 [node name="TimePlatformingMinigame" type="Node2D"]
 script = ExtResource("1_50355")
@@ -45,6 +46,9 @@ text = "10.0"
 horizontal_alignment = 2
 
 [node name="CountdownLabel" parent="." instance=ExtResource("6_gtilg")]
+
+[node name="LuckLabel" parent="." instance=ExtResource("7_l54rh")]
+visible = false
 
 [node name="TransitionTimer" type="Timer" parent="."]
 wait_time = 2.5

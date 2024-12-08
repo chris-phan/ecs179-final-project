@@ -80,6 +80,7 @@ func get_payout(wager: int, difficulty: Difficulty) -> int:
 
 func _next_round() -> void:
 	question_label.hide()
+	_hide_buttons()
 	timer.start()
 	_generate_targets()
 	_cur_round += 1
@@ -93,12 +94,16 @@ func _start() -> void:
 
 func _win() -> void:
 	super._win()
+	question_label.hide()
+	_hide_buttons()
 	player.unbind_commands()
 	player.win()
 
 
 func _lose() -> void:
 	super._lose()
+	question_label.hide()
+	_hide_buttons()
 	player.unbind_commands()
 	player.lose()
 
@@ -123,11 +128,11 @@ func _set_target_type(target: ObservationTarget) -> ObservationTarget:
 
 func _pick_valid_nonzero_target_type() -> ObservationTarget.Type:
 	var possibilities: Array[ObservationTarget.Type] = []
-	if _cur_round >= 0 and len(_targets[ObservationTarget.Type.NORMAL]) > 0:
+	if len(_targets[ObservationTarget.Type.NORMAL]) > 0:
 		possibilities.append(ObservationTarget.Type.NORMAL)
-	if _cur_round == 1 and len(_targets[ObservationTarget.Type.HAT]) > 0:
+	if len(_targets[ObservationTarget.Type.HAT]) > 0:
 		possibilities.append(ObservationTarget.Type.HAT)
-	if _cur_round >= 2 and len(_targets[ObservationTarget.Type.HORNED]) > 0:
+	if len(_targets[ObservationTarget.Type.HORNED]) > 0:
 		possibilities.append(ObservationTarget.Type.HORNED)
 	
 	return possibilities.pick_random()
@@ -188,14 +193,20 @@ func _handle_countdown_ended() -> void:
 
 func _handle_hit_observation_button(val: int) -> void:
 	if val == _answer:
-		_hide_buttons()
 		if _cur_round < _max_rounds:
 			sfx_player.play_correct_observation()
 			_next_round()
 		else:
 			_win()
 	else:
-		_lose()
+		if is_player_lucky():
+			luck_label.display()
+			if _cur_round < _max_rounds:
+				_next_round()
+			else:
+				_win()
+		else:
+			_lose()
 
 
 func _handle_timeout() -> void:

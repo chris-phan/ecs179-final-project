@@ -25,7 +25,6 @@ var _board_player: CharacterBody2D
 var _camera_on_player: bool = false
 var _zoom_out_x: int
 var _zoom_out_y: int
-var _disabled: bool = false
 
 
 func _ready() -> void:
@@ -37,9 +36,6 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if _disabled:
-		return
-	
 	# press 'z' key
 	if _board_player.move_done and Input.is_action_just_pressed("zoom_toggle"):
 		if (not _camera_on_player):
@@ -94,11 +90,3 @@ func zoom_out_camera() -> void:
 	_zoom_out_y = _board_player.position.y
 	zoom = Vector2(zoom_out, zoom_out)
 	_camera_on_player = false
-	
-
-func disable() -> void:
-	_disabled = true
-
-
-func enable() -> void:
-	_disabled = false

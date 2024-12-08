@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://b0dkdpyli1b8f"]
+[gd_scene load_steps=10 format=4 uid="uid://b0dkdpyli1b8f"]
 
 [ext_resource type="Script" path="res://scripts/observation_minigame.gd" id="1_5o853"]
 [ext_resource type="TileSet" uid="uid://bhw4bxuqfh87o" path="res://assets/1bitplatformerpack/platforming_tileset.tres" id="1_n0frr"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b80wisqol6ds5" path="res://scenes/observation_button.tscn" id="5_m6boq"]
 [ext_resource type="FontFile" uid="uid://cm8dnumwsttrn" path="res://assets/fonts/Silkscreen/slkscr.ttf" id="5_ryn2k"]
 [ext_resource type="PackedScene" uid="uid://bgwqpaqgk52bi" path="res://scenes/countdown_label.tscn" id="7_rbhsb"]
+[ext_resource type="PackedScene" uid="uid://daybuxnjj7tm5" path="res://scenes/luck_label.tscn" id="8_etsfv"]
 
 [node name="ObservationMinigame" type="Node2D" node_paths=PackedStringArray("observation_buttons")]
 script = ExtResource("1_5o853")
@@ -68,11 +69,16 @@ position = Vector2(109, 70)
 offset_top = -32.5
 offset_bottom = 32.5
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 10.0
-one_shot = true
+[node name="LuckLabel" parent="." instance=ExtResource("8_etsfv")]
+visible = false
+offset_top = 35.0
+offset_bottom = 58.0
 
 [node name="Player" parent="." instance=ExtResource("2_6vnlc")]
 position = Vector2(-118, 64)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
 
 [node name="TransitionTimer" type="Timer" parent="."]
