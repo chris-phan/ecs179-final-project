@@ -124,7 +124,7 @@ func handle_gain_luck() -> void:
 	print("adding " + str(value))
 	state_manager.inc_luck(value)
 	#state_manager.luck = min(0.99, state_manager.luck + value)
-	show_positive_value(str("%.2f" % [value]) + "%")
+	show_positive_value(str("%.0f" % [value * 100]) + "%")
 
 
 func handle_lose_money() -> void:
@@ -141,8 +141,9 @@ func handle_lose_luck() -> void:
 	# decrement luck in player manager
 	var value: float = MULTIPLIER_VALUES[randf_range(0, len(MULTIPLIER_VALUES) - 1)]
 	print("subtracting " + str(value))
-	state_manager.luck = max(0.0, state_manager.luck - value)
-	show_negative_value(str("%.2f" % [value]) + "%")
+	state_manager.dec_luck(value)
+	#state_manager.luck = max(0.0, state_manager.luck - value)
+	show_negative_value(str("%.0f" % [value * 100]) + "%")
 
 
 func show_positive_value(value: String) -> void:

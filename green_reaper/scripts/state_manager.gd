@@ -5,12 +5,33 @@ var cash: int = 50000
 var luck: float = 0.0
 var turns_passed: int = 0
 
-var _luck_sources: Array[float] = []
+var _luck_sources: Array[float] = [0.1, 0.2, 0.1, 0.1, 0.05]
+
+
+func _ready() -> void:
+	luck = _calc_luck()
 
 
 func inc_luck(val: float) -> float:
 	_luck_sources.append(val)
 	luck = _calc_luck()
+	return luck
+
+
+func dec_luck(val: float) -> float:
+	while len(_luck_sources) > 0:
+		if val > _luck_sources[len(_luck_sources) - 1]:
+			val -= _luck_sources[len(_luck_sources) - 1]
+			_luck_sources.pop_back()
+		else:
+			_luck_sources[len(_luck_sources) - 1] -= val
+			val = 0
+			break
+	
+	if val > 0:
+		luck = 0
+	else:
+		luck = _calc_luck()
 	return luck
 
 
