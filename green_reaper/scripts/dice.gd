@@ -8,10 +8,8 @@ extends Node2D
 @onready var camera_base: CameraBase = $"../CameraBase"
 
 var num_rolled: int
-var times_rolled: int
 var rolling_active: bool
 var top_reached: bool
-
 var player_y: float
 var player_x: float
 
@@ -22,7 +20,6 @@ signal dice_done_waiting
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	num_rolled = 0
-	times_rolled = 0
 	rolling_active = false
 	top_reached = false
 	player_x = board_player.position.x
@@ -59,7 +56,7 @@ func roll_dice() -> int:
 	
 	# return number 1 - 6
 	num_rolled = randi_range(1, 6)
-	times_rolled += 1
+	state_manager.turns_passed += 1
 	
 	# handle animation
 	_animated_dice.play("rolling")

@@ -11,6 +11,20 @@ func _ready() -> void:
 	sfx_player.play_board_bgm()
 
 
+func _process(delta: float) -> void:
+	
+	if state_manager.cash <= 0:
+		print("Lost game")
+		
+		# emit lose signal
+		## show lose scene
+	elif state_manager.cash >= 1000000:
+		print("won game")
+		
+		# emit win signal
+		## show win scene
+
+
 func _handle_enter_minigame() -> void:
 	sfx_player.stop()
 	sfx_player.play_sunday_drive()
