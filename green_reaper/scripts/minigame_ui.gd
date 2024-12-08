@@ -79,6 +79,10 @@ func set_easy_button_focus() -> void:
 	easy_button.grab_focus()
 
 
+func set_difficulty() -> void:
+	difficulty_value.text = Minigame.difficulty_name(minigame_manager.difficulty)
+
+
 func set_labels() -> void:
 	set_game_name()
 	set_minigame_img()
@@ -87,6 +91,7 @@ func set_labels() -> void:
 	set_initial_payout()
 	set_tooltips()
 	set_easy_button_focus()
+	set_difficulty()
 
 
 func _inc_wager() -> void:

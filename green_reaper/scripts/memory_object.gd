@@ -27,7 +27,7 @@ const path: String = "res://assets/1bitplatformerpack/Tiles/Default/tile_0042_%s
 
 
 func _ready() -> void:
-	area_entered.connect(_handle)
+	area_entered.connect(_handle_area_entered)
 
 
 func set_color(new_color: Colors) -> void:
@@ -39,5 +39,6 @@ static func get_color_name(c: Colors) -> String:
 	return _color_name[c]
 
 
-func _handle(_area: Area2D) -> void:
-	signal_bus.hit_memory_object.emit(color)
+func _handle_area_entered(_area: Area2D) -> void:
+	if visible:
+		signal_bus.hit_memory_object.emit(color)

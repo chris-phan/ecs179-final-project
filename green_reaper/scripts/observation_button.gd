@@ -15,4 +15,5 @@ func set_val(v: int) -> void:
 
 
 func _handle_area_entered(area: Area2D) -> void:
-	signal_bus.hit_observation_button.emit(_val)
+	if visible:
+		signal_bus.hit_observation_button.emit(_val)

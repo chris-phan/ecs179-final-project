@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://gdwjxgbmkc7y"]
+
+[ext_resource type="Texture2D" uid="uid://dy07wvpjd4pud" path="res://assets/BoardPack/Tiles/space1.png" id="1_pbvbd"]
+
+[sub_resource type="Gradient" id="Gradient_1j33y"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6ass3"]
+gradient = SubResource("Gradient_1j33y")
+width = 40
+height = 40
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.54, 0.29)
+metadata/_snap_enabled = true
+
+[node name="gainLuckSpace" type="Node2D"]
+scale = Vector2(1.5, 1.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_pbvbd")
+
+[node name="event1Space2" type="PointLight2D" parent="."]
+light_mask = 0
+visibility_layer = 0
+position = Vector2(-7.62939e-06, -7.62939e-06)
+scale = Vector2(0.867188, 0.878906)
+color = Color(0, 1, 1, 1)
+energy = 50.0
+texture = SubResource("GradientTexture2D_6ass3")
+texture_scale = 0.8
