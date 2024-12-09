@@ -93,6 +93,7 @@ _data = {
 }
 
 [node name="CheckpointEnemy" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_bqydn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -14,6 +14,12 @@ const _SCALES: Array[Vector2] = [
 		Vector2(1.25, 1.25),
 		Vector2(1.5, 1.5),
 ]
+const _DAMAGE := {
+	Type.NORMAL : 10000,
+	Type.HAT : 20000,
+	Type.HORNED : 50000,
+}
+
 var _type: Type
 var _disabled: bool = false
 var _start_pos: Vector2
@@ -38,15 +44,18 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	if _type == Type.NORMAL:
-		global_position += _start_pos.direction_to(-_start_pos) * speed * delta
+		var collision = move_and_collide(_start_pos.direction_to(-_start_pos) * speed * delta)
+		_handle_collision(collision)
 	elif _type == Type.HAT:
 		var percentage_error = randf_range(-0.1, 0.1)
 		var player_position = player.global_position
 		player_position *= percentage_error
-		global_position += _start_pos.direction_to(player_position) * speed * delta
+		var collision = move_and_collide(_start_pos.direction_to(player_position) * speed * delta)
+		_handle_collision(collision)
 	elif _type == Type.HORNED:
 		var player_position = player.global_position
-		global_position += _start_pos.direction_to(player_position) * speed * delta
+		var collision = move_and_collide(_start_pos.direction_to(player_position) * speed * delta)
+		_handle_collision(collision)
 
 
 func disable() -> void:
@@ -63,3 +72,11 @@ func set_type(type: Type) -> void:
 	_type = type
 	if animation_player != null:
 		animation_player.play("move" + str(type))
+
+
+func _handle_collision(collision: KinematicCollision2D) -> void:
+	if !collision:
+		return
+	state_manager.cash -= _DAMAGE[_type]
+	sfx_player.play_board_move()
+	queue_free()
