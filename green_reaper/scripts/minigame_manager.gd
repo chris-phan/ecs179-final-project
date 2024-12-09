@@ -73,8 +73,8 @@ func _handle_enter_minigame() -> void:
 		minigame_rotation.append(ObservationMinigame.new())
 		minigame_rotation.shuffle()
 
-	var boss_phase = state_manager.turns_passed / 1 - 1
-	if state_manager.turns_passed % 1 == 0 and state_manager.cash < (75000 + 25000 * boss_phase):
+	var boss_phase = state_manager.turns_passed / 5 - 1
+	if state_manager.turns_passed % 5 == 0 and state_manager.cash < (75000 + 25000 * boss_phase):
 		minigame_rotation.clear()
 		minigame_rotation.append(BossMinigame.new())
 		difficulty = boss_phase as Minigame.Difficulty
