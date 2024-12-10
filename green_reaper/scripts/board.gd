@@ -26,13 +26,13 @@ func _ready() -> void:
 	# 4 lose luck
 	# 8 event spaces
 	var space_num = 1
-	for i in range(4 + 4):
+	for i in range(4):
 		var space: Node = gain_money_space.instantiate()
 		space.name = "gain_money_space" + str(space_num)
 		space_list.push_back(space)
 		space_num += 1
 	
-	for i in range(4 + 4):
+	for i in range(4):
 		var space: Node = lose_money_space.instantiate()
 		space.name = "lose_money_space" + str(space_num)
 		space_list.push_back(space)
