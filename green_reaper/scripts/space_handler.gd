@@ -63,8 +63,25 @@ func handle_space(space_name: String) -> void:
 		print("Invalid space received")
 	else:
 		if (space_name == "event"):
-			# signal event space landed
-			emit_signal("event_space_landed")
+			position.x = board_player.position.x + (20 * _x_toggle)
+			position.y = board_player.position.y
+			
+			visible = true
+			
+			position = board_player.position
+			position.y += 40
+			_transition_animation_timer = Timer.new()
+			add_child(_transition_animation_timer)
+			_animated_space.play("transition")
+			_transition_animation_timer.wait_time = transition_duration
+			_transition_animation_timer.one_shot = true
+			_transition_animation_timer.start()
+			
+			await _transition_animation_timer.timeout
+			visible = false
+			scale = Vector2(1, 1)
+			
+			signal_bus.enter_event.emit()
 		else:
 			position.x = board_player.position.x + (20 * _x_toggle)
 			position.y = board_player.position.y

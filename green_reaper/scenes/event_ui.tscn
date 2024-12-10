@@ -1,0 +1,185 @@
+[gd_scene load_steps=8 format=3 uid="uid://bhyqmpanp0av2"]
+
+[ext_resource type="Script" path="res://scripts/event_ui.gd" id="1_abtfw"]
+[ext_resource type="FontFile" uid="uid://cm8dnumwsttrn" path="res://assets/fonts/Silkscreen/slkscr.ttf" id="2_uwjsf"]
+[ext_resource type="FontFile" uid="uid://whx2uoxvf88o" path="res://assets/fonts/Silkscreen/slkscrb.ttf" id="4_hnyve"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dy27g"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1arq8"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_whhmg"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ok8w"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect"]
+custom_minimum_size = Vector2(1152, 648)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_abtfw")
+
+[node name="EventName" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 30.0
+offset_top = 22.0
+offset_right = 1122.0
+offset_bottom = 71.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_uwjsf")
+theme_override_font_sizes/font_size = 48
+text = "Event Name"
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 73
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="Instructions" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Instructions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Instructions/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="EventPanel" type="Panel" parent="MarginContainer/Instructions/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(475, 325)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dy27g")
+
+[node name="BackgroundPanel" type="Panel" parent="MarginContainer/Instructions/MarginContainer/VBoxContainer/EventPanel"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1arq8")
+
+[node name="EventBody" type="Label" parent="MarginContainer/Instructions/MarginContainer/VBoxContainer/EventPanel/BackgroundPanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+theme_override_fonts/font = ExtResource("2_uwjsf")
+theme_override_font_sizes/font_size = 32
+text = "You come across a tired man sitting on the ground and carrying a sign.
+
+\"Spare some change?\", they ask.
+"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Instructions/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 200
+
+[node name="Op1Panel" type="Panel" parent="MarginContainer/Instructions/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_whhmg")
+
+[node name="Option1Button" type="Button" parent="MarginContainer/Instructions/MarginContainer/VBoxContainer/HBoxContainer/Op1Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_hnyve")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_2ok8w")
+text = "Pay $5000"
+autowrap_mode = 3
+
+[node name="Op2Panel" type="Panel" parent="MarginContainer/Instructions/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_whhmg")
+
+[node name="Option2Button" type="Button" parent="MarginContainer/Instructions/MarginContainer/VBoxContainer/HBoxContainer/Op2Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_hnyve")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_2ok8w")
+text = "Leave"
+autowrap_mode = 3
+
+[node name="OkPanel" type="Panel" parent="MarginContainer/Instructions/MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_whhmg")
+
+[node name="OkButton" type="Button" parent="MarginContainer/Instructions/MarginContainer/VBoxContainer/HBoxContainer/OkPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_hnyve")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_2ok8w")
+text = "Ok!"
+autowrap_mode = 3

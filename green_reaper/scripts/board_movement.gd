@@ -30,6 +30,7 @@ func _ready() -> void:
 	board.connect("board_setup_done", _on_board_setup_done)
 	dice.connect("dice_done_waiting", set_dice_rolling_done)
 	signal_bus.exit_minigame.connect(_enable_dice)
+	signal_bus.exit_event.connect(_enable_dice)
 	
 
 func _on_board_setup_done() -> void:
