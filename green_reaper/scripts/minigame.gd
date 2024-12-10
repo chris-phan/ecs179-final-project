@@ -8,6 +8,13 @@ enum Difficulty {
 	# for boss/checkpoint minigame
 	FINAL,
 }
+enum Controls {
+	MOVE_LEFT,
+	MOVE_RIGHT,
+	JUMP,
+	KICK,
+	MOVE_MOUSE
+}
 var _payout_multiplier: Dictionary = {
 	Difficulty.EASY: 1.25,
 	Difficulty.MEDIUM: 1.5,
@@ -24,6 +31,7 @@ var tooltip_format: String
 var easy_tooltip: String
 var medium_tooltip: String
 var hard_tooltip: String
+var controls: Array[Controls]
 
 var _difficulty: Difficulty = Difficulty.HARD
 @onready var countdown_label: CountdownLabel = $CountdownLabel

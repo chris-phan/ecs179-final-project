@@ -4,6 +4,7 @@ extends ColorRect
 var wager_inc_button_down: bool = false
 var wager_dec_button_down: bool = false
 var minigame_manager: MinigameManager
+var controls: Dictionary
 
 @onready var game_name_label: Label = %GameName
 @onready var minigame_image: TextureRect = %MinigameImg
@@ -19,6 +20,11 @@ var minigame_manager: MinigameManager
 @onready var difficulty_value: Label = %SelectedDifficultyValue
 @onready var wager_amount_label: Label = %WagerAmount
 @onready var payout_amount_label: Label = %PayoutAmount
+@onready var move_left: HBoxContainer = %MoveLeft
+@onready var move_right: HBoxContainer = %MoveRight
+@onready var jump: HBoxContainer = %Jump
+@onready var kick: HBoxContainer = %Kick
+@onready var move_mouse: HBoxContainer = %MoveMouse
 
 # Allows holding down increment/decrement buttons
 # Starts continuously calling inc/dec wager after waiting hold_timer's wait_time
@@ -43,6 +49,14 @@ func _ready() -> void:
 
 	hold_timer.timeout.connect(_handle_hold_timer_timeout)
 	inc_timer.timeout.connect(_handle_inc_timer_timeout)
+	
+	controls = {
+		Minigame.Controls.MOVE_LEFT: move_left,
+		Minigame.Controls.MOVE_RIGHT: move_right,
+		Minigame.Controls.JUMP: jump,
+		Minigame.Controls.KICK: kick,
+		Minigame.Controls.MOVE_MOUSE: move_mouse,
+	}
 
 
 func set_minigame_manager(mm: MinigameManager) -> void:
@@ -83,6 +97,14 @@ func set_difficulty() -> void:
 	difficulty_value.text = Minigame.difficulty_name(minigame_manager.difficulty)
 
 
+func set_controls() -> void:
+	for control in controls:
+		if control in minigame_manager.controls:
+			controls[control].show()
+		else:
+			controls[control].hide()
+
+
 func set_labels() -> void:
 	set_game_name()
 	set_minigame_img()
@@ -92,6 +114,7 @@ func set_labels() -> void:
 	set_tooltips()
 	set_easy_button_focus()
 	set_difficulty()
+	set_controls()
 
 
 func _inc_wager() -> void:
