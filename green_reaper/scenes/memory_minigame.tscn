@@ -149,6 +149,7 @@ scale = Vector2(0.5, 0.5)
 zoom = Vector2(4, 4)
 
 [node name="CountdownLabel" parent="." instance=ExtResource("10_uxlvj")]
+unique_name_in_owner = true
 
 [node name="MemoryQuestionLabel" type="Label" parent="."]
 anchors_preset = 8
@@ -174,6 +175,7 @@ wait_time = 0.4
 one_shot = true
 
 [node name="LuckLabel" parent="." instance=ExtResource("15_unsya")]
+unique_name_in_owner = true
 visible = false
 offset_top = 10.0
 offset_bottom = 33.0
@@ -182,6 +184,7 @@ offset_bottom = 33.0
 position = Vector2(-19, 64)
 
 [node name="TransitionTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 2.5
 one_shot = true
 

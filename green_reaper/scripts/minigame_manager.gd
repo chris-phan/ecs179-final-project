@@ -29,13 +29,7 @@ func _ready() -> void:
 	signal_bus.end_minigame.connect(_handle_end_minigame)
 	signal_bus.exit_minigame.connect(_handle_exit_minigame)
 	
-	minigame_rotation.append(TimePlatformingMinigame.new())
-	minigame_rotation.append(MemoryMinigame.new())
-	minigame_rotation.append(InternalTimerMinigame.new())
-	#minigame_rotation.append(ObservationMinigame.new())
-	
-	old_balance = 50000
-	minigame_rotation.shuffle()
+	_add_minigames()
 
 
 func increase_wager() -> int:
@@ -53,6 +47,16 @@ func get_payout() -> int:
 	return payout
 
 
+func _add_minigames() -> void:
+	minigame_rotation.clear()
+	minigame_rotation.append(TimePlatformingMinigame.new())
+	minigame_rotation.append(TimePlatformingMinigame2.new())
+	minigame_rotation.append(MemoryMinigame.new())
+	minigame_rotation.append(InternalTimerMinigame.new())
+	minigame_rotation.append(ObservationMinigame.new())
+	minigame_rotation.shuffle()
+
+
 func _handle_enter_minigame() -> void:
 	show()
 	difficulty = Minigame.Difficulty.EASY
@@ -68,11 +72,7 @@ func _handle_enter_minigame() -> void:
 	add_child(cur_scene)
 	
 	if len(minigame_rotation) == 0:
-		minigame_rotation.append(TimePlatformingMinigame.new())
-		minigame_rotation.append(MemoryMinigame.new())
-		minigame_rotation.append(InternalTimerMinigame.new())
-		minigame_rotation.append(ObservationMinigame.new())
-		minigame_rotation.shuffle()
+		_add_minigames()
 
 	var boss_phase = state_manager.turns_passed / 5 - 1
 	if state_manager.turns_passed % 5 == 0 and state_manager.cash < (250000 + 250000 * boss_phase):

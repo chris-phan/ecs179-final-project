@@ -34,9 +34,9 @@ var hard_tooltip: String
 var controls: Array[Controls]
 
 var _difficulty: Difficulty = Difficulty.HARD
-@onready var countdown_label: CountdownLabel = $CountdownLabel
-@onready var luck_label: LuckLabel = $LuckLabel
-@onready var transition_timer: Timer = $TransitionTimer
+@onready var countdown_label: CountdownLabel = %CountdownLabel
+@onready var luck_label: LuckLabel = %LuckLabel
+@onready var transition_timer: Timer = %TransitionTimer
 
 
 func init() -> void:
