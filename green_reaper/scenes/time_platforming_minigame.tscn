@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c2iafl58bub3k" path="res://scenes/platforming_player.tscn" id="4_3j4rc"]
 [ext_resource type="FontFile" uid="uid://cm8dnumwsttrn" path="res://assets/fonts/Silkscreen/slkscr.ttf" id="5_x267a"]
 [ext_resource type="PackedScene" uid="uid://bgwqpaqgk52bi" path="res://scenes/countdown_label.tscn" id="6_gtilg"]
-[ext_resource type="PackedScene" uid="uid://daybuxnjj7tm5" path="res://scenes/luck_label.tscn" id="7_l54rh"]
+[ext_resource type="PackedScene" path="res://scenes/luck_label.tscn" id="7_l54rh"]
 
 [node name="TimePlatformingMinigame" type="Node2D"]
 script = ExtResource("1_50355")

@@ -70,7 +70,6 @@ func _hide_stagger_list() -> void:
 
 
 func _handle_timeout() -> void:
-	print("Test")
 	if _idx < len(stagger_list):
 		stagger_list[_idx].show()
 		if not stagger_list[_idx] is PlatformingPlayer:

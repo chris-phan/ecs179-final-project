@@ -3,8 +3,8 @@ extends Event
 
 
 
-func _init(cur_balance: int) -> void:
-	super._init(cur_balance)
+func _init() -> void:
+	super._init()
 	_max_step = 2
 	event_name = "Wizard"
 	event_body = "You see a guy across the street ranting to himself about " \
@@ -35,6 +35,7 @@ func select_option(option_num: int) -> void:
 			event_body = "Who would say no to $%d. The briefcase smells a little funny, but with $%d, your future is bright. " % [4 * _random_stake, 4 * _random_stake]
 			
 			_payout += 4 * _random_stake
+			_luck_diff = 4 * _get_stake_proportion() * -0.7
 		
 		else:
 			event_body = "You're not sure why you declined. Maybe something possessed you."
