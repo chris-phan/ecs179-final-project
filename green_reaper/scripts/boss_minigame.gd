@@ -21,6 +21,8 @@ var _elapsed_time: float = 0.0
 var _spawn_rate: float
 var _spawn_enemies = false
 var _timer_duration: float = 20.0
+var _initial_cash: int
+var _cash_has_changed = false
 
 @onready var player: PlatformingPlayer = $Player
 @onready var game_timer: Timer = $GameTimer
@@ -34,10 +36,10 @@ func _init() -> void:
 	instructions = "Avoid colliding with the enemies. They are out to steal your money! Different enemy types steal different amounts of money"
 	
 	_payout_multiplier = {
-		Difficulty.EASY: 75000,
-		Difficulty.MEDIUM: 100000,
-		Difficulty.HARD: 125000,
-		Difficulty.FINAL: 150000,
+		Difficulty.EASY: 250000,
+		Difficulty.MEDIUM: 500000,
+		Difficulty.HARD: 750000,
+		Difficulty.FINAL: 1000000,
 	}
 
 
@@ -47,6 +49,7 @@ func _ready() -> void:
 	game_timer.timeout.connect(_handle_game_timer_timeout)	
 	signal_bus.reached_platforming_goal.connect(_handle_no_money)
 	
+	_initial_cash = state_manager.cash
 	countdown_label.start()
 	player.unbind_commands()
 
@@ -56,7 +59,10 @@ func _process(delta: float) -> void:
 		timer_label.text = "%.2f" % [game_timer.time_left]
 		cash_label.text = str(state_manager.cash)
 
-	if state_manager.cash <= 0:
+	if not _cash_has_changed:
+		_cash_has_changed = true if _initial_cash - state_manager.cash != 0 else false
+
+	if _cash_has_changed and state_manager.cash <= 0:
 		signal_bus.reached_platforming_goal.emit()
 
 	player.position.x = clamp(get_global_mouse_position().x, -140, 140)
@@ -114,6 +120,38 @@ func get_payout(wager: int, difficulty: Difficulty) -> int:
 	return _payout_multiplier[difficulty]
 
 
+func _set_target_type(target: CheckpointEnemy) -> CheckpointEnemy:
+	var possibilities: Array[CheckpointEnemy.Type] = [CheckpointEnemy.Type.NORMAL]
+	if _spawn_rate == _difficulty_spawn_rate[Difficulty.MEDIUM]:
+		possibilities.append(CheckpointEnemy.Type.HAT)
+	if _spawn_rate == _difficulty_spawn_rate[Difficulty.HARD]:
+		possibilities.append(CheckpointEnemy.Type.HORNED)
+	
+	target.set_type(possibilities.pick_random())
+	return target
+
+
+func _pick_valid_nonzero_target_type() -> CheckpointEnemy.Type:
+	var possibilities: Array[CheckpointEnemy.Type] = []
+	if _spawn_rate <= _difficulty_spawn_rate[Difficulty.EASY] and len(_targets[CheckpointEnemy.Type.NORMAL]) > 0:
+		possibilities.append(CheckpointEnemy.Type.NORMAL)
+	if _spawn_rate <= _difficulty_spawn_rate[Difficulty.MEDIUM] and len(_targets[CheckpointEnemy.Type.HAT]) > 0:
+		possibilities.append(CheckpointEnemy.Type.HAT)
+	if _spawn_rate <= _difficulty_spawn_rate[Difficulty.HARD] and len(_targets[CheckpointEnemy.Type.HORNED]) > 0:
+		possibilities.append(CheckpointEnemy.Type.HORNED)
+	
+	return possibilities.pick_random()
+
+
+func _spawn_enemy() -> void:
+	_elapsed_time = _spawn_rate
+
+	var target: CheckpointEnemy = _chkpt_enemy_scene.instantiate() as CheckpointEnemy
+	target = _set_target_type(target)
+	call_deferred("add_child", target)
+	_targets[target.get_type()].append(target)
+
+
 func _handle_no_money() -> void:
 	game_timer.stop()
 	_lose()
@@ -145,35 +183,3 @@ func _handle_game_timer_timeout() -> void:
 
 func _handle_transition_timer_timeout() -> void:
 	signal_bus.end_minigame.emit(_did_player_win)
-
-
-func _set_target_type(target: CheckpointEnemy) -> CheckpointEnemy:
-	var possibilities: Array[CheckpointEnemy.Type] = [CheckpointEnemy.Type.NORMAL]
-	if _spawn_rate == _difficulty_spawn_rate[Difficulty.MEDIUM]:
-		possibilities.append(CheckpointEnemy.Type.HAT)
-	if _spawn_rate == _difficulty_spawn_rate[Difficulty.HARD]:
-		possibilities.append(CheckpointEnemy.Type.HORNED)
-	
-	target.set_type(possibilities.pick_random())
-	return target
-
-
-func _pick_valid_nonzero_target_type() -> CheckpointEnemy.Type:
-	var possibilities: Array[CheckpointEnemy.Type] = []
-	if _spawn_rate <= _difficulty_spawn_rate[Difficulty.EASY] and len(_targets[CheckpointEnemy.Type.NORMAL]) > 0:
-		possibilities.append(CheckpointEnemy.Type.NORMAL)
-	if _spawn_rate <= _difficulty_spawn_rate[Difficulty.MEDIUM] and len(_targets[CheckpointEnemy.Type.HAT]) > 0:
-		possibilities.append(CheckpointEnemy.Type.HAT)
-	if _spawn_rate <= _difficulty_spawn_rate[Difficulty.HARD] and len(_targets[CheckpointEnemy.Type.HORNED]) > 0:
-		possibilities.append(CheckpointEnemy.Type.HORNED)
-	
-	return possibilities.pick_random()
-
-
-func _spawn_enemy() -> void:
-	_elapsed_time = _spawn_rate
-
-	var target: CheckpointEnemy = _chkpt_enemy_scene.instantiate() as CheckpointEnemy
-	target = _set_target_type(target)
-	call_deferred("add_child", target)
-	_targets[target.get_type()].append(target)
