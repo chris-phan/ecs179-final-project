@@ -1,18 +1,17 @@
 class_name TimePlatformingMinigame
 extends Minigame
 
-const _difficulty_times: Dictionary = {
+var _difficulty_times: Dictionary = {
 	Difficulty.EASY: 15.0,
 	Difficulty.MEDIUM: 9.0,
 	Difficulty.HARD: 7.0,
 }
-var tooltip: String = "You have %d seconds to reach the goal"
 
 var time_to_beat: float
 @onready var player: PlatformingPlayer = $Player
 @onready var goal: PlatformingGoal = $PlatformingGoal
-@onready var game_timer: Timer = $GameTimer
-@onready var timer_label: Label = $GameTimer/TimerLabel
+@onready var game_timer: Timer = %GameTimer
+@onready var timer_label: Label = %TimerLabel
 
 
 func _init() -> void:
@@ -20,7 +19,7 @@ func _init() -> void:
 	minigame_scene_path = "res://scenes/time_platforming_minigame.tscn"
 	minigame_name = "Time Platforming"
 	instructions = "Get to the heart before time runs out."
-	tooltip_format = "You have %d seconds to reach the goal"
+	tooltip_format = "You have %.2f seconds to reach the goal"
 	easy_tooltip = tooltip_format % [_difficulty_times[Difficulty.EASY]]
 	medium_tooltip = tooltip_format % [_difficulty_times[Difficulty.MEDIUM]]
 	hard_tooltip = tooltip_format % [_difficulty_times[Difficulty.HARD]]
@@ -31,9 +30,11 @@ func _init() -> void:
 		Difficulty.MEDIUM: 2.0,
 		Difficulty.HARD: 3.0
 	}
+	print("init called")
 
 
 func _ready() -> void:
+	print("in ready", _difficulty_times)
 	super.init()
 	signal_bus.reached_platforming_goal.connect(_handle_reached_goal)
 	
@@ -55,6 +56,7 @@ func get_payout(wager: int, difficulty: Difficulty) -> int:
 
 
 func set_difficulty(diff: Difficulty) -> void:
+	print("difficulty set,", _difficulty_times)
 	super.set_difficulty(diff)
 	time_to_beat = _difficulty_times[diff]
 	game_timer.wait_time = time_to_beat
@@ -80,6 +82,7 @@ func _handle_reached_goal() -> void:
 	if not is_timer_stopped:
 		_win()
 	else:
+		print("lose")
 		_lose()
 	
 	signal_bus.reached_platforming_goal.disconnect(_handle_reached_goal)

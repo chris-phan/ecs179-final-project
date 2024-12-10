@@ -66,10 +66,12 @@ script = ExtResource("5_hrh6m")
 position = Vector2(109, 70)
 
 [node name="CountdownLabel" parent="." instance=ExtResource("7_rbhsb")]
+unique_name_in_owner = true
 offset_top = -32.5
 offset_bottom = 32.5
 
 [node name="LuckLabel" parent="." instance=ExtResource("8_etsfv")]
+unique_name_in_owner = true
 visible = false
 offset_top = 35.0
 offset_bottom = 58.0
@@ -82,3 +84,4 @@ wait_time = 10.0
 one_shot = true
 
 [node name="TransitionTimer" type="Timer" parent="."]
+unique_name_in_owner = true

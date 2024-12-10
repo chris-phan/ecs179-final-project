@@ -3,6 +3,7 @@ extends Label
 
 @onready var timer: Timer = $Timer
 
+
 func _ready() -> void:
 	timer.timeout.connect(_handle_timeout)
 	timer.one_shot = true
