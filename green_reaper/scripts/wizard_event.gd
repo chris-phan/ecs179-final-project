@@ -41,4 +41,3 @@ func select_option(option_num: int) -> void:
 			event_body = "You're not sure why you declined. Maybe something possessed you."
 	
 	super._inc_step()
-

@@ -1,6 +1,7 @@
 class_name GameManager
 extends Node2D
 
+@onready var intro: Intro = $Intro
 @onready var board: Board = $Board
 @onready var minigame_manager: MinigameManager = $MinigameManager
 @onready var event_manager: EventManager = $EventManager
@@ -9,9 +10,11 @@ extends Node2D
 func _ready() -> void:
 	signal_bus.enter_minigame.connect(_handle_enter_minigame)
 	signal_bus.exit_minigame.connect(_handle_exit_minigame)
+	signal_bus.intro_done.connect(_handle_intro_done)
 	signal_bus.enter_event.connect(_handle_enter_event)
 	signal_bus.exit_event.connect(_handle_exit_event)
 	sfx_player.play_board_bgm()
+	board.hide()
 
 
 func _process(delta: float) -> void:
@@ -43,6 +46,8 @@ func _handle_exit_minigame() -> void:
 	minigame_manager.hide()
 	add_child(board)
 
+func _handle_intro_done() -> void:
+	board.show()
 
 func _handle_enter_event() -> void:
 	sfx_player.stop()

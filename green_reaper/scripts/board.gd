@@ -50,7 +50,7 @@ func _ready() -> void:
 		space_list.push_back(space)
 		space_num += 1
 	
-	for i in range(8):
+	for i in range(8000):
 		var space: Node = event_space.instantiate()
 		space.name = "event_space" + str(space_num)
 		space_list.push_back(space)
