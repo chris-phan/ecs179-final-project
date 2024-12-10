@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://8ngjos0dy136"]
+[gd_scene load_steps=27 format=3 uid="uid://8ngjos0dy136"]
 
 [ext_resource type="FontFile" uid="uid://cm8dnumwsttrn" path="res://assets/fonts/Silkscreen/slkscr.ttf" id="1_0hdic"]
 [ext_resource type="Script" path="res://scripts/minigame_ui.gd" id="1_3ad8j"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b7uacgsafyagf" path="res://assets/kenney_input-prompts/Keyboard & Mouse/Vector/keyboard_space_outline.svg" id="6_fr03j"]
 [ext_resource type="Texture2D" uid="uid://ervgxglj0skd" path="res://assets/kenney_input-prompts/Keyboard & Mouse/Vector/keyboard_k_outline.svg" id="7_onwmx"]
 [ext_resource type="Texture2D" uid="uid://1pw0xj4rus06" path="res://assets/kenney_ui-pack/Vector/Extra/icon_arrow_up_outline.svg" id="9_3cuxf"]
+[ext_resource type="Texture2D" uid="uid://by528c6r0g1dw" path="res://assets/kenney_input-prompts/Keyboard & Mouse/Vector/mouse_move.svg" id="9_ta2ci"]
 [ext_resource type="Texture2D" uid="uid://ceuc6kj4fgk04" path="res://assets/kenney_ui-pack/Vector/Extra/icon_arrow_down_outline.svg" id="10_hx3gq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1pl0r"]
@@ -286,6 +287,20 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("1_0hdic")
 theme_override_font_sizes/font_size = 24
 text = "Kick"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/TabContainer/Instructions/MarginContainer/VBoxContainer/HBoxContainer/ControlsPanel/BackgroundPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Instructions/MarginContainer/VBoxContainer/HBoxContainer/ControlsPanel/BackgroundPanel/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+texture = ExtResource("9_ta2ci")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Instructions/MarginContainer/VBoxContainer/HBoxContainer/ControlsPanel/BackgroundPanel/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_0hdic")
+theme_override_font_sizes/font_size = 24
+text = "BOSS"
 
 [node name="InstructionsPanel" type="Panel" parent="MarginContainer/TabContainer/Instructions/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(424.476, 225)

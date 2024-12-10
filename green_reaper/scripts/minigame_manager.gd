@@ -72,11 +72,20 @@ func _handle_enter_minigame() -> void:
 		minigame_rotation.append(InternalTimerMinigame.new())
 		minigame_rotation.append(ObservationMinigame.new())
 		minigame_rotation.shuffle()
+
+	var boss_phase = state_manager.turns_passed / 5 - 1
+	if state_manager.turns_passed % 5 == 0 and state_manager.cash < (250000 + 250000 * boss_phase):
+		minigame_rotation.clear()
+		minigame_rotation.append(BossMinigame.new())
+		difficulty = boss_phase as Minigame.Difficulty
+		wager = state_manager.cash
 	
 	cur_minigame = minigame_rotation.pop_back()
 	minigame_img_path = cur_minigame.minigame_img_path
 	minigame_scene_path = cur_minigame.minigame_scene_path
 	minigame_name = cur_minigame.minigame_name
+	if minigame_name == "Boss":
+		minigame_name += " - Phase " + str(boss_phase + 1)
 	instructions = cur_minigame.instructions
 	easy_tooltip = cur_minigame.easy_tooltip
 	medium_tooltip = cur_minigame.medium_tooltip

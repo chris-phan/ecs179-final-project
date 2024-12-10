@@ -106,11 +106,16 @@ func _dec_wager() -> void:
 
 func _handle_tab_changed(_tab: int) -> void:
 	sfx_player.play_button_press()
+	if minigame_manager.minigame_name.contains("Boss"):
+		tabs.current_tab = 0
 
 
 func _handle_next_button_up() -> void:
 	sfx_player.play_button_press()
-	tabs.current_tab = 1
+	if minigame_manager.minigame_name.contains("Boss"):
+		signal_bus.start_minigame.emit()
+	else:
+		tabs.current_tab = 1
 
 
 func _handle_start_button_up() -> void:
