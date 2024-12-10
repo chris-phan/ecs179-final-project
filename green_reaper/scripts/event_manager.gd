@@ -10,6 +10,7 @@ var new_balance: int
 var payout: int
 var luck_diff: float
 
+
 func _ready() -> void:
 	signal_bus.enter_event.connect(_handle_enter_event)
 	signal_bus.end_event.connect(_handle_end_event)
@@ -19,19 +20,24 @@ func _ready() -> void:
 
 	# _init_event_rotation()
 
+
 func get_event_name() -> String:
 	return cur_event.event_name
+
 
 func get_event_body() -> String:
 	return cur_event.event_body
 
+
 func get_payout() -> int:
 	return cur_event.get_payout()
+
 
 func _init_event_rotation() -> void:
 	event_rotation.append(BeggarEvent.new())
 	event_rotation.append(WizardEvent.new())
 	event_rotation.shuffle()
+
 
 func _handle_enter_event() -> void:
 	show()
@@ -51,6 +57,7 @@ func _handle_enter_event() -> void:
 	cur_event = _init_random_event()
 	cur_scene.set_labels()
 
+
 # Event rotation since events can't be initialized beforehand (very jank)
 func _init_random_event() -> Event:
 	var num_events: int = 5
@@ -66,6 +73,7 @@ func _init_random_event() -> Event:
 	elif ind == 4:
 		return KidEvent.new()
 	return null
+
 
 func _handle_end_event() -> void:
 	payout = cur_event.get_payout()
@@ -88,6 +96,8 @@ func _handle_end_event() -> void:
 	cur_scene.set_event_manager(self)
 	cur_scene.set_labels()
 
+
 func _handle_exit_event() -> void:
+	signal_bus.enter_minigame.emit()
 	cur_scene.queue_free()
 	hide()
