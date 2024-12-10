@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://bfuqaamvf6ih0"]
+[gd_scene load_steps=8 format=4 uid="uid://bfuqaamvf6ih0"]
 
 [ext_resource type="Script" path="res://scripts/boss_minigame.gd" id="1_5ln0u"]
 [ext_resource type="TileSet" uid="uid://bhw4bxuqfh87o" path="res://assets/1bitplatformerpack/platforming_tileset.tres" id="2_htvxi"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bgwqpaqgk52bi" path="res://scenes/countdown_label.tscn" id="5_sxhad"]
 [ext_resource type="PackedScene" uid="uid://c2iafl58bub3k" path="res://scenes/platforming_player.tscn" id="6_2gjd3"]
 [ext_resource type="PackedScene" uid="uid://cjj1vcfh14u06" path="res://scenes/checkpoint_enemy.tscn" id="6_3hmu8"]
+[ext_resource type="PackedScene" uid="uid://daybuxnjj7tm5" path="res://scenes/luck_label.tscn" id="7_50shk"]
 
 [node name="BossMinigame" type="Node2D"]
 script = ExtResource("1_5ln0u")
@@ -70,3 +71,6 @@ text = "50000
 metadata/_edit_use_anchors_ = true
 
 [node name="CheckpointEnemy" parent="." instance=ExtResource("6_3hmu8")]
+
+[node name="LuckLabel" parent="." instance=ExtResource("7_50shk")]
+visible = false

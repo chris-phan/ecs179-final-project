@@ -14,3 +14,9 @@ signal enter_minigame()
 signal start_minigame()
 signal end_minigame(did_player_win: bool)
 signal exit_minigame()
+
+# Intro signals
+signal intro_done
+signal enter_event()
+signal end_event()
+signal exit_event()
