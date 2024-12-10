@@ -53,12 +53,18 @@ func _handle_enter_event() -> void:
 
 # Event rotation since events can't be initialized beforehand (very jank)
 func _init_random_event() -> Event:
-	var num_events: int = 2
+	var num_events: int = 5
 	var ind: int = randi() % num_events
 	if ind == 0:
 		return BeggarEvent.new()
 	elif ind == 1:
 		return WizardEvent.new()
+	elif ind == 2:
+		return CarEvent.new()
+	elif ind == 3:
+		return CharityEvent.new()
+	elif ind == 4:
+		return KidEvent.new()
 	return null
 
 func _handle_end_event() -> void:
