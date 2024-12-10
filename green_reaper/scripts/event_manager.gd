@@ -89,5 +89,7 @@ func _handle_end_event() -> void:
 	cur_scene.set_labels()
 
 func _handle_exit_event() -> void:
+	print("asudfhaslufahsdflidausfh")
+	signal_bus.enter_minigame.emit()
 	cur_scene.queue_free()
 	hide()

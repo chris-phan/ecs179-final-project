@@ -58,6 +58,7 @@ func _add_minigames() -> void:
 
 
 func _handle_enter_minigame() -> void:
+	print("entered")
 	show()
 	difficulty = Minigame.Difficulty.EASY
 	wager = 0
@@ -74,8 +75,8 @@ func _handle_enter_minigame() -> void:
 	if len(minigame_rotation) == 0:
 		_add_minigames()
 
-	var boss_phase = state_manager.turns_passed / 5 - 1
-	if state_manager.turns_passed % 5 == 0 and state_manager.cash < (250000 + 250000 * boss_phase):
+	var boss_phase = 1#state_manager.turns_passed / 5 - 1
+	if state_manager.turns_passed % 1 == 0 and state_manager.cash < (250000 + 250000 * boss_phase):
 		minigame_rotation.clear()
 		minigame_rotation.append(BossMinigame.new())
 		difficulty = boss_phase as Minigame.Difficulty

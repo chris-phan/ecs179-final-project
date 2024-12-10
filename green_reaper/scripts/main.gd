@@ -46,8 +46,10 @@ func _handle_exit_minigame() -> void:
 	minigame_manager.hide()
 	add_child(board)
 
+
 func _handle_intro_done() -> void:
 	board.show()
+
 
 func _handle_enter_event() -> void:
 	sfx_player.stop()
@@ -57,7 +59,5 @@ func _handle_enter_event() -> void:
 
 
 func _handle_exit_event() -> void:
-	sfx_player.stop()
-	sfx_player.play_board_bgm()
 	event_manager.hide()
-	add_child(board)
+	minigame_manager.show()
