@@ -16,6 +16,7 @@ var _targets: Dictionary = {
 	CheckpointEnemy.Type.NORMAL: [],
 	CheckpointEnemy.Type.HAT: [],
 	CheckpointEnemy.Type.HORNED: [],
+	CheckpointEnemy.Type.REAPER: [],
 }
 var _elapsed_time: float = 0.0
 var _spawn_rate: float
@@ -64,7 +65,11 @@ func _process(delta: float) -> void:
 		_cash_has_changed = true if _initial_cash - state_manager.cash != 0 else false
 
 	if _cash_has_changed and state_manager.cash <= 0:
-		signal_bus.reached_platforming_goal.emit()
+		if is_player_lucky():
+			luck_label.display()
+			state_manager.cash += 20000
+		else:
+			signal_bus.reached_platforming_goal.emit()
 
 	player.position.x = clamp(get_global_mouse_position().x, -140, 140)
 	player.position.y = clamp(get_global_mouse_position().y, -70, 70)
@@ -127,21 +132,12 @@ func _set_target_type(target: CheckpointEnemy) -> CheckpointEnemy:
 		possibilities.append(CheckpointEnemy.Type.HAT)
 	if _spawn_rate == _difficulty_spawn_rate[Difficulty.HARD]:
 		possibilities.append(CheckpointEnemy.Type.HORNED)
+	if _spawn_rate == _difficulty_spawn_rate[Difficulty.FINAL]:
+		possibilities.clear()
+		possibilities.append(CheckpointEnemy.Type.REAPER)
 	
 	target.set_type(possibilities.pick_random())
 	return target
-
-
-func _pick_valid_nonzero_target_type() -> CheckpointEnemy.Type:
-	var possibilities: Array[CheckpointEnemy.Type] = []
-	if _spawn_rate <= _difficulty_spawn_rate[Difficulty.EASY] and len(_targets[CheckpointEnemy.Type.NORMAL]) > 0:
-		possibilities.append(CheckpointEnemy.Type.NORMAL)
-	if _spawn_rate <= _difficulty_spawn_rate[Difficulty.MEDIUM] and len(_targets[CheckpointEnemy.Type.HAT]) > 0:
-		possibilities.append(CheckpointEnemy.Type.HAT)
-	if _spawn_rate <= _difficulty_spawn_rate[Difficulty.HARD] and len(_targets[CheckpointEnemy.Type.HORNED]) > 0:
-		possibilities.append(CheckpointEnemy.Type.HORNED)
-	
-	return possibilities.pick_random()
 
 
 func _spawn_enemy() -> void:

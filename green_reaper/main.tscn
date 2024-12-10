@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdixax7h6d385"]
+[gd_scene load_steps=6 format=3 uid="uid://bdixax7h6d385"]
 
 [ext_resource type="PackedScene" uid="uid://q1uf70x01gar" path="res://scenes/board.tscn" id="1_elk1g"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_gy7k5"]
-[ext_resource type="PackedScene" uid="uid://dpl5noij7sb2m" path="res://scenes/intro.tscn" id="2_f5l2h"]
+[ext_resource type="PackedScene" path="res://scenes/intro.tscn" id="2_f5l2h"]
 [ext_resource type="PackedScene" uid="uid://c8p5wva4aqnu7" path="res://scenes/minigame_manager.tscn" id="2_grqmu"]
+[ext_resource type="PackedScene" path="res://scenes/event_manager.tscn" id="4_ubl1l"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_gy7k5")
@@ -14,3 +15,5 @@ z_index = 20
 [node name="Board" parent="." instance=ExtResource("1_elk1g")]
 
 [node name="MinigameManager" parent="." instance=ExtResource("2_grqmu")]
+
+[node name="EventManager" parent="." instance=ExtResource("4_ubl1l")]
