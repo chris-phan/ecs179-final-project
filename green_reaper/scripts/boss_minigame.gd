@@ -34,6 +34,7 @@ func _init() -> void:
 	minigame_scene_path = "res://scenes/boss_minigame.tscn"
 	minigame_name = "Boss"
 	instructions = "Avoid colliding with the enemies. They are out to steal your money! Different enemy types steal different amounts of money"
+	controls = [Controls.MOVE_MOUSE]
 	
 	_payout_multiplier = {
 		Difficulty.EASY: 250000,

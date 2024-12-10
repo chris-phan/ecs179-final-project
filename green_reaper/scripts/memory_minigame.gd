@@ -26,6 +26,7 @@ func _init() -> void:
 	easy_tooltip = tooltip_format % [_difficulty_rounds[Difficulty.EASY]]
 	medium_tooltip = tooltip_format % [_difficulty_rounds[Difficulty.MEDIUM]]
 	hard_tooltip = tooltip_format % [_difficulty_rounds[Difficulty.HARD]]
+	controls = [Controls.MOVE_LEFT, Controls.MOVE_RIGHT, Controls.KICK]
 	
 	_payout_multiplier = {
 		Difficulty.EASY: 1.5,

@@ -15,6 +15,7 @@ var difficulty: Minigame.Difficulty
 var easy_tooltip: String
 var medium_tooltip: String
 var hard_tooltip: String
+var controls: Array[Minigame.Controls]
 var old_balance: int
 var new_balance: int
 var wager: int
@@ -31,7 +32,7 @@ func _ready() -> void:
 	minigame_rotation.append(TimePlatformingMinigame.new())
 	minigame_rotation.append(MemoryMinigame.new())
 	minigame_rotation.append(InternalTimerMinigame.new())
-	minigame_rotation.append(ObservationMinigame.new())
+	#minigame_rotation.append(ObservationMinigame.new())
 	
 	old_balance = 50000
 	minigame_rotation.shuffle()
@@ -90,6 +91,7 @@ func _handle_enter_minigame() -> void:
 	easy_tooltip = cur_minigame.easy_tooltip
 	medium_tooltip = cur_minigame.medium_tooltip
 	hard_tooltip = cur_minigame.hard_tooltip
+	controls = cur_minigame.controls
 	cur_scene.set_labels()
 
 
