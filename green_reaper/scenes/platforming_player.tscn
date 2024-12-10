@@ -626,7 +626,7 @@ states/walk/position = Vector2(528.5, 99.875)
 states/win/node = SubResource("AnimationNodeAnimation_wrnkf")
 states/win/position = Vector2(131.5, 268.5)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ysgjj"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_4t2ha"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_g7gr1"), "idle", "kick", SubResource("AnimationNodeStateMachineTransition_juyen"), "kick", "idle", SubResource("AnimationNodeStateMachineTransition_1f75i"), "kick", "walk", SubResource("AnimationNodeStateMachineTransition_u4nbb"), "walk", "kick", SubResource("AnimationNodeStateMachineTransition_vkdpb"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_q3faf"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_y81b5"), "walk", "jump", SubResource("AnimationNodeStateMachineTransition_c1whe"), "jump", "walk", SubResource("AnimationNodeStateMachineTransition_x20r2"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_kgu70"), "land", "walk", SubResource("AnimationNodeStateMachineTransition_ydeqr"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_33fhd"), "walk", "fall", SubResource("AnimationNodeStateMachineTransition_opk82"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_dj4f3"), "idle", "win", SubResource("AnimationNodeStateMachineTransition_bf2vt"), "idle", "lose", SubResource("AnimationNodeStateMachineTransition_jfrt0")]
-graph_offset = Vector2(-138, 46)
+graph_offset = Vector2(-138, -27.1967)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_aq4oh")

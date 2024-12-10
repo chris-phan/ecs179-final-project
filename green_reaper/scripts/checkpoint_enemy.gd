@@ -5,6 +5,7 @@ enum Type {
 	NORMAL,
 	HAT,
 	HORNED,
+	REAPER,
 }
 
 const _SCALES: Array[Vector2] = [
@@ -18,6 +19,7 @@ const _DAMAGE := {
 	Type.NORMAL : 10000,
 	Type.HAT : 20000,
 	Type.HORNED : 50000,
+	Type.REAPER : 75000,
 }
 
 var _type: Type
@@ -52,7 +54,7 @@ func _physics_process(delta: float) -> void:
 		player_position *= percentage_error
 		var collision = move_and_collide(_start_pos.direction_to(player_position) * speed * delta)
 		_handle_collision(collision)
-	elif _type == Type.HORNED:
+	else:
 		var player_position = player.global_position
 		var collision = move_and_collide(_start_pos.direction_to(player_position) * speed * delta)
 		_handle_collision(collision)
