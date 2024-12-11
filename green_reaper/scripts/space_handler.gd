@@ -158,8 +158,7 @@ func handle_lose_money() -> int:
 	sfx_player.play_board_negative()
 	# decrement money in player manager
 	var value: int = state_manager.cash * MULTIPLIER_VALUES[randf_range(0, len(MULTIPLIER_VALUES) - 1)]
-	if value == 0:
-		value = 1
+	value = min(1000, value)
 	print("subtracting " + str(value))
 	show_negative_value("$" + str(value))
 	return value
@@ -182,7 +181,7 @@ func show_positive_value(value: String) -> void:
 
 
 func show_negative_value(value: String) -> void:
-	print("neg: " + value)	
+	print("neg: " + value)
 	random_negative_value_label.text = "-" + value
 	random_negative_value_label.position = board_player.position
 	random_negative_value_label.position.y -= 50
