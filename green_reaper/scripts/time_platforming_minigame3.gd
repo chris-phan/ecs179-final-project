@@ -10,8 +10,8 @@ extends TimePlatformingMinigame
 
 func _init() -> void:
 	_difficulty_times = {
-		Difficulty.EASY: 30.0,
-		Difficulty.MEDIUM: 20.0,
+		Difficulty.EASY: 25.0,
+		Difficulty.MEDIUM: 17.0,
 		Difficulty.HARD: 10.0,
 	}
 	super._init()
@@ -30,12 +30,6 @@ func _ready() -> void:
 	killzone2.body_entered.connect(_handle_body_entered)
 	killzone3.body_entered.connect(_handle_body_entered)
 	killzone4.body_entered.connect(_handle_body_entered)
-	_difficulty_times = {
-		Difficulty.EASY: 10005.0,
-		Difficulty.MEDIUM: 10.0,
-		Difficulty.HARD: 7.5,
-	}
-	set_difficulty(Difficulty.EASY)
 
 
 func _handle_body_entered(_body: Node2D) -> void:
