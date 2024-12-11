@@ -15,6 +15,7 @@ func _ready() -> void:
 	signal_bus.enter_event.connect(_handle_enter_event)
 	signal_bus.end_event.connect(_handle_end_event)
 	signal_bus.exit_event.connect(_handle_exit_event)
+	signal_bus.reset_game.connect(_delete_event_manager)
 	
 	old_balance = 50000
 
@@ -100,3 +101,7 @@ func _handle_exit_event() -> void:
 	signal_bus.enter_minigame.emit()
 	cur_scene.queue_free()
 	hide()
+
+
+func _delete_event_manager() -> void:
+	queue_free()

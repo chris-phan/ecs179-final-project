@@ -94,12 +94,14 @@ func handle_space(space_name: String) -> void:
 			_animation_timer.one_shot = true
 			_animation_timer.start()
 			
+			var money_value: int = 0
+			
 			if (space_name == "gain_money"):
-				handle_gain_money()
+				money_value = handle_gain_money()
 			elif (space_name == "gain_luck"):
 				handle_gain_luck()
 			elif (space_name == "lose_money"):
-				handle_lose_money()
+				money_value = handle_lose_money()
 			elif (space_name == "lose_luck"):
 				handle_lose_luck()
 			else:
@@ -109,29 +111,38 @@ func handle_space(space_name: String) -> void:
 			random_positive_value_label.visible = false
 			random_negative_value_label.visible = false
 			
-			position = board_player.position
-			position.y += 40
-			_transition_animation_timer = Timer.new()
-			add_child(_transition_animation_timer)
-			_animated_space.play("transition")
-			_transition_animation_timer.wait_time = transition_duration
-			_transition_animation_timer.one_shot = true
-			_transition_animation_timer.start()
-			
-			await _transition_animation_timer.timeout
-			visible = false
-			scale = Vector2(1, 1)
-			
-			signal_bus.enter_minigame.emit()
+			if (space_name == "gain_money"):
+				state_manager.cash += money_value
+			elif (space_name == "lose_money"):
+				state_manager.cash -= money_value
 
 
-func handle_gain_money() -> void:
+			if (state_manager.cash > 0 and state_manager.cash < 1000000):
+				position = board_player.position
+				position.y += 40
+				_transition_animation_timer = Timer.new()
+				add_child(_transition_animation_timer)
+				_animated_space.play("transition")
+				_transition_animation_timer.wait_time = transition_duration
+				_transition_animation_timer.one_shot = true
+				_transition_animation_timer.start()
+				
+				await _transition_animation_timer.timeout
+				visible = false
+				scale = Vector2(1, 1)
+				
+				signal_bus.enter_minigame.emit()
+			else:
+				signal_bus.space_ended_game.emit()
+
+
+func handle_gain_money() -> int:
 	sfx_player.play_board_positive()
 	# increment money in player manager
 	var value: int = state_manager.cash * MULTIPLIER_VALUES[randf_range(0, len(MULTIPLIER_VALUES) - 1)]
 	print("adding " + str(value))
-	state_manager.cash += value
 	show_positive_value("$" + str(value))
+	return value
 
 
 func handle_gain_luck() -> void:
@@ -140,17 +151,17 @@ func handle_gain_luck() -> void:
 	var value: float = MULTIPLIER_VALUES[randf_range(0, len(MULTIPLIER_VALUES) - 1)]
 	print("adding " + str(value))
 	state_manager.inc_luck(value)
-	#state_manager.luck = min(0.99, state_manager.luck + value)
 	show_positive_value(str("%.0f" % [value * 100]) + "%")
 
 
-func handle_lose_money() -> void:
+func handle_lose_money() -> int:
 	sfx_player.play_board_negative()
 	# decrement money in player manager
 	var value: int = state_manager.cash * MULTIPLIER_VALUES[randf_range(0, len(MULTIPLIER_VALUES) - 1)]
+	value = min(1000, value)
 	print("subtracting " + str(value))
-	state_manager.cash -= value
 	show_negative_value("$" + str(value))
+	return value
 
 
 func handle_lose_luck() -> void:
@@ -159,7 +170,6 @@ func handle_lose_luck() -> void:
 	var value: float = MULTIPLIER_VALUES[randf_range(0, len(MULTIPLIER_VALUES) - 1)]
 	print("subtracting " + str(value))
 	state_manager.dec_luck(value)
-	#state_manager.luck = max(0.0, state_manager.luck - value)
 	show_negative_value(str("%.0f" % [value * 100]) + "%")
 
 
@@ -171,7 +181,7 @@ func show_positive_value(value: String) -> void:
 
 
 func show_negative_value(value: String) -> void:
-	print("neg: " + value)	
+	print("neg: " + value)
 	random_negative_value_label.text = "-" + value
 	random_negative_value_label.position = board_player.position
 	random_negative_value_label.position.y -= 50

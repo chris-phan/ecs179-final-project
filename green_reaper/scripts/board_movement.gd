@@ -22,6 +22,7 @@ signal space_landed(space_type)
 
 
 func _ready() -> void:
+	_disabled = true
 	dice_rolling_done = false
 	move_done = true
 	z_index = 5
@@ -31,6 +32,7 @@ func _ready() -> void:
 	dice.connect("dice_done_waiting", set_dice_rolling_done)
 	signal_bus.exit_minigame.connect(_enable_dice)
 	signal_bus.exit_event.connect(_enable_dice)
+	signal_bus.intro_done.connect(_enable_board_movement)
 	
 
 func _on_board_setup_done() -> void:
@@ -118,5 +120,14 @@ func _enable_dice() -> void:
 	move_done = true
 
 
+func _enable_board_movement() -> void:
+	_disabled = false
+
+
 func set_dice_rolling_done() -> void:
 	dice_rolling_done = true
+
+
+func reset_movement() -> void:
+	_enable_dice()
+	_enable_board_movement()
