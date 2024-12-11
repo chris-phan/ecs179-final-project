@@ -19,4 +19,3 @@ func select_option(option_num: int) -> void:
 		event_body = "Sorry grandma, you're on your own."
 
 	super._inc_step()
-

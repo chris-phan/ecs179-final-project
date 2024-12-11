@@ -20,4 +20,3 @@ func select_option(option_num: int) -> void:
 		event_body = "You tackle her and take her money. This was the easiest $%d you've ever made." % _random_stake
 
 	super._inc_step()
-

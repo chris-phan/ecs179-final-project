@@ -28,6 +28,7 @@ func _ready() -> void:
 	signal_bus.start_minigame.connect(_handle_start_minigame)
 	signal_bus.end_minigame.connect(_handle_end_minigame)
 	signal_bus.exit_minigame.connect(_handle_exit_minigame)
+	signal_bus.reset_game.connect(_delete_game_manager)
 	
 	_add_minigames()
 
@@ -124,3 +125,7 @@ func _handle_end_minigame(did_player_win: bool) -> void:
 func _handle_exit_minigame() -> void:
 	cur_scene.queue_free()
 	hide()
+
+
+func _delete_game_manager() -> void:
+	queue_free()
