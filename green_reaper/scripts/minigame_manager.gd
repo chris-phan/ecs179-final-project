@@ -77,11 +77,12 @@ func _handle_enter_minigame() -> void:
 		_add_minigames()
 
 	var boss_phase = state_manager.turns_passed / 5 - 1
-	if state_manager.turns_passed % 1 == 0 and state_manager.cash < (250000 + 250000 * boss_phase):
+	if state_manager.turns_passed % 5 == 0 and state_manager.cash < (250000 + 250000 * boss_phase):
 		minigame_rotation.clear()
 		minigame_rotation.append(BossMinigame.new())
 		difficulty = boss_phase as Minigame.Difficulty
 		wager = state_manager.cash
+		cur_scene.remove_wager()
 	
 	cur_minigame = minigame_rotation.pop_back()
 	minigame_img_path = cur_minigame.minigame_img_path

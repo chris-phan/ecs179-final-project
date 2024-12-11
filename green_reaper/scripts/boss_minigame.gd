@@ -30,6 +30,7 @@ var _cash_has_changed = false
 @onready var timer_label: Label = $GameTimer/TimerLabel
 @onready var cash_label: Label = $GameTimer/CashLabel
 
+
 func _init() -> void:
 	minigame_img_path = "res://assets/minigame_images/boss_minigame_img.png"
 	minigame_scene_path = "res://scenes/boss_minigame.tscn"
@@ -47,33 +48,37 @@ func _init() -> void:
 
 func _ready() -> void:
 	super.init()
-
 	game_timer.timeout.connect(_handle_game_timer_timeout)	
-	signal_bus.reached_platforming_goal.connect(_handle_no_money)
-	
 	_initial_cash = state_manager.cash
+	timer_label.text = "%.2f" % [_timer_duration]
 	countdown_label.start()
 	player.unbind_commands()
+	player.disable()
 
 
 func _process(delta: float) -> void:
-	if not game_timer.is_stopped():
-		timer_label.text = "%.2f" % [game_timer.time_left]
-		cash_label.text = str(state_manager.cash)
-
+	player.position.x = clamp(get_global_mouse_position().x, -140, 140)
+	player.position.y = clamp(get_global_mouse_position().y, -70, 70)
+	
+	cash_label.text = str(state_manager.cash)
+	
+	if game_timer.is_stopped():
+		timer_label.text = "%.2f" % [0.0]
+		return
+	
+	timer_label.text = "%.2f" % [game_timer.time_left]
+	
 	if not _cash_has_changed:
 		_cash_has_changed = true if _initial_cash - state_manager.cash != 0 else false
-
+	
 	if _cash_has_changed and state_manager.cash <= 0:
 		if is_player_lucky():
 			luck_label.display()
 			state_manager.cash += 20000
 		else:
-			signal_bus.reached_platforming_goal.emit()
-
-	player.position.x = clamp(get_global_mouse_position().x, -140, 140)
-	player.position.y = clamp(get_global_mouse_position().y, -70, 70)
-
+			game_timer.stop()
+			_lose()
+	
 	_elapsed_time -= delta
 	if _elapsed_time <= 0 and _spawn_enemies:
 		_spawn_enemy()
@@ -83,14 +88,14 @@ func set_difficulty(diff: Difficulty) -> void:
 	super.set_difficulty(diff)
 	_spawn_rate = _difficulty_spawn_rate[diff]
 	_elapsed_time = _spawn_rate
-
+	
 	if diff == Difficulty.EASY:
 		_timer_duration = 20.0
 	elif diff == Difficulty.MEDIUM:
 		_timer_duration = 30.0
 	else:
 		_timer_duration = 45.0
-
+	
 	game_timer.wait_time = _timer_duration
 	timer_label.text = "%.2f" % [_timer_duration]
 
@@ -103,7 +108,7 @@ static func pick_rand_position() -> Vector2:
 	var pos_y = 0
 	
 	var top_bottom_left_or_right = randi() % 4
-
+	
 	if top_bottom_left_or_right == 0:
 		pos_x = randf_range(top_left.x, bot_right.x)
 		pos_y = top_left.y
@@ -160,12 +165,20 @@ func _win() -> void:
 	super._win()
 	player.unbind_commands()
 	player.win()
+	_remove_enemies()
 
 
 func _lose() -> void:
 	super._lose()
 	player.unbind_commands()
 	player.lose()
+	_remove_enemies()
+
+
+func _remove_enemies() -> void:
+	for child in get_children():
+		if child is CheckpointEnemy:
+			child.queue_free()
 
 
 func _handle_countdown_ended() -> void:

@@ -6,6 +6,7 @@ var wager_dec_button_down: bool = false
 var minigame_manager: MinigameManager
 var controls: Dictionary
 
+@onready var wager: ColorRect = %Wager
 @onready var game_name_label: Label = %GameName
 @onready var minigame_image: TextureRect = %MinigameImg
 @onready var next_button: Button = %NextButton
@@ -57,6 +58,10 @@ func _ready() -> void:
 		Minigame.Controls.KICK: kick,
 		Minigame.Controls.MOVE_MOUSE: move_mouse,
 	}
+
+
+func remove_wager() -> void:
+	wager.queue_free()
 
 
 func set_minigame_manager(mm: MinigameManager) -> void:
