@@ -13,6 +13,7 @@ var _lerping_down: bool = false
 @onready var countdown_label: CountdownLabel = %CountdownLabel
 @onready var luck_label: LuckLabel = %LuckLabel
 
+
 func _ready() -> void:
 	countdown_label.position = Vector2(-45.5, -32.5)
 	luck_label.position = LUCK_POS
@@ -39,7 +40,6 @@ func _physics_process(delta: float) -> void:
 		var diff_between_bottom_edges = (tpos.y + 17 / 2.0) - (cpos.y + BOX_HEIGHT / 2.0)
 		if diff_between_bottom_edges > 0:
 			global_position.y += diff_between_bottom_edges + 5
-	
 	
 	timer_label.position = TIMER_POS
 	luck_label.position = LUCK_POS

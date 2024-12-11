@@ -2,7 +2,6 @@ class_name WizardEvent
 extends Event
 
 
-
 func _init() -> void:
 	super._init()
 	_max_step = 2
@@ -14,6 +13,7 @@ func _init() -> void:
 	op_1_text = "Pay $%d" % _random_stake
 	op_2_text = "Leave"
 
+
 func select_option(option_num: int) -> void:
 	if _cur_step == 0:
 		if option_num == 1:
@@ -22,21 +22,18 @@ func select_option(option_num: int) -> void:
 			_payout -= _random_stake
 			op_1_text = "Accept"
 			op_2_text = "Decline"
-
 		else:
 			event_body = "Avoiding eye contact, you keep walking."
 
 			_payout = 0
 			_switch_buttons()
 			return
-	
 	else:
 		if option_num == 1:
 			event_body = "Who would say no to $%d. The briefcase smells a little funny, but with $%d, your future is bright. " % [4 * _random_stake, 4 * _random_stake]
 			
 			_payout += 4 * _random_stake
 			_luck_diff = 4 * _get_stake_proportion() * -0.7
-		
 		else:
 			event_body = "You're not sure why you declined. Maybe something possessed you."
 	

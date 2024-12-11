@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bhyqmpanp0av2"]
+[gd_scene load_steps=8 format=3 uid="uid://dtbxfk830l3bh"]
 
 [ext_resource type="Script" path="res://scripts/event_ui.gd" id="1_abtfw"]
 [ext_resource type="FontFile" uid="uid://cm8dnumwsttrn" path="res://assets/fonts/Silkscreen/slkscr.ttf" id="2_uwjsf"]
@@ -181,5 +181,5 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_hnyve")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_2ok8w")
-text = "Ok!"
+text = "Ok"
 autowrap_mode = 3
