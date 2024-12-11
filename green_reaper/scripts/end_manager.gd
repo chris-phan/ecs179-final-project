@@ -75,7 +75,7 @@ func _handle_win_game() -> void:
 		else:
 			end_dialogue.text += "\nTime: " + str(state_manager.turns_passed) + " days"
 		end_dialogue.text += "\nLuck: " + str(state_manager.luck) + " %"
-		end_dialogue.text += "\nCash: $" + str(state_manager.luck)
+		end_dialogue.text += "\nCash: $" + str(state_manager.cash)
 		end_dialogue.visible_ratio = 0.0
 		start_dialogue = true
 		signal_bus.endgame_signal_received.emit()
@@ -113,7 +113,7 @@ func _set_false_outside_game() -> void:
 
 
 func _set_true_outside_game() -> void:
-	outside_game = true	
+	outside_game = true
 
 
 func reset_game() -> void:

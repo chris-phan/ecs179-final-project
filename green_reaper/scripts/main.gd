@@ -12,6 +12,7 @@ const MINIGAME_MANAGER: PackedScene = preload("res://scenes/minigame_manager.tsc
 
 var endgame_signaled: bool = false
 
+
 func _ready() -> void:
 	signal_bus.enter_minigame.connect(_handle_enter_minigame)
 	signal_bus.exit_minigame.connect(_handle_exit_minigame)
@@ -26,10 +27,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	
 	if (not endgame_signaled) and (state_manager.cash <= 0):
 		signal_bus.lose_game.emit()
-		
 	elif (not endgame_signaled) and (state_manager.cash >= 1000000):
 		signal_bus.win_game.emit()
 

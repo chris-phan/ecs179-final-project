@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://ba3710favl846"]
+[gd_scene load_steps=49 format=4 uid="uid://dskeyl7rs1w48"]
 
 [ext_resource type="Script" path="res://scripts/end_manager.gd" id="1_ldgx0"]
 [ext_resource type="FontFile" uid="uid://cm8dnumwsttrn" path="res://assets/fonts/Silkscreen/slkscr.ttf" id="2_1m77m"]
