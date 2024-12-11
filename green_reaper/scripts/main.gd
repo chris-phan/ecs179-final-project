@@ -57,7 +57,8 @@ func _set_endgame_signaled() -> void:
 func _handle_enter_minigame() -> void:
 	sfx_player.stop()
 	sfx_player.play_sunday_drive()
-	remove_child(board)
+	if board in get_children():
+		remove_child(board)
 	minigame_manager.show()
 
 

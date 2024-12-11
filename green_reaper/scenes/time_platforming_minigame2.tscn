@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=4 uid="uid://c6pjqqks7m5c3"]
 
-[ext_resource type="Script" path="res://scenes/time_platforming_minigame2.gd" id="1_pgto8"]
+[ext_resource type="Script" path="res://time_platforming_minigame2.gd" id="1_pgto8"]
 [ext_resource type="TileSet" uid="uid://bhw4bxuqfh87o" path="res://assets/1bitplatformerpack/platforming_tileset.tres" id="2_oelld"]
 [ext_resource type="PackedScene" uid="uid://cmuyixh24ptkc" path="res://scenes/platforming_goal.tscn" id="3_adcl5"]
 [ext_resource type="PackedScene" uid="uid://c2iafl58bub3k" path="res://scenes/platforming_player.tscn" id="4_x0a71"]
@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://daybuxnjj7tm5" path="res://scenes/luck_label.tscn" id="7_vcyr7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6i6mo"]
-size = Vector2(719, 3)
+size = Vector2(719, 4)
 
 [node name="TimePlatformingMinigame2" type="Node2D"]
 script = ExtResource("1_pgto8")
@@ -69,5 +69,5 @@ one_shot = true
 [node name="Killzone" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
-position = Vector2(295.5, 31.5)
+position = Vector2(295.5, 31)
 shape = SubResource("RectangleShape2D_6i6mo")

@@ -20,4 +20,3 @@ func select_option(option_num: int) -> void:
 		event_body = "How did they manage to get that trade marked?"
 
 	super._inc_step()
-
