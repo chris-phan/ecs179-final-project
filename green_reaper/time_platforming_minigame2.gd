@@ -1,11 +1,8 @@
 class_name TimePlatformingMinigame2
 extends TimePlatformingMinigame
 
-@onready var camera: Camera2D = $Camera2D
-var camera_width: int = 288
-var camera_height: int = 162
-var timer_pos: Vector2 = Vector2(98, -75)
 @onready var killzone: Area2D = $Killzone
+@onready var camera: PushboxCamera = $Camera2D
 
 
 func _init() -> void:
@@ -30,4 +27,5 @@ func _ready() -> void:
 
 
 func _handle_body_entered(_body: Node2D) -> void:
-	player.global_position = Vector2(-233, 24)
+	player.global_position = Vector2(-233.0, 24.0)
+	camera.lerp_to_player()
