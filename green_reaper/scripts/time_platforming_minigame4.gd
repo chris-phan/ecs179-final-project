@@ -18,7 +18,7 @@ func _init() -> void:
 		Difficulty.HARD: 3.0
 	}
 	minigame_scene_path = "res://scenes/time_platforming_minigame4.tscn"
-	minigame_img_path = "res://assets/minigame_images/time_platforming_game2_img.png"
+	minigame_img_path = "res://assets/minigame_images/time_platforming_game4_img.png"
 
 
 func _ready() -> void:

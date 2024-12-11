@@ -58,12 +58,13 @@ func _process(delta: float) -> void:
 				timer_label.text = "%.2f" % [timer.time_left]
 			else:
 				timer_label.hide()
-			sfx_player.stop_sunday_drive()
-			sfx_player.play_heartbeat()
+				sfx_player.stop_sunday_drive()
+				sfx_player.play_heartbeat()
 		else:
 			timer_label.text = "%.2f" % [timer.time_left]
 	if _timed_out:
 		_elapsed_overtime += delta
+		timer_label.text = "%.2f" % [-1 * _elapsed_overtime]
 
 
 func set_difficulty(diff: Difficulty) -> void:
