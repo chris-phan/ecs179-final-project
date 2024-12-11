@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://btuvn1k28bbfq"]
+[gd_scene load_steps=9 format=3 uid="uid://b2tuotvhsve4x"]
 
 [ext_resource type="Script" path="res://scripts/event_result_ui.gd" id="1_6y3uf"]
 [ext_resource type="FontFile" uid="uid://cm8dnumwsttrn" path="res://assets/fonts/Silkscreen/slkscr.ttf" id="2_51vsg"]
@@ -271,7 +271,7 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_1rumf")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_sl37m")
-text = "OK!"
+text = "OK"
 
 [node name="Player" parent="." instance=ExtResource("4_5humc")]
 position = Vector2(816, 358)

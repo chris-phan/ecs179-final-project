@@ -50,17 +50,17 @@ func get_payout() -> int:
 
 func _add_minigames() -> void:
 	minigame_rotation.clear()
-	minigame_rotation.append(TimePlatformingMinigame.new())
-	minigame_rotation.append(TimePlatformingMinigame2.new())
-	minigame_rotation.append(TimePlatformingMinigame3.new())
-	minigame_rotation.append(MemoryMinigame.new())
+	#minigame_rotation.append(TimePlatformingMinigame.new())
+	#minigame_rotation.append(TimePlatformingMinigame2.new())
+	#minigame_rotation.append(TimePlatformingMinigame3.new())
+	#minigame_rotation.append(TimePlatformingMinigame4.new())
+	#minigame_rotation.append(MemoryMinigame.new())
 	minigame_rotation.append(InternalTimerMinigame.new())
-	minigame_rotation.append(ObservationMinigame.new())
+	#minigame_rotation.append(ObservationMinigame.new())
 	minigame_rotation.shuffle()
 
 
 func _handle_enter_minigame() -> void:
-	print("entered")
 	show()
 	difficulty = Minigame.Difficulty.EASY
 	wager = 0
@@ -76,13 +76,14 @@ func _handle_enter_minigame() -> void:
 	
 	if len(minigame_rotation) == 0:
 		_add_minigames()
-
+	
 	var boss_phase = state_manager.turns_passed / 5 - 1
-	if state_manager.turns_passed % 1 == 0 and state_manager.cash < (250000 + 250000 * boss_phase):
+	if state_manager.turns_passed % 5 == 0 and state_manager.cash < (250000 + 250000 * boss_phase):
 		minigame_rotation.clear()
 		minigame_rotation.append(BossMinigame.new())
 		difficulty = boss_phase as Minigame.Difficulty
 		wager = state_manager.cash
+		cur_scene.remove_wager()
 	
 	cur_minigame = minigame_rotation.pop_back()
 	minigame_img_path = cur_minigame.minigame_img_path

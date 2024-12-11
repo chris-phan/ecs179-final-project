@@ -5,7 +5,6 @@ var _disabled: bool = false
 var _right_cmd: Command
 var _left_cmd: Command
 var _jump_cmd: Command
-var _kick_cmd: Command
 var _idle_cmd: Command
 
 @onready var _animation_tree: AnimationTree = $AnimationTree
@@ -40,7 +39,6 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("kick"):
 		_animation_tree["parameters/conditions/is_kicking"] = true
 		sfx_player.stop_character_move()
-		#_kick_cmd.execute(self)
 	
 	_apply_gravity(delta)
 	_apply_movement(delta)
@@ -50,7 +48,6 @@ func bind_commands() -> void:
 	_right_cmd = PlatformingPlayerMoveRightCommand.new()
 	_left_cmd = PlatformingPlayerMoveLeftCommand.new()
 	_jump_cmd = PlatformingPlayerJumpCommand.new()
-	_kick_cmd = PlatformingPlayerKickCommand.new()
 	_idle_cmd = PlatformingPlayerIdleCommand.new()
 
 
@@ -58,7 +55,6 @@ func unbind_commands() -> void:
 	_right_cmd = Command.new()
 	_left_cmd = Command.new()
 	_jump_cmd = Command.new()
-	_kick_cmd = Command.new()
 	_idle_cmd = Command.new()
 
 
@@ -74,6 +70,10 @@ func lose() -> void:
 
 func disable() -> void:
 	_disabled = true
+
+
+func enable() -> void:
+	_disabled = false
 
 
 func _apply_movement(_delta: float) -> void:

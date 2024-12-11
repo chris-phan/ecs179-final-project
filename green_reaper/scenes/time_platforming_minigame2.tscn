@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=4 uid="uid://c6pjqqks7m5c3"]
 
-[ext_resource type="Script" path="res://time_platforming_minigame2.gd" id="1_pgto8"]
+[ext_resource type="Script" path="res://scripts/time_platforming_minigame2.gd" id="1_pgto8"]
 [ext_resource type="TileSet" uid="uid://bhw4bxuqfh87o" path="res://assets/1bitplatformerpack/platforming_tileset.tres" id="2_oelld"]
 [ext_resource type="PackedScene" uid="uid://cmuyixh24ptkc" path="res://scenes/platforming_goal.tscn" id="3_adcl5"]
 [ext_resource type="PackedScene" uid="uid://c2iafl58bub3k" path="res://scenes/platforming_player.tscn" id="4_x0a71"]

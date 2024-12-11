@@ -1,6 +1,7 @@
 class_name CarEvent
 extends Event
 
+
 func _init() -> void:
 	super._init()
 	_max_step = 1
@@ -10,9 +11,9 @@ func _init() -> void:
 	op_1_text = "Key his car"
 	op_2_text = "Ignore"
 
-func select_option(option_num: int) -> void:
 
-	if option_num == 1:	
+func select_option(option_num: int) -> void:
+	if option_num == 1:
 		event_body = "You pull out your keys and start scratching his car. Someone in the backseat gets out of the car. They beat you up and take your money. What were you thinking?"
 		_payout = -_random_stake
 	else:

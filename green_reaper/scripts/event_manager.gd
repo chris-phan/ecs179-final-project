@@ -43,8 +43,7 @@ func _init_event_rotation() -> void:
 func _handle_enter_event() -> void:
 	show()
 	old_balance = state_manager.cash
-	sfx_player.play_sunday_drive()
-
+	
 	var packed_scene = load("res://scenes/event_ui.tscn")
 	cur_scene = packed_scene.instantiate() as EventUI
 	cur_scene.set_event_manager(self)

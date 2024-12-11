@@ -73,8 +73,6 @@ func _handle_intro_done() -> void:
 
 
 func _handle_enter_event() -> void:
-	sfx_player.stop()
-	sfx_player.play_sunday_drive()
 	remove_child(board)
 	event_manager.show()
 

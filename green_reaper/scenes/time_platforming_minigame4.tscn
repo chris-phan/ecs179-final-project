@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://826t45e8mlh3"]
+[gd_scene load_steps=10 format=4 uid="uid://c3nejm8fp05ci"]
 
 [ext_resource type="Script" path="res://scripts/time_platforming_minigame4.gd" id="1_c8u1y"]
 [ext_resource type="TileSet" uid="uid://bhw4bxuqfh87o" path="res://assets/1bitplatformerpack/platforming_tileset.tres" id="2_75i0a"]

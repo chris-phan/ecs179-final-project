@@ -1,6 +1,7 @@
 class_name CharityEvent
 extends Event
 
+
 func _init() -> void:
 	super._init()
 	_max_step = 1
@@ -10,9 +11,9 @@ func _init() -> void:
 	op_1_text = "Donate $%d" % _random_stake
 	op_2_text = "Ignore"
 
-func select_option(option_num: int) -> void:
 
-	if option_num == 1:	
+func select_option(option_num: int) -> void:
+	if option_num == 1:
 		event_body = "You're not sure why you donated. Maybe something possessed you."
 		_payout = -_random_stake
 		_luck_diff = _get_stake_proportion() * -0.3
