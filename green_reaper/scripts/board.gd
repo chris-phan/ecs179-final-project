@@ -2,6 +2,8 @@ class_name Board
 extends Node2D
 
 @onready var spaces: Node = $Spaces
+@onready var camera_base: CameraBase = $CameraBase
+@onready var board_player: CharacterBody2D = %BoardPlayer
 
 const TOP_LEFT_X: int = -512
 const TOP_LEFT_Y: int = -234
@@ -13,12 +15,12 @@ var lose_luck_space: PackedScene = preload("res://scenes/lose_luck_space.tscn")
 var gain_money_space: PackedScene = preload("res://scenes/gain_money_space.tscn")
 var lose_money_space: PackedScene = preload("res://scenes/lose_money_space.tscn")
 var space_list: Array[Node] = []
-@onready var camera_base: CameraBase = $CameraBase
 
 signal board_setup_done
 
 
 func _ready() -> void:
+	state_manager.board_exists = true
 	# fill space_list
 	# 4 gain money
 	# 4 lose money
@@ -112,8 +114,28 @@ func _ready() -> void:
 		
 		space_count += 1
 	
+	signal_bus.win_game.connect(_handle_endgame)
+	signal_bus.lose_game.connect(_handle_endgame)
+	signal_bus.reset_game.connect(_delete_board)
+	signal_bus.space_ended_game.connect(_handle_endgame)
 	emit_signal("board_setup_done")
 
 
 func _process(delta: float) -> void:
 	pass
+
+
+func _delete_board() -> void:
+	state_manager.board_exists = false
+	queue_free()
+
+
+func _handle_endgame() -> void:
+	camera_base.enabled = false
+	
+	for child in camera_base.get_children():
+		child.visible = false
+
+
+func reset_board_movement() -> void:
+	board_player.reset_movement()

@@ -5,11 +5,17 @@ var cash: int = 50000
 var luck: float = 0.0
 var turns_passed: int = 0
 
-var _luck_sources: Array[float] = [0.1, 0.2, 0.1, 0.1, 0.05]
-
+var _luck_sources: Array[float] = []
+var board_exists: bool = true
 
 func _ready() -> void:
 	luck = _calc_luck()
+
+
+func reset_player() -> void:
+	cash = 50000
+	luck = 0.0
+	turns_passed = 0
 
 
 func inc_luck(val: float) -> float:

@@ -20,7 +20,6 @@ const TEXT_5: String = "If you run out of cash I'll have to take you early, so b
 const TEXTS: Array[String] = [TEXT_1, TEXT_2, TEXT_3, TEXT_4, TEXT_5]
 
 var text_index: int 
-var char_index: int
 var text_delay_timer: Timer
 var dialogues_finished: bool
 var waiting_for_next_text: bool
@@ -35,9 +34,10 @@ func _ready() -> void:
 	waiting_for_next_text = false
 	dialogue_items.visible = true
 	info_items.visible = false
-	intro_dialogue.text = ""
 	text_index = 0
-	char_index = 0
+	intro_dialogue.visible_ratio = 0.0
+	intro_dialogue.text = TEXTS[text_index]
+	skip_button.text = "Skip"
 	connect("initial_dialog_done", show_info)
 	skip_button.button_up.connect(_handle_skip_button)
 	start_game_button.button_up.connect(_handle_start_button)
@@ -47,14 +47,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if not dialogues_finished:
 		if not waiting_for_next_text:
-			elapsed_time += delta
-			if elapsed_time > type_speed:
-				if char_index == len(TEXTS[text_index]):
-					delay_for_next_text()
-				else:
-					intro_dialogue.text += TEXTS[text_index][char_index]
-					char_index += 1
-				elapsed_time = 0.0
+			intro_dialogue.visible_ratio += delta / 5.0
+			
+			if intro_dialogue.visible_ratio >= 1.0:
+				wait_for_next_text()
+				waiting_for_next_text = true
 
 
 func start_next_text() -> void:
@@ -63,21 +60,12 @@ func start_next_text() -> void:
 		return
 	
 	text_index += 1
-	char_index = 0
-	intro_dialogue.text = ""
+	intro_dialogue.visible_ratio = 0.0
+	intro_dialogue.text = TEXTS[text_index]
 
 
-func delay_for_next_text() -> void:
-	waiting_for_next_text = true
-	text_delay_timer = Timer.new()
-	add_child(text_delay_timer)
-	text_delay_timer.wait_time = dialogue_wait
-	text_delay_timer.one_shot = true
-	text_delay_timer.start()
-	
-	await text_delay_timer.timeout
-	waiting_for_next_text = false
-	start_next_text()
+func wait_for_next_text() -> void:
+	skip_button.text = "Next"
 	
 	
 func show_info() -> void:
@@ -88,11 +76,11 @@ func show_info() -> void:
 
 func _handle_start_button() -> void:
 	signal_bus.intro_done.emit()
-	signal_bus.intro_done.emit()
 	queue_free()
 	
 
 func _handle_skip_button() -> void:
+	skip_button.text = "Skip"
 	waiting_for_next_text = false
 	
 	if text_delay_timer != null:

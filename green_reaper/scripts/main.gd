@@ -6,6 +6,11 @@ extends Node2D
 @onready var minigame_manager: MinigameManager = $MinigameManager
 @onready var event_manager: EventManager = $EventManager
 
+const BOARD: PackedScene = preload("res://scenes/board.tscn")
+const EVENT_MANAGER: PackedScene = preload("res://scenes/event_manager.tscn")
+const MINIGAME_MANAGER: PackedScene = preload("res://scenes/minigame_manager.tscn")
+
+var endgame_signaled: bool = false
 
 func _ready() -> void:
 	signal_bus.enter_minigame.connect(_handle_enter_minigame)
@@ -13,24 +18,40 @@ func _ready() -> void:
 	signal_bus.intro_done.connect(_handle_intro_done)
 	signal_bus.enter_event.connect(_handle_enter_event)
 	signal_bus.exit_event.connect(_handle_exit_event)
+	signal_bus.reset_game.connect(_handle_reset_game)
+	signal_bus.endgame_signal_received.connect(_set_endgame_signaled)
+
 	sfx_player.play_board_bgm()
 	board.hide()
 
 
 func _process(delta: float) -> void:
 	
-	if state_manager.cash <= 0:
-		pass
-		#print("Lost game")
+	if (not endgame_signaled) and (state_manager.cash <= 0):
+		signal_bus.lose_game.emit()
 		
-		# emit lose signal
-		## show lose scene
-	elif state_manager.cash >= 1000000:
-		pass
-		#print("won game")
-		
-		# emit win signal
-		## show win scene
+	elif (not endgame_signaled) and (state_manager.cash >= 1000000):
+		signal_bus.win_game.emit()
+
+
+func _handle_reset_game() -> void:
+	state_manager.reset_player()
+	endgame_signaled = false
+
+	minigame_manager = MINIGAME_MANAGER.instantiate()
+	event_manager = EVENT_MANAGER.instantiate()
+	board = BOARD.instantiate()
+	
+	add_child(minigame_manager)
+	add_child(event_manager)
+	add_child(board)
+	board.reset_board_movement()
+	sfx_player.stop()
+	sfx_player.play_board_bgm()
+
+
+func _set_endgame_signaled() -> void:
+	endgame_signaled = true
 
 
 func _handle_enter_minigame() -> void:

@@ -17,6 +17,15 @@ signal exit_minigame()
 
 # Intro signals
 signal intro_done
+
+# Event signals
 signal enter_event()
 signal end_event()
 signal exit_event()
+
+# Endgame signals
+signal win_game
+signal lose_game
+signal reset_game
+signal endgame_signal_received
+signal space_ended_game
