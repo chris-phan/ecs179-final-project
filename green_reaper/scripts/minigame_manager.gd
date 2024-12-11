@@ -49,17 +49,17 @@ func get_payout() -> int:
 
 func _add_minigames() -> void:
 	minigame_rotation.clear()
-	minigame_rotation.append(TimePlatformingMinigame.new())
-	minigame_rotation.append(TimePlatformingMinigame2.new())
-	minigame_rotation.append(TimePlatformingMinigame3.new())
-	minigame_rotation.append(MemoryMinigame.new())
-	minigame_rotation.append(InternalTimerMinigame.new())
-	minigame_rotation.append(ObservationMinigame.new())
+	#minigame_rotation.append(TimePlatformingMinigame.new())
+	#minigame_rotation.append(TimePlatformingMinigame2.new())
+	#minigame_rotation.append(TimePlatformingMinigame3.new())
+	minigame_rotation.append(TimePlatformingMinigame4.new())
+	#minigame_rotation.append(MemoryMinigame.new())
+	#minigame_rotation.append(InternalTimerMinigame.new())
+	#minigame_rotation.append(ObservationMinigame.new())
 	minigame_rotation.shuffle()
 
 
 func _handle_enter_minigame() -> void:
-	print("entered")
 	show()
 	difficulty = Minigame.Difficulty.EASY
 	wager = 0

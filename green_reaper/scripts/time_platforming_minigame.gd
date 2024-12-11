@@ -30,17 +30,16 @@ func _init() -> void:
 		Difficulty.MEDIUM: 2.0,
 		Difficulty.HARD: 3.0
 	}
-	print("init called")
 
 
 func _ready() -> void:
-	print("in ready", _difficulty_times)
 	super.init()
 	signal_bus.reached_platforming_goal.connect(_handle_reached_goal)
 	
 	game_timer.timeout.connect(_handle_game_timer_timeout)
 	countdown_label.start()
 	player.unbind_commands()
+	player.disable()
 
 
 func _process(_delta: float) -> void:
@@ -56,7 +55,6 @@ func get_payout(wager: int, difficulty: Difficulty) -> int:
 
 
 func set_difficulty(diff: Difficulty) -> void:
-	print("difficulty set,", _difficulty_times)
 	super.set_difficulty(diff)
 	time_to_beat = _difficulty_times[diff]
 	game_timer.wait_time = time_to_beat
@@ -82,7 +80,6 @@ func _handle_reached_goal() -> void:
 	if not is_timer_stopped:
 		_win()
 	else:
-		print("lose")
 		_lose()
 	
 	signal_bus.reached_platforming_goal.disconnect(_handle_reached_goal)
@@ -90,6 +87,7 @@ func _handle_reached_goal() -> void:
 
 func _handle_countdown_ended() -> void:
 	player.bind_commands()
+	player.enable()
 	game_timer.start()
 
 
