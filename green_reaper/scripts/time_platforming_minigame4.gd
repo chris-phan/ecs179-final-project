@@ -25,12 +25,6 @@ func _ready() -> void:
 	super._ready()
 	killzone1.body_entered.connect(_handle_body_entered)
 	killzone2.body_entered.connect(_handle_body_entered)
-	#_difficulty_times = {
-		#Difficulty.EASY: 45.0,
-		#Difficulty.MEDIUM: 20.0,
-		#Difficulty.HARD: 5.0,
-	#}
-	#set_difficulty(Difficulty.MEDIUM)
 
 
 func _handle_body_entered(_body: Node2D) -> void:
