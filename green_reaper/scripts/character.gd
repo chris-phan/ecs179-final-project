@@ -15,7 +15,3 @@ var gravity: int = ProjectSettings.get("physics/2d/default_gravity")
 
 func _ready() -> void:
 	pass
-
-
-func _command_callback(_name: String) -> void:
-	pass
