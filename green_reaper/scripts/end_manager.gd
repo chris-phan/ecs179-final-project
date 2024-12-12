@@ -19,10 +19,17 @@ var start_animation: bool = false
 func _ready() -> void:
 	signal_bus.win_game.connect(_handle_win_game)
 	signal_bus.lose_game.connect(_handle_lose_game)
+	
 	signal_bus.enter_minigame.connect(_set_false_outside_game)
 	signal_bus.exit_minigame.connect(_set_true_outside_game)
+	
+	signal_bus.enter_event.connect(_set_false_outside_game)
+	signal_bus.exit_event.connect(_set_false_outside_game)
+	
 	signal_bus.space_ended_game.connect(_set_true_outside_game)
+	
 	restart_game_button.button_up.connect(reset_game)
+	
 	visible = false
 	end_camera.enabled = false
 	end_dialogue.visible_ratio = 0.0

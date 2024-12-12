@@ -5,6 +5,12 @@ extends Event
 func _init() -> void:
 	super._init()
 	_max_step = 2
+	_min = 0.2
+	_max = 0.6
+
+
+func start() -> void:
+	super.start()
 	event_name = "Wizard"
 	event_body = "You see a guy across the street ranting to himself about " \
 	+ "how nobody in this city understands him and his magical powers. He's " \
@@ -30,10 +36,10 @@ func select_option(option_num: int) -> void:
 			return
 	else:
 		if option_num == 1:
-			event_body = "Who would say no to $%d. The briefcase smells a little funny, but with $%d, your future is bright. " % [4 * _random_stake, 4 * _random_stake]
+			event_body = "Who would say no to $%d. The briefcase smells a little funny, but with $%d, your future is bright. " % [4 * _random_stake, 3 * _random_stake]
 			
-			_payout += 4 * _random_stake
-			_luck_diff = 4 * _get_stake_proportion() * -0.7
+			_payout += 3 * _random_stake
+			_luck_diff = -10
 		else:
 			event_body = "You're not sure why you declined. Maybe something possessed you."
 	

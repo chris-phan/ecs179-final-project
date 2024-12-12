@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d4na36gsextsu"]
+[gd_scene load_steps=16 format=3 uid="uid://whouqrpm7nnf"]
 
 [ext_resource type="Texture2D" uid="uid://cgduxsllhi7yi" path="res://assets/BoardPack/six sided die.png" id="1_jjjg3"]
 [ext_resource type="Texture2D" uid="uid://bmqss162tvr5m" path="res://assets/BoardPack/rolling.png" id="2_t1q0h"]

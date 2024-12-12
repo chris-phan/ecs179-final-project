@@ -19,7 +19,7 @@ func _ready() -> void:
 	
 	old_balance = 50000
 
-	# _init_event_rotation()
+	_init_event_rotation()
 
 
 func get_event_name() -> String:
@@ -36,6 +36,12 @@ func get_payout() -> int:
 
 func _init_event_rotation() -> void:
 	event_rotation.append(BeggarEvent.new())
+	event_rotation.append(CarEvent.new())
+	event_rotation.append(CharityEvent.new())
+	event_rotation.append(InsultEvent.new())
+	event_rotation.append(KidEvent.new())
+	event_rotation.append(LotteryEvent.new())
+	event_rotation.append(NoobEvent.new())
 	event_rotation.append(WizardEvent.new())
 	event_rotation.shuffle()
 
@@ -50,11 +56,16 @@ func _handle_enter_event() -> void:
 	cur_scene.global_position = Vector2(0.0, 0.0)
 	add_child(cur_scene)
 
-	#if len(event_rotation) == 0:
-		#_init_event_rotation()
+	if len(event_rotation) == 0:
+		_init_event_rotation()
 	
-	# cur_event = event_rotation.pop_back()
-	cur_event = _init_random_event()
+	cur_event = event_rotation.pop_back()
+	if cur_event is NoobEvent and not cur_event.encountered:
+		event_rotation.append(cur_event)
+		event_rotation.shuffle()
+	
+	# cur_event = _init_random_event()
+	cur_event.start()
 	cur_scene.set_labels()
 
 
@@ -86,7 +97,6 @@ func _handle_end_event() -> void:
 	cur_scene.global_position = Vector2(0.0, 0.0)
 
 	new_balance = old_balance + payout
-	state_manager.cash = new_balance
 	if luck_diff >= 0:
 		state_manager.inc_luck(luck_diff)
 	else:
