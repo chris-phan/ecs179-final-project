@@ -33,8 +33,8 @@ func _init() -> void:
 	
 	_payout_multiplier = {
 		Difficulty.EASY: 1.25,
-		Difficulty.MEDIUM: 1.5,
-		Difficulty.HARD: 2.5
+		Difficulty.MEDIUM: 2.0,
+		Difficulty.HARD: 3.0
 	}
 
 
