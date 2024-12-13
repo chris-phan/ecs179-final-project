@@ -2,7 +2,7 @@
 
 ## Summary ##
 
-**A paragraph-length pitch for your game.**
+Oh no! You've just been notified that you have 20 days left in the world before the reaper takes you to the afterlife! Fortunately, you met the GREEN REAPER... They'll extend your life if you can get them $1,000,000 before your expiration date! Every 5 days, the Green Reaper will check if you're making good progress, and if not... You'll see... Money isn't that easy to make! Skillfully play and gamble your way to get $1,000,000. Just some advice, if you want any chance of getting $1,000,000 in 20 days, you have no choice but to gamble!! Best of luck on getting that money :D
 
 ## Project Resources
 
@@ -14,6 +14,31 @@
 ## Gameplay Explanation ##
 
 **In this section, explain how the game should be played. Treat this as a manual within a game. Explaining the button mappings and the most optimal gameplay strategy is encouraged.**
+
+When the player starts the game, they actually don't have to worry too much about making good progress in the first 5-10 days. Use these first 10 days to see which games you are best at. The boss phases only trigger if you aren't making good progress (good progress means 1/4 progress at each check). Luckily, the first 2 boss phases aren't too hard to survive through, and they give you enough money to catch up to the checkpoint thresholds (i.e. if you beat the first boss phase, your cash is set to $250,000 if you beat the second boss phase, your cash is set to $500,000). After day 10, you should start wagering a lot more on the games you are confident in. You want to avoid activating the third boss phase, and the fourth boss phase essentially forces you to lose since you were unable to obtain $1,000,000 by turn 20.
+
+## Button Mappings
+
+### Map
+
+#### 'D' - Roll Die
+
+#### 'Z' - Zoom out on map (toggle)
+
+##### 'Arrow Keys' - To move around map while zoomed out
+
+### Minigames
+(Controls will vary in each minigame, please refer to the controls shown in the minigame)
+
+#### 'A' - Move Left
+
+#### 'D' - Move Right
+
+#### 'Space' - Jump
+
+#### 'K' - Kick
+
+#### 'Mouse' - Move cursor to move player
 
 
 **Add it here if you did work that should be factored into your grade but does not fit easily into the proscribed roles! Please include links to resources and descriptions of game-related material that does not fit into roles here.**
@@ -360,9 +385,10 @@ To showcase the team's work, I made sure to include a screenshot every element t
 
 The [Trailer](https://www.youtube.com/watch?v=lMgy5xW_P28&ab_channel=HansonLau) has been uploaded to my personal youtube channel.
 
-Just like the presskit, instead of screenshots I made sure to include footage of every element that each of us worked on. I wanted to show small snippets of each part of the game. The snippets had to be long enough for the audience to know what is going on, but short enough for them to be curious about playing the game itself. As for the footage chosen, I only kept the most exciting parts or the parts with the most action so that it felt more engaging. Particulary for our game, there is a mix of a very colorful board and a black and white minigame interface; because of that, I did my best to mix around the footage that was mainly black and white with footage that had the colorful board. The music used in the trailer was provided by Clipchamp and it is royalty free:
+Just like the presskit, instead of screenshots I made sure to include footage of every element that each of us worked on. I wanted to show small snippets of each part of the game. The snippets had to be long enough for the audience to know what is going on, but short enough for them to be curious about playing the game itself. As for the footage chosen, I only kept the most exciting parts or the parts with the most action so that it felt more engaging. Particulary for our game, there is a mix of a very colorful board and a black and white minigame interface; because of that, I did my best to mix around the footage that was mainly black and white with footage that had the colorful board. Lastly, each segment of the trailer is a compilation of a certain part of the game. For example, there can be a segment with just rolling the die which shows a lot of the board, and then there can be a segment with just minigame gameplay which shows the core of the game. The music used in the trailer was provided by Clipchamp and it is royalty free:
 
 [Summer Splash](https://clipchamp.com/content/cc_ae8b83496-Summer-Splash-60/)
+
 [Disturbia](https://clipchamp.com/content/cc_acb79aacd-Disturbia/)
 
 I used Clipchamp to put together the trailer. There was plently of tools to use for me to make a decent trailer, I took advantage of the effects they provided such as the flash and pulse effect for the countdown as well as the fade in and out effect for the sounds and the end of the video. It also allowed me to add text which was really important for me to add narration to the trailer.
