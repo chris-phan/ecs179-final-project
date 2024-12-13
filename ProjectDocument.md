@@ -108,28 +108,28 @@ The [internal timer minigame](https://github.com/chris-phan/ecs179-final-project
 The [observation minigame](https://github.com/chris-phan/ecs179-final-project/blob/b67a9534f8ce1002b99159326979195c9940da21/green_reaper/scripts/observation_minigame.gd#L1) is about counting the various moving objects. The objects move around for 10 seconds and then they disappear. The player then has to answer a question about how many of a particular object they saw. Each round, a new type of object is added and the minimum number of objects increases. The question can be about any of the objects in the round, so the player has to keep track of the number of each object. The difficulty determines how many rounds there are. The maximum difficulty, hard, has 3 rounds, and medium and easy have 2 rounds and 1 round respectively. The payout is 1.5x for easy, 2.5x for medium, and 4x for hard.
 
 
+## Checkpoints Designer (Aditya Bhatia)
+### Checkpoint Logic
+[The main checkpoint logic](https://github.com/chris-phan/ecs179-final-project/blob/0d0211a24f4362d46812eb2e6589d9f21aa72009/green_reaper/scripts/minigame_manager.gd#L80) that activates the boss minigame every 5 turns is implemented in the minigame manager class. The class uses the state manager to check the number of turns that have passed and uses that number to calculate both the boss phase / level and the cutoff money below which the game has to be triggered. I make sure to clear the minigame rotation array to guarantee that only the boss minigame is called. This works well as once the boss minigame is triggered, it is popped from the array and the code checks for an empty minigame array and re adds all other minigames to it.
 
+### Boss Minigame
+The boss minigame class, like the other minigames, extends the base minigame class. Being a derived class, it implements all the expected common functions such as win, lose, get_payout, and set_difficulty. It also has all the expected fields that are needed for the UI. I will now explain all the things specific to the boss class.
 
-## User Interface and Input
+### Player Movement
+Unlike all other minigames, the player is no longer controlled by the keyboard and instead all standard controls are unbound and replaced with the boss specific control system. This system simply updates the player’s global position with the global position of the mouse while clamping the value to [prevent the player from being able to go off-screen](https://github.com/chris-phan/ecs179-final-project/blob/0d0211a24f4362d46812eb2e6589d9f21aa72009/green_reaper/scripts/boss_minigame.gd#L60). 
 
-**Describe your user interface and how it relates to gameplay. This can be done via the template.**
-**Describe the default input configuration.**
+### Spawning Enemies
+The spawn rate of the enemies is determined by the “difficulty” which is essentially the phase of the boss minigame. Higher phases have faster spawn rates and the [values are stored in a dictionary](https://github.com/chris-phan/ecs179-final-project/blob/0d0211a24f4362d46812eb2e6589d9f21aa72009/green_reaper/scripts/boss_minigame.gd#L7). The phase of the minigame also decides what enemy type will be spawned. The first phase spawns only the normal enemy type, while the second phase spawns both normal and hat enemies. The third phase spawns normal, hat, and horned enemies, and the last phase spawns the green reaper. The type of enemy is determined in the [_set_target_type function](https://github.com/chris-phan/ecs179-final-project/blob/0d0211a24f4362d46812eb2e6589d9f21aa72009/green_reaper/scripts/boss_minigame.gd#L134) using the current spawn rate (indirectly the phase) and is added to an array of possible enemy types each time the [_spawn_enemy function](https://github.com/chris-phan/ecs179-final-project/blob/0d0211a24f4362d46812eb2e6589d9f21aa72009/green_reaper/scripts/boss_minigame.gd#L148) is called. Spawning an enemy creates a new CheckpointEnemy object using the checkpoint_enemy packed scene and is stored in an array that is the value to a key of that enemy type in the _targets dictionary. This object receives its type in the _set_target_type function by using the object’s [set_type function](https://github.com/chris-phan/ecs179-final-project/blob/0d0211a24f4362d46812eb2e6589d9f21aa72009/green_reaper/scripts/checkpoint_enemy.gd#L73) and passing a random type from the array of possible enemy types. The checkpoint enemy object calls the [pick_rand_position function](https://github.com/chris-phan/ecs179-final-project/blob/0d0211a24f4362d46812eb2e6589d9f21aa72009/green_reaper/scripts/boss_minigame.gd#L103) from the boss minigame class to set its spawn position. The function simply picks a random point at the border of the playable screen and returns it. The enemy’s size and speed is decided randomly in the _ready function of the checkpoint enemy class.
 
-**Add an entry for each platform or input style your project supports.**
+### Collision and Damage
+The CheckpointEnemy class is almost identical to the observation_target class except the movement logic. The checkpoint enemy has [different movement depending on its type](https://github.com/chris-phan/ecs179-final-project/blob/0d0211a24f4362d46812eb2e6589d9f21aa72009/green_reaper/scripts/checkpoint_enemy.gd#L48). The normal type moves straight from its spawn point to the other side of the screen. The hat type moves from its spawn point towards the direction of the player when the enemy was spawned with 10% margin, and the horned and reaper enemies move directly towards the player. The enemies are  moved using the move_and_collide function and this allows us to easily handle collision logic. The collision layer and masks of the player and enemies are set up such that the enemies can collide with the player but not amongst each other. When a collision is detected, the [_handle_collision function](https://github.com/chris-phan/ecs179-final-project/blob/0d0211a24f4362d46812eb2e6589d9f21aa72009/green_reaper/scripts/checkpoint_enemy.gd#L79) decreases the player’s cash using the state_manager by the amount based off of the enemy’s type stored in the [_DAMAGE dictionary](https://github.com/chris-phan/ecs179-final-project/blob/0d0211a24f4362d46812eb2e6589d9f21aa72009/green_reaper/scripts/checkpoint_enemy.gd#L18). It also plays a damage sound effect and then it queue frees itself. The hitbox of the enemies is a simple 16 x 16 square.
 
-## Movement/Physics
+### Winning, Losing, and Payout
+Like other minigames, this minigame also has a timer and its associated signals, however, here [when the timer runs out the player wins](https://github.com/chris-phan/ecs179-final-project/blob/0d0211a24f4362d46812eb2e6589d9f21aa72009/green_reaper/scripts/boss_minigame.gd#L189) as long as they have positive cash. If the player drops to 0 or less cash before the timer runs out, [they lose the minigame](https://github.com/chris-phan/ecs179-final-project/blob/0d0211a24f4362d46812eb2e6589d9f21aa72009/green_reaper/scripts/boss_minigame.gd#L74). [The player can get lucky](https://github.com/chris-phan/ecs179-final-project/blob/0d0211a24f4362d46812eb2e6589d9f21aa72009/green_reaper/scripts/boss_minigame.gd#L75) and get $20k added to their cash instead of taking damage if they are about to die. The Green Reaper / Final phase / Phase 4 is unwinnable as there is an enemy that spawns every frame. [Payout for the minigame is simple](https://github.com/chris-phan/ecs179-final-project/blob/0d0211a24f4362d46812eb2e6589d9f21aa72009/green_reaper/scripts/boss_minigame.gd#L128). If the player wins, the payout is the amount of money they were supposed to have by that checkpoint. If they lose, the payout is 0 causing them to lose the entire game.
 
-**Describe the basics of movement and physics in your game. Is it the standard physics model? What did you change or modify? Did you make your movement scripts that do not use the physics system?**
+### UI and Interaction
+The UI of the boss minigame is extremely similar to that of the other minigames. The initial screen follows the exact same format except for the fact the wager tab is disabled as the minigame has pre difficulty set wager amounts (you are essentially wagering all your current balance). The game screen has the timer in the top right corner (following the other minigames) and the player’s current cash amount in the top left hand corner. This lets the player know how much “damage” they have taken and how close they are to losing. The sprites for all the enemies are visible through their idle animations. Depending on the type in the checkpoint enemy object, [the respective idle animation is picked](https://github.com/chris-phan/ecs179-final-project/blob/0d0211a24f4362d46812eb2e6589d9f21aa72009/green_reaper/scripts/checkpoint_enemy.gd#L75). This animation casts the sprite png onto the Sprite2D object. The player node is the same as used in the other minigames.
 
-## Animation and Visuals
-
-**List your assets, including their sources and licenses.**
-
-**Describe how your work intersects with game feel, graphic design, and world-building. Include your visual style guide if one exists.**
-
-## Game Logic
-
-**Document the game states and game data you managed and the design patterns you used to complete your task.**
 
 # Sub-Roles
 
@@ -301,11 +301,19 @@ Plays when the player wins the minigame.
 
 
 
-## Gameplay Testing
+## Gameplay Testing (Aditya Bhatia)
+The filled out forms [can be found here](https://github.com/chris-phan/ecs179-final-project/tree/df3f43022e3c2ef02b92124a8cfe991e00ad1ed3/gameplay%20testing%20feedback).
 
-**Add a link to the full results of your gameplay tests.**
+Overall, the play testers seemed to enjoy the minigames and felt decently challenged by them. A lot of these tests were conducted before the completion of things such as the intro cutscene, sound effects, proper keybinds, and for the first 6, the board was not complete yet. As we were completing these features, we took the feedback in mind and made it so that controls are displayed on a per minigame basis, movement being disabled while kicking, and updating some of the instructions.
 
-**Summarize the key findings from your gameplay tests.**
+The players were a bit conflicted regarding the kicking mechanic. Some people found it satisfying and were happy that the controls were consistent throughout the game. While some people didn’t like the kick to interact concept and may have preferred some other method of interaction.
+
+Through feedback and observing the testers, it is quite clear that the memory sequence minigame is definitely not our strongest point. Specifically, there was repeated feedback of the tester not understanding what was supposed to be done in the minigame without me having to explain it quite a bit. Taking this into account, we updated the instructions for the game, however it still was not enough. But I noticed that while it may be an instructions issue, it was also noticeable from observing the testers and some of their feedback that they are not reading or paying full attention to the instructions. This is obviously fair. Gamers want to play the game, not sit and read. However, the design of the minigame is such that we would like them to read and understand the instructions before starting. A potential fix we debated would be to make the instructions yellow and thus move the player’s attention towards it (The whole yellow paint on ladders and ledges debate rears its ugly head here).
+
+Another common feedback point was related to the difficulty of the time platforming minigame. There is one version of that minigame that has an unforgiving cutout that requires the player to be perfectly lined up under it to jump through it. This also led to the complaints about the twitchy physics. After speaking to the minigame designer, we decided that we will not change this as it is tied to the identity of that level. The challenge is that one particular jump. Instead we decided that there will be multiple platforming levels and each would have their individual challenge.
+
+We also received some feedback about labelling the colors in the memory sequence minigame and I appreciate receiving this feedback as it is a valuable accessibility feature to have and thus will be implemented.
+
 
 ## Narrative Design
 
