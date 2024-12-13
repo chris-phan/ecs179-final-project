@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://bhw4bxuqfh87o" path="res://assets/1bitplatformerpack/platforming_tileset.tres" id="2_0n6l5"]
 [ext_resource type="PackedScene" uid="uid://cmuyixh24ptkc" path="res://scenes/platforming_goal.tscn" id="3_mbfus"]
 [ext_resource type="PackedScene" uid="uid://c2iafl58bub3k" path="res://scenes/platforming_player.tscn" id="4_txb38"]
-[ext_resource type="Script" path="res://scripts/HLockCamera.gd" id="5_c5ufd"]
+[ext_resource type="Script" path="res://scripts/hlock_camera.gd" id="5_c5ufd"]
 [ext_resource type="FontFile" uid="uid://cm8dnumwsttrn" path="res://assets/fonts/Silkscreen/slkscr.ttf" id="6_7jxpb"]
 [ext_resource type="PackedScene" uid="uid://bgwqpaqgk52bi" path="res://scenes/countdown_label.tscn" id="7_gd5bm"]
 [ext_resource type="PackedScene" uid="uid://daybuxnjj7tm5" path="res://scenes/luck_label.tscn" id="8_5ylia"]
