@@ -47,6 +47,10 @@ If your project contains code that: 1) your team did not write, and 2) does not 
 
 If you used tutorials or other intellectual guidance to create aspects of your project, include reference to that information as well.
 
+Exercise 1: `character.gd` and `player.gd`. Wasn't able to find a public link to the files.
+
+Exercise 2: `push_box.gd` [(link)](https://github.com/ensemble-ai/exercise-2-camera-control-chris-phan/blob/a1563182b4b2dd4e85a30a634f01d0f591b0a238/Obscura/scripts/camera_controllers/push_box.gd#L26)
+
 [Godot 4 — An Overview of Control Nodes | Easy UI (Tutorial)](https://www.youtube.com/watch?v=KfydpMuTBvA)
 
 [Godot Control Node (UI) Masterclass](https://www.youtube.com/watch?v=5Hog6a0EYa0)
