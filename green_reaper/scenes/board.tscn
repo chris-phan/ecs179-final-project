@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://dluc0vq2clg1q" path="res://assets/BoardPack/Tilemap/tilemap_packed.png" id="1_52orr"]
 [ext_resource type="Script" path="res://scripts/board.gd" id="1_qny2m"]
-[ext_resource type="PackedScene" uid="uid://uw112e130s1u" path="res://scenes/board_player.tscn" id="2_ip012"]
+[ext_resource type="PackedScene" uid="uid://thachl1mukog" path="res://scenes/board_player.tscn" id="2_ip012"]
 [ext_resource type="Script" path="res://scripts/camera_base.gd" id="3_8vtlt"]
-[ext_resource type="PackedScene" uid="uid://d4na36gsextsu" path="res://scenes/dice.tscn" id="4_ghqob"]
+[ext_resource type="PackedScene" uid="uid://whouqrpm7nnf" path="res://scenes/dice.tscn" id="4_ghqob"]
 [ext_resource type="Script" path="res://scripts/dice.gd" id="5_i6nux"]
 [ext_resource type="PackedScene" uid="uid://bv8w2gfd25y72" path="res://scenes/space_handler.tscn" id="6_ddjni"]
 [ext_resource type="FontFile" uid="uid://cm8dnumwsttrn" path="res://assets/fonts/Silkscreen/slkscr.ttf" id="8_jnfi1"]
