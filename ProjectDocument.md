@@ -1,6 +1,6 @@
 # Green Reaper #
 
-(https://github.com/chris-phan/ecs179-final-project/blob/f3ee9ab4c974f706871c05baca58571c1b6f7b04/green_reaper/assets/GreenReaperCover.png)
+![Green Reaper Cover Image](https://github.com/chris-phan/ecs179-final-project/blob/f3ee9ab4c974f706871c05baca58571c1b6f7b04/green_reaper/assets/GreenReaperCover.png)
 
 ## Summary ##
 
