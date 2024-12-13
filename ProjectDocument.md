@@ -1,5 +1,7 @@
 # Green Reaper #
 
+(https://github.com/chris-phan/ecs179-final-project/blob/f3ee9ab4c974f706871c05baca58571c1b6f7b04/green_reaper/assets/GreenReaperCover.png)
+
 ## Summary ##
 
 Oh no! You've just been notified that you have 20 days left in the world before the reaper takes you to the afterlife! Fortunately, you met the GREEN REAPER... They'll extend your life if you can get them $1,000,000 before your expiration date! Every 5 days, the Green Reaper will check if you're making good progress, and if not... You'll see... Money isn't that easy to make! Skillfully play and gamble your way to get $1,000,000. Just some advice, if you want any chance of getting $1,000,000 in 20 days, you have no choice but to gamble!! Best of luck on getting that money :D
@@ -12,8 +14,6 @@ Oh no! You've just been notified that you have 20 days left in the world before 
 [Proposal (Initial Plan)](https://docs.google.com/document/d/1rhZbmHajvX8lwk-x3umaan0xg93i457ZWKbK2ypXuaE/edit?usp=sharing)  
 
 ## Gameplay Explanation ##
-
-**In this section, explain how the game should be played. Treat this as a manual within a game. Explaining the button mappings and the most optimal gameplay strategy is encouraged.**
 
 When the player starts the game, they actually don't have to worry too much about making good progress in the first 5-10 days. Use these first 10 days to see which games you are best at. The boss phases only trigger if you aren't making good progress (good progress means 1/4 progress at each check). Luckily, the first 2 boss phases aren't too hard to survive through, and they give you enough money to catch up to the checkpoint thresholds (i.e. if you beat the first boss phase, your cash is set to $250,000 if you beat the second boss phase, your cash is set to $500,000). After day 10, you should start wagering a lot more on the games you are confident in. You want to avoid activating the third boss phase, and the fourth boss phase essentially forces you to lose since you were unable to obtain $1,000,000 by turn 20.
 
@@ -40,8 +40,6 @@ When the player starts the game, they actually don't have to worry too much abou
 
 #### 'Mouse' - Move cursor to move player
 
-
-**Add it here if you did work that should be factored into your grade but does not fit easily into the proscribed roles! Please include links to resources and descriptions of game-related material that does not fit into roles here.**
 
 # External Code, Ideas, and Structure #
 
@@ -381,7 +379,7 @@ We also received some feedback about labelling the colors in the memory sequence
 
 The [Presskit](https://hansonklau.itch.io/green-reaper) contains the web-playable version of the game as well.
 
-To showcase the team's work, I made sure to include a screenshot every element that each of us worked on. Namely, that included the board, the minigames, the events, and the boss fights / checkpoints. I tried to use screenshots that looked very different than each other to make the game seem bigger or fuller. Within the presskit, I added a quick game summary to give the player some context. The summary is very close to what the intro scene is in the game. Below the summary is a link to the trailer I made. Itch.io has trouble loading youtube videos for Godot 4 projects since Godot 4 requires "SharedArrayBuffer" support, so I inlcuded the link to the trailer video as well in presskit. The controls to the game are listed, and since the minigame controls vary by minigame, all the possible controls were listed. The template that Itch.io provided for the presskit was really helpful since it made the styling very easy. I made a cover [Art](https://github.com/chris-phan/ecs179-final-project/blob/c5923a7a638568c39bc0b0fbf40e0e93a456f90e/green_reaper/assets/GreenReaperCover.png) for the game and uploaded that to the page. The heading fonts were modified to match the pixelated vibe of the game. The team and roles were mentioned as well. Lastly, a table of all the resources we used was added in order to give the proper credit to the artists we borrowed from.
+To showcase the team's work, I made sure to include a screenshot every element that each of us worked on. Namely, that included the board, the minigames, the events, and the boss fights / checkpoints. I tried to use screenshots that looked very different than each other to make the game seem bigger or fuller. Within the presskit, I added a quick game summary to give the player some context. The summary is very close to what the intro scene is in the game. Below the summary is a link to the trailer I made. Itch.io has trouble loading youtube videos for Godot 4 projects since Godot 4 requires "SharedArrayBuffer" support, so I inlcuded the link to the trailer video as well in presskit. The controls to the game are listed, and since the minigame controls vary by minigame, all the possible controls were listed. The template that Itch.io provided for the presskit was really helpful since it made the styling very easy. I made a cover [Art](https://github.com/chris-phan/ecs179-final-project/blob/f3ee9ab4c974f706871c05baca58571c1b6f7b04/green_reaper/assets/GreenReaperCover.png) for the game and uploaded that to the page. The heading fonts were modified to match the pixelated vibe of the game. The team and roles were mentioned as well. Lastly, a table of all the resources we used was added in order to give the proper credit to the artists we borrowed from.
 
 The [Trailer](https://www.youtube.com/watch?v=lMgy5xW_P28&ab_channel=HansonLau) has been uploaded to my personal youtube channel.
 
