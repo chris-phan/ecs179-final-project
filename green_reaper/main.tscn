@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_gy7k5"]
 [ext_resource type="PackedScene" uid="uid://dpl5noij7sb2m" path="res://scenes/intro.tscn" id="2_f5l2h"]
 [ext_resource type="PackedScene" uid="uid://c8p5wva4aqnu7" path="res://scenes/minigame_manager.tscn" id="2_grqmu"]
-[ext_resource type="PackedScene" uid="uid://crl5vngasgipa" path="res://scenes/event_manager.tscn" id="4_ubl1l"]
+[ext_resource type="PackedScene" uid="uid://83tm831w1p57" path="res://scenes/event_manager.tscn" id="4_ubl1l"]
 [ext_resource type="PackedScene" uid="uid://dskeyl7rs1w48" path="res://scenes/end.tscn" id="6_mb31b"]
 
 [node name="Main" type="Node2D"]

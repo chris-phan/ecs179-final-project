@@ -8,6 +8,7 @@ var turns_passed: int = 0
 var _luck_sources: Array[float] = []
 var board_exists: bool = true
 
+
 func _ready() -> void:
 	luck = _calc_luck()
 

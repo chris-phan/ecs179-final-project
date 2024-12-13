@@ -69,8 +69,8 @@ func _handle_win_game() -> void:
 	
 	if outside_game:
 		_set_sprite_positions()
-		end_player.play("idle")
 		visible = true
+		win.visible = true
 		lose.visible = false
 		end_camera.enabled = true
 		end_camera.position = Vector2(0,0)
@@ -81,7 +81,7 @@ func _handle_win_game() -> void:
 			end_dialogue.text += "\n\nTime: 1 day"
 		else:
 			end_dialogue.text += "\nTime: " + str(state_manager.turns_passed) + " days"
-		end_dialogue.text += "\nLuck: " + str(state_manager.luck) + " %"
+		end_dialogue.text += "\nLuck: %.2f%%" % [state_manager.luck * 100]
 		end_dialogue.text += "\nCash: $" + str(state_manager.cash)
 		end_dialogue.visible_ratio = 0.0
 		start_dialogue = true
@@ -91,9 +91,9 @@ func _handle_win_game() -> void:
 func _handle_lose_game() -> void:
 	if outside_game:
 		_set_sprite_positions()
-		end_player.play("idle")
 		visible = true
 		win.visible = false
+		lose.visible = true
 		end_camera.enabled = true
 		end_camera.position = Vector2(0,0)
 		won_game = false
@@ -103,7 +103,7 @@ func _handle_lose_game() -> void:
 			end_dialogue.text += "\n\nTime: 1 day"
 		else:
 			end_dialogue.text += "\nTime: " + str(state_manager.turns_passed) + " days"
-		end_dialogue.text += "\nLuck: " + str(state_manager.luck) + " %"
+		end_dialogue.text += "\nLuck: %.2f%%" % [state_manager.luck * 100]
 		end_dialogue.text += "\nCash: $" + str(state_manager.cash)
 		end_dialogue.visible_ratio = 0.0
 		start_dialogue = true
@@ -111,6 +111,8 @@ func _handle_lose_game() -> void:
 
 
 func _set_sprite_positions() -> void:
+	start_animation = false
+	end_player.play("idle")	
 	end_reaper.position = Vector2(386, -165)
 	end_player.position = Vector2(-319, 118)
 
@@ -125,6 +127,7 @@ func _set_true_outside_game() -> void:
 
 func reset_game() -> void:
 	visible = false
-	start_animation = false
+	start_dialogue = false
+	_set_sprite_positions()
 	end_camera.enabled = false
 	signal_bus.reset_game.emit()

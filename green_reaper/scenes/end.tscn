@@ -1147,6 +1147,7 @@ tile_map_data = PackedByteArray("AADb/+v/AAALAAYAAADb/+z/AAALAAYAAADb/+3/AAALAAY
 tile_set = SubResource("TileSet_w27v0")
 
 [node name="Lose" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
