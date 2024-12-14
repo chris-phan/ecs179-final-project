@@ -134,6 +134,68 @@ The [internal timer minigame](https://github.com/chris-phan/ecs179-final-project
 ![Observation Minigame](green_reaper/assets/minigame_images/observation_minigame_img.png)
 The [observation minigame](https://github.com/chris-phan/ecs179-final-project/blob/b67a9534f8ce1002b99159326979195c9940da21/green_reaper/scripts/observation_minigame.gd#L1) is about counting the various moving objects. The objects move around for 10 seconds and then they disappear. The player then has to answer a question about how many of a particular object they saw. Each round, a new type of object is added and the minimum number of objects increases. The question can be about any of the objects in the round, so the player has to keep track of the number of each object. The difficulty determines how many rounds there are. The maximum difficulty, hard, has 3 rounds, and medium and easy have 2 rounds and 1 round respectively. The payout is 1.5x for easy, 2.5x for medium, and 4x for hard.
 
+## Event Lead (Arnold Zhou)
+
+Events are handled quite similarly to minigames, but are simpler in terms of
+signal logic because there is no need to switch between an instruction UI and
+the actual game UI. Some of the events are simple and deterministic one-step
+events, while others take multiple steps and have random outcomes. (I was also
+responsible for creating the `ActionMinigame`.)
+
+### `EventManager`
+
+The `EventManager` is responsible for maintaining a random rotation of events,
+selecting one when the player lands on an event space, and fetching the
+appropriate data about that specific event. The event rotation is handled the
+same as the minigame rotation, where events are popped off a list to prevent
+repeat encounters and the rotation is repopulated once all events are played.
+The only exception to this is the `NoobEvent`, which is immediately added back
+to the rotation in a random position after it is played.
+
+### `Event`
+
+Like the minigames, all events inherited basic variables and functionality from
+the `Event` superclass. Each event has an `event_name` which is displayed in the
+event UI and an `event_body` which describes the initial scenario and changes in
+response to player decisions. The event also keeps track of which step of the
+encounter the player is on, which is especially useful for longer events like
+the lottery event. Other information about events such as payout bounds, the
+actual payout, and change in luck are stored here as well.
+
+### `EventUI`
+
+The `EventUI` is fairly simple. It fetches information about the body and button
+text and updates the scene whenever a button is clicked. Once the maximum number
+of steps is reached, the choice buttons have their visibilities toggled off and
+the end event button is toggled on.
+
+### `EventResultUI`
+
+The `EventResultUI` displays the results of an event. The cash payout is
+displayed here, but the luck difference is deliberately hidden in this UI. The
+player can still figure out how their luck changed by looking at the board
+afterwards, but this adds some element of suspense for the player (*did I really
+just get that much money from the wizard for free?*). Also, there is no victory
+or defeat animation for the player in this UI, unlike the `MinigameResultUI`.
+This is because some events can have mixed results, like decreasing cash but
+increasing luck.
+
+### `ActionMinigame`
+
+The `ActionMinigame` is based off of Simon Says. The player must survive for 20
+seconds by quickly completing specific commands, like "Jump!" or "Reach the
+coin!". The player is allowed to take 1 second breaks in between successful
+command completions. To prevent the player from spamming actions and cheesing
+the game, there is a "Don't move!" command which has a shorter reaction time
+than the others. This encourages the player to stand still in between commands.
+
+The minigame difficulty changes how much time the player has to complete each
+command. On hard difficulty, the player is given 0.6 seconds. (The average human
+reaction time is about 0.25 seconds, but the player also has to read the command
+text and respond with the appropriate keyboard input.) Some events have
+customized response times — the "Don't move!" command has a 50% shorter response
+time, and the "Reach the coin!" command gives the player two extra seconds to
+traverse the platform.
 
 ## Checkpoints Designer (Aditya Bhatia)
 ### Checkpoint Logic
@@ -399,6 +461,14 @@ Just like the presskit, instead of screenshots I made sure to include footage of
 
 I used Clipchamp to put together the trailer. There was plently of tools to use for me to make a decent trailer, I took advantage of the effects they provided such as the flash and pulse effect for the countdown as well as the fade in and out effect for the sounds and the end of the video. It also allowed me to add text which was really important for me to add narration to the trailer.
 
-## Game Feel and Polish
+## Game Feel and Polish (Arnold Zhou)
 
-**Document what you added to and how you tweaked your game to improve its game feel.**
+For game polish, I decided to shorten the tween time when the payout was 0 so
+the player didn't feel like they were waiting for nothing. This was particularly
+important for the events, because many of them have an option to leave and so
+the player's cash would not change. I also scaled the wage increment with the
+player's current balance. Instead of having a fixed wage increment of 1000, the
+wage increment increases by 1000 every time the player hits a new cash
+checkpoint (250000, 500000, 750000). This way, players in later stages of the
+game don't have to hold the increment button for long periods of time to bet
+lots of money.

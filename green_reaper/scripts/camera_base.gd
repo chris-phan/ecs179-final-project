@@ -73,7 +73,7 @@ func _process(delta: float) -> void:
 					turn_label.position = TURN_VECTOR * (zoom_in/zoom_out)
 					arrow_keys.position = ARROW_KEYS_VECTOR * (zoom_in/zoom_out)
 		
-		turn_label.text = "Turns Passsed: " + str(state_manager.turns_passed)
+		turn_label.text = "Turns Passed: " + str(state_manager.turns_passed)
 		points_label.text = "Cash: $" + str(state_manager.cash) # add player manager obj and reference points
 		luck_label.text = "Luck: %.2f%%" % [state_manager.luck * 100] # add player manager obj and reference luck
 

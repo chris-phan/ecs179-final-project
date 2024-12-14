@@ -81,9 +81,10 @@ func _handle_timeout() -> void:
 		
 		# Hacky: Needs the new balance label to be at index 4
 		if _idx == 4:
+			var tween_time: float = 1.25 if event_manager.payout == 0 else 3.0
 			_new_balance = event_manager.old_balance
 			_tween = create_tween()
-			_tween.tween_property(self, "_new_balance", event_manager.new_balance, 3.0)
+			_tween.tween_property(self, "_new_balance", event_manager.new_balance, tween_time)
 			_tween.finished.connect(_handle_tween_finished)
 		
 		_idx += 1

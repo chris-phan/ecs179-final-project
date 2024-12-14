@@ -8,6 +8,16 @@ enum Difficulty {
 	# for boss/checkpoint minigame
 	FINAL,
 }
+enum Action {
+	NONE,
+	MOVE_LEFT,
+	MOVE_RIGHT,
+	KICK_LEFT,
+	KICK_RIGHT,
+	NO_MOVE,
+	JUMP,
+	REACH_COIN,
+}
 enum Controls {
 	MOVE_LEFT,
 	MOVE_RIGHT,

@@ -2,6 +2,7 @@ class_name MinigameManager
 extends Node2D
 
 const WAGER_INC: int = 1000
+
 var all_minigames: Array[Minigame]
 var minigame_rotation: Array[Minigame]
 var cur_minigame: Minigame
@@ -19,6 +20,7 @@ var controls: Array[Minigame.Controls]
 var old_balance: int
 var new_balance: int
 var wager: int
+var wager_inc: int
 var payout: int
 var won: bool
 
@@ -34,12 +36,14 @@ func _ready() -> void:
 
 
 func increase_wager() -> int:
-	wager = min(wager + WAGER_INC, old_balance)
+	#wager = min(wager + WAGER_INC, old_balance)
+	wager = min(wager + wager_inc, old_balance)
 	return wager
 
 
 func decrease_wager() -> int:
-	wager = max(wager - WAGER_INC, 0)
+	#wager = max(wager - WAGER_INC, 0)
+	wager = max(wager - wager_inc, 0)
 	return wager
 
 
@@ -57,6 +61,7 @@ func _add_minigames() -> void:
 	minigame_rotation.append(MemoryMinigame.new())
 	minigame_rotation.append(InternalTimerMinigame.new())
 	minigame_rotation.append(ObservationMinigame.new())
+	minigame_rotation.append(ActionMinigame.new())
 	minigame_rotation.shuffle()
 
 
@@ -64,6 +69,8 @@ func _handle_enter_minigame() -> void:
 	show()
 	difficulty = Minigame.Difficulty.EASY
 	wager = 0
+	# Increment by 1000, 2000, 3000, or 4000 depending on which checkpoint player has reached
+	wager_inc = ((state_manager.cash  + 250000) / 250000) * 1000
 	won = false
 	old_balance = state_manager.cash
 	sfx_player.play_sunday_drive()
